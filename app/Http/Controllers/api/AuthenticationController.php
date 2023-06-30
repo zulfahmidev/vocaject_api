@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CompanyDetail;
 use App\Models\LectureDetail;
 use App\Models\User;
+use App\Models\UserSubmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +36,7 @@ class AuthenticationController extends Controller
                 'name' => trim(strtolower($request->name)),
                 'password' => Hash::make($request->password),
                 'email' => trim(strtolower($request->email)),
-                'role' => trim(strtolower($request->role)),
+                'role' => trim(strtolower($request->role))
             ]);
             CompanyDetail::create([
                 'user_id' => $user->id,
