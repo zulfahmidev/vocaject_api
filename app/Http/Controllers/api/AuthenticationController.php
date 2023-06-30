@@ -86,7 +86,7 @@ class AuthenticationController extends Controller
                 'nidn' => trim($request->description),
                 'address' => trim($request->address),
                 'phone' => trim($request->phone),
-                'college_id' => trim($request->phone),
+                'college_id' => trim($request->college_id),
             ]);
             return response()->json([
                 'message' => 'Registrasi berhasil, silahkan login.',
@@ -129,7 +129,7 @@ class AuthenticationController extends Controller
                 'nim' => trim($request->description),
                 'address' => trim($request->address),
                 'phone' => trim($request->phone),
-                'college_id' => trim($request->phone),
+                'college_id' => trim($request->college_id),
             ]);
             return response()->json([
                 'message' => 'Registrasi berhasil, silahkan login.',
