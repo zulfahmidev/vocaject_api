@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\CompanyDetail;
 use App\Models\LectureDetail;
+use App\Models\StudentDetail;
 use App\Models\User;
 use App\Models\UserSubmission;
 use Illuminate\Http\Request;
@@ -124,7 +125,7 @@ class AuthenticationController extends Controller
                 'email' => trim(strtolower($request->email)),
                 'role' => trim(strtolower($request->role)),
             ]);
-            LectureDetail::create([
+            StudentDetail::create([
                 'user_id' => $user->id,
                 'nim' => trim($request->description),
                 'address' => trim($request->address),
