@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 
-class UserSubmission extends Controller
+class UserSubmissionController extends Controller
 {
     public function getStudentSubmissions($college_id) {
         $college = User::find($college_id);

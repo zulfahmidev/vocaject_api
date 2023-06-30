@@ -12,7 +12,7 @@ Vocaject Backend API merupakan Backend yang dibentuk untuk keperluan proyek Voca
 
 Perintah untuk jalankan runtime
 ```
-nohup php artisan serve --host=0.0.0.0 --port=80 > laravel.log 2>&1 &
+sudo nohup php artisan serve --host=0.0.0.0 --port=80 > laravel.log 2>&1 &
 ```
 
 Perintah untuk matikan runtime:
