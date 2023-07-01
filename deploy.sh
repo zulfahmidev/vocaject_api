@@ -1,4 +1,4 @@
-cd /home/zulfahmi/vocaject
+cd /home/zulfahmi/vocaject_api
 
 git pull origin main
 

@@ -11,7 +11,4 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
           ssh-private-key: ${{ secrets.SECRET_KEY }}
-          script:
-            cd /home/zulfahmi/vocaject
-            git pull origin main
-            php artisan migrate
+          script: bash -s < deploy.sh
