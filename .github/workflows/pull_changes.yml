@@ -10,6 +10,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
+          ssh-private-key: ${{ secrets.KEY }}
           script:
             cd /home/zulfahmi/vocaject
             git pull origin main
