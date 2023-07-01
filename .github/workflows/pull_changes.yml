@@ -1,7 +1,5 @@
 name: Pull Changes
-on:
-  push:
-    - main
+on: [push]
 jobs:
   pull-changes:
     runs-on: ubuntu-latest
