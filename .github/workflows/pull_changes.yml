@@ -1,11 +1,13 @@
 name: Pull Changes
-on: push
+on:
+  push:
+    - main
 jobs:
   pull-changes:
-  runs-on: ubuntu-latest
-  steps:
-    - uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-    - run: git pull origin main
-    - run: php artisan migrate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: webfactory/ssh-agent@v0.5.2
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - run: ssh zulfahmi@34.101.227.89 "bash -s" < deploy.sh
