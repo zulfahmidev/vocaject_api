@@ -8,4 +8,4 @@ jobs:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SECRET_KEY }}
-      - run: ssh {{ secrets.USER }}@${{ secrets.HOST }} "bash -s" < deploy.sh
+      - run: ssh ${{ secrets.HOST }}@$${{ secrets.HOST }} "bash -s" < deploy.sh
