@@ -7,8 +7,5 @@ jobs:
       - uses: actions/checkout@v2
       - uses: webfactory/ssh-agent@v0.8.0
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.KEY }}
           ssh-private-key: ${{ secrets.SECRET_KEY }}
-          script: bash -s < deploy.sh
+      - run: ssh {{ secrets.USER }}@${{ secrets.HOST }} "bash -s" < deploy.sh
