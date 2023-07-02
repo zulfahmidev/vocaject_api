@@ -9,10 +9,10 @@ jobs:
       - name: Setup SSH Agent
         uses: appleboy/ssh-action@v0.1.10
         with:
-          host: ${{ secrets.HOST }},
+          host: ${{ secrets.HOST }}
           user: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
-          port: 22,
+          port: 22
           script: |
             cd /home/zulfahmi/vocaject_api
             git pull origin main
