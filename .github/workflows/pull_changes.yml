@@ -11,7 +11,8 @@ jobs:
         with:
           host: ${{ secrets.HOST }},
           user: ${{ secrets.USER }}
-          key: ${{ secrets.SECRET_KEY }}
+          key: ${{ secrets.KEY }}
+          port: 22,
           script: |
             cd /home/zulfahmi/vocaject_api
             git pull origin main
