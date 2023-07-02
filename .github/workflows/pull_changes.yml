@@ -9,20 +9,10 @@ jobs:
       - name: Setup SSH Agent
         uses: webfactory/ssh-agent@v0.8.0
         with:
-          ssh-private-key: ${{ secrets.SECRET_KEY }}
-      - name: Pull Changes
-        run: |
-          pwd
-          git pull origin main
-      # - name: Setup PHP
-      #   uses: shivammathur/setup-php@v2
-      #   with:
-      #     php-version: '8.1'
-      # - name: Install Composer Dependencies
-      #   run: |
-      #     cd vocaject_api
-      #     composer install
-      # - name: Run Database Migrations
-      #   run: |
-      #     cd vocaject_api
-      #     php artisan migrate
+          host: ${{ secrets.HOST }},
+          user: ${{ secrets.USER }}
+          key: ${{ secrets.KEY }}
+          script: |
+            cd /home/zulfahmi/vocaject_api
+            git pull origin main
+            php artisan migrate
