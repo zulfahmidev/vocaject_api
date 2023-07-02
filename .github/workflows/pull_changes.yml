@@ -14,15 +14,15 @@ jobs:
         run: |
           pwd
           git pull origin main
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.1'
-      - name: Install Composer Dependencies
-        run: |
-          cd vocaject_api
-          composer install
-      - name: Run Database Migrations
-        run: |
-          cd vocaject_api
-          php artisan migrate
+      # - name: Setup PHP
+      #   uses: shivammathur/setup-php@v2
+      #   with:
+      #     php-version: '8.1'
+      # - name: Install Composer Dependencies
+      #   run: |
+      #     cd vocaject_api
+      #     composer install
+      # - name: Run Database Migrations
+      #   run: |
+      #     cd vocaject_api
+      #     php artisan migrate
