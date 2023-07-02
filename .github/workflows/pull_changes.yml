@@ -1,16 +1,21 @@
 name: Pull Changes
-on: [push]
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   pull-changes:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+
       - name: Setup SSH Agent
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.HOST }}
-          user: ${{ secrets.USER }}
+          username: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
           port: 22
           script: |
