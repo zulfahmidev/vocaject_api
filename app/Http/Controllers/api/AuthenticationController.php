@@ -28,9 +28,8 @@ class AuthenticationController extends Controller
             ]);
             if ($val->fails()) {
                 return response()->json([
-                    
                     'message' => 'Bidang tidak valid',
-                    'errors' => $val->errors()
+                    'data' => $val->errors()
                 ], 400);
             }
             $user = User::create([
