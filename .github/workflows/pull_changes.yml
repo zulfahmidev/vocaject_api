@@ -8,8 +8,8 @@ jobs:
       - uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SECRET_KEY }}
-      - run: git pull origin main
+      - run: cd /home/zulfahmi/vocaject_api && git pull origin main
       - uses: shivammathur/setup-php@v2
         with:
             php-version: '8.1'
-      - run: cd /home/zulfahmi/vocaject_api php artisan migrate
+      - run: cd /home/zulfahmi/vocaject_api && php artisan migrate
