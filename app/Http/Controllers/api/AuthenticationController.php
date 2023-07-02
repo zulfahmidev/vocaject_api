@@ -53,6 +53,7 @@ class AuthenticationController extends Controller
         } catch (\Throwable $e) {
             return response()->json([
                 'message' => $e->getMessage(),
+                'data' => null,
             ], 500);
         }
     }
@@ -96,6 +97,7 @@ class AuthenticationController extends Controller
         } catch (\Throwable $e) {
             return response()->json([
                 'message' => $e->getMessage(),
+                'data' => null,
             ], 500);
         }
     }
@@ -139,6 +141,7 @@ class AuthenticationController extends Controller
         } catch (\Throwable $e) {
             return response()->json([
                 'message' => $e->getMessage(),
+                'data' => null,
             ], 500);
         }
     }
@@ -158,6 +161,7 @@ class AuthenticationController extends Controller
             if (!Auth::attempt($request->only(['email', 'password']))) {
                 return response()->json([
                     'message' => 'Login gagal. Silakan periksa kembali informasi login Anda.',
+                    'data' => null,
                 ], 401);
             }
             $user = User::where('email', $request->email)->first();
@@ -172,6 +176,7 @@ class AuthenticationController extends Controller
         } catch (\Throwable $e) {
             return response()->json([
                 'message' => $e->getMessage(),
+                'data' => null,
             ], 500);
         }
     }
@@ -188,6 +193,9 @@ class AuthenticationController extends Controller
         $user = Auth::user();
         $user->tokens()->delete();
     
-        return response()->json(['message' => 'Logout berhasil'], 200);
+        return response()->json([
+            'message' => 'Logout berhasil',
+            'data' => null,
+        ], 200);
     }
 }
