@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\api\AuthenticationController;
+use App\Http\Controllers\api\ProjectCategoryController;
+use App\Http\Controllers\api\ProjectController;
+use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\UserSubmissionController;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -40,4 +44,24 @@ Route::prefix('user')->group(function() {
 
     });
 
+    Route::get('/r/{role}', [UserController::class, 'index'])->name('user.index.role');
+    Route::get('/{id}', [UserController::class, 'show'])->name('user.show');
+
+});
+
+Route::prefix('project')->group(function() {
+
+    Route::get('/', [ProjectController::class, 'index'])->name('project');
+    Route::get('/{id}', [ProjectController::class, 'show'])->name('project.show');
+    Route::post('/', [ProjectController::class, 'store'])->name('project.store');
+    Route::post('/{id}', [ProjectController::class, 'update'])->name('project.update');
+    Route::delete('/{id}', [ProjectController::class, 'delete'])->name('project.delete');
+
+    Route::prefix('category')->group(function() {
+        Route::get('/', [ProjectCategoryController::class, 'index'])->name('project.category');
+        Route::get('/{id}', [ProjectCategoryController::class, 'show'])->name('project.category.show');
+        Route::post('/', [ProjectCategoryController::class, 'store'])->name('project.category.store');
+        Route::post('/{id}', [ProjectCategoryController::class, 'update'])->name('project.category.update');
+        Route::delete('/{id}', [ProjectCategoryController::class, 'delete'])->name('project.category.delete');
+    });
 });

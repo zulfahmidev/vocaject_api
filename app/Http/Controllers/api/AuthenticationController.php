@@ -24,7 +24,7 @@ class AuthenticationController extends Controller
                 'password' => 'required',
                 'description' => 'required',
                 'address' => 'required',
-                'phone' => 'required',
+                'phone' => 'required|numeric',
             ]);
             if ($val->fails()) {
                 return response()->json([
@@ -65,9 +65,9 @@ class AuthenticationController extends Controller
                 'role' => 'required',
                 'email' => 'required|email|unique:users,email',
                 'password' => 'required',
-                'nidn' => 'required',
+                'nidn' => 'required|numeric',
                 'address' => 'required',
-                'phone' => 'required',
+                'phone' => 'required|numeric',
                 'college_id' => 'required|exists:users,id',
             ]);
             if ($val->fails()) {
@@ -84,7 +84,7 @@ class AuthenticationController extends Controller
             ]);
             LectureDetail::create([
                 'user_id' => $user->id,
-                'nidn' => trim($request->description),
+                'nidn' => trim($request->nidn),
                 'address' => trim($request->address),
                 'phone' => trim($request->phone),
                 'college_id' => trim($request->college_id),
@@ -107,10 +107,10 @@ class AuthenticationController extends Controller
                 'name' => 'required',
                 'role' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'nim' => 'required',
+                'nim' => 'required|numeric',
                 'password' => 'required',
                 'address' => 'required',
-                'phone' => 'required',
+                'phone' => 'required|numeric',
                 'college_id' => 'required|exists:users,id',
             ]);
             if ($val->fails()) {
@@ -127,7 +127,7 @@ class AuthenticationController extends Controller
             ]);
             StudentDetail::create([
                 'user_id' => $user->id,
-                'nim' => trim($request->description),
+                'nim' => trim($request->nim),
                 'address' => trim($request->address),
                 'phone' => trim($request->phone),
                 'college_id' => trim($request->college_id),
