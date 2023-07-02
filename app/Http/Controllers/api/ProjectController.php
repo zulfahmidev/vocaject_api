@@ -32,9 +32,13 @@ class ProjectController extends Controller
                 'data' => $val->errors(),
             ], 400);
         }
-        $project = Project::create($request->only([
-            'company_id', 'title', 'description', 'budget', 'category_id'
-        ]));
+        $project = Project::create([
+            'company_id' => $request->company_id, 
+            'title' => trim(strtolower($request->title)), 
+            'description' => $request->description,
+            'budget' => (int) $request->budget, 
+            'category_id' => $request->category_id,
+        ]);
         return response()->json([
             'message' => 'Proyek berhasil dibuat.',
             'data' => $project,
@@ -56,9 +60,13 @@ class ProjectController extends Controller
         }
         $project = Project::find($id);
         if ($project) {
-            $project->update($request->only([
-                'company_id', 'title', 'description', 'budget', 'category_id'
-            ]));
+            $project->update([
+                'company_id' => $request->company_id, 
+                'title' => trim(strtolower($request->title)), 
+                'description' => $request->description,
+                'budget' => (int) $request->budget, 
+                'category_id' => $request->category_id,
+            ]);
             return response()->json([
                 'message' => 'Proyek berhasil diubah.',
                 'data' => $project,

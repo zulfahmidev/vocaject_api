@@ -26,7 +26,9 @@ class ProjectCategoryController extends Controller
                 'data' => $val->errors(),
             ], 400);
         }
-        $category = ProjectCategory::create($request->only(['name']));
+        $category = ProjectCategory::create([
+            'name' => strtolower($request->name)
+        ]);
         return response()->json([
             'message' => 'Kategori berhasil dibuat.',
             'data' => $category,
@@ -35,7 +37,7 @@ class ProjectCategoryController extends Controller
 
     public function update(Request $request, $id) {
         $val = Validator::make($request->all(), [
-            'name' => "required|unique:project_categories,name,except,$id"
+            'name' => "required|unique:project_categories,name"
         ]);
         if ($val->fails()) {
             return response()->json([
@@ -45,7 +47,9 @@ class ProjectCategoryController extends Controller
         }
         $category = ProjectCategory::find($id);
         if ($category) {
-            $category->update($request->only(['name']));
+            $category->update([
+                'name' => strtolower($request->name)
+            ]);
             return response()->json([
                 'message' => 'Kategori berhasil diubah.',
                 'data' => $category,

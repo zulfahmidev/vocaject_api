@@ -10,6 +10,6 @@ class Project extends Model
     use HasFactory;
 
     public $fillable = [
-        'company_id', 'title', 'description', 'address', 'phone', 'category_id'
+        'company_id', 'title', 'description', 'budget', 'address', 'phone', 'category_id'
     ];
 }
