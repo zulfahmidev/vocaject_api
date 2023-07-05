@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Project extends Model
 {
@@ -12,4 +13,13 @@ class Project extends Model
     public $fillable = [
         'company_id', 'title', 'description', 'budget', 'address', 'phone', 'category_id'
     ];
+
+    public  function getDetail() {
+        $project = Project::find($this->id);
+        $project->company = User::find($project->company_id)->getDetail();
+        $project->category = ProjectCategory::find($project->category_id);
+        unset($project->company_id);
+        unset($project->category_id);
+        return $project;
+    }
 }

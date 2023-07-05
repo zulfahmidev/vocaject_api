@@ -47,30 +47,84 @@ class User extends Authenticatable
 
     public function getDetail() {
         if ($this->role == 'student') {
-            return DB::table('users')
+            $user = DB::table('users')
             ->selectRaw('users.id as id, name, email, 
                 CASE WHEN picture IS NULL THEN "'.url('/images/default.jpeg').'" ELSE CONCAT("'.url('/').'/uploads/", picture) END as picture,
-                nim, address, phone, college_id, role, status')
+                nim, address, phone, college_id, role, status, users.created_at, users.updated_at')
             ->join('student_details', 'users.id', '=', 'student_details.user_id')
             ->where('users.id', $this->id)
             ->first();
+            $user->college = User::find($user->college_id)->getDetail();
+            unset($user->college_id);
+            return $user;
         }else if($this->role == 'lecture') {
-            return DB::table('users')
+            $user = DB::table('users')
             ->selectRaw('users.id as id, name, email, 
                 CASE WHEN picture IS NULL THEN "'.url('/images/default.jpeg').'" ELSE CONCAT("'.url('/').'/uploads/", picture) END as picture,
-                nidn, address, phone, college_id, role, status')
+                nidn, address, phone, college_id, role, status, users.created_at, users.updated_at')
             ->join('lecture_details', 'users.id', '=', 'lecture_details.user_id')
             ->where('users.id', $this->id)
             ->first();
+            $user->college = User::find($user->college_id)->getDetail();
+            unset($user->college_id);
+            return $user;
         }else if(in_array($this->role, ['college', 'company'])) {
             return DB::table('users')
             ->selectRaw('users.id as id, name, email, 
                 CASE WHEN picture IS NULL THEN "'.url('/images/default.jpeg').'" ELSE CONCAT("'.url('/').'/uploads/", picture) END as picture,
-                description, address, phone, role, status')
+                description, address, phone, role, status, users.created_at, users.updated_at')
             ->join('company_details', 'users.id', '=', 'company_details.user_id')
             ->where('users.id', $this->id)
             ->first();
         }
         return null;
+    }
+
+    public static function getStudents() {
+        $users = DB::table('users')
+        ->selectRaw('users.id as id, name, email, 
+            CASE WHEN picture IS NULL THEN "'.url('/images/default.jpeg').'" ELSE CONCAT("'.url('/').'/uploads/", picture) END as picture,
+            nim, address, phone, college_id, role, status, users.created_at, users.updated_at')
+        ->join('student_details', 'users.id', '=', 'student_details.user_id')
+        ->get();
+        foreach ($users as $user) {
+            $user->college = User::find($user->college_id)->getDetail();
+            unset($user->college_id);
+        }
+        return $users;
+    }
+
+    public static function getLectures() {
+        $users = DB::table('users')
+        ->selectRaw('users.id as id, name, email, 
+            CASE WHEN picture IS NULL THEN "'.url('/images/default.jpeg').'" ELSE CONCAT("'.url('/').'/uploads/", picture) END as picture,
+            nidn, address, phone, college_id, role, status, users.created_at, users.updated_at')
+        ->join('lecture_details', 'users.id', '=', 'lecture_details.user_id')
+        ->get();
+        foreach ($users as $user) {
+            $user->college = User::find($user->college_id)->getDetail();
+            unset($user->college_id);
+        }
+        return $users;
+    }
+
+    public static function getColleges() {
+        return DB::table('users')
+        ->selectRaw('users.id as id, name, email, 
+            CASE WHEN picture IS NULL THEN "'.url('/images/default.jpeg').'" ELSE CONCAT("'.url('/').'/uploads/", picture) END as picture,
+            description, address, phone, role, status')
+        ->join('company_details', 'users.id', '=', 'company_details.user_id')
+        ->where('role', 'collage')
+        ->get();
+    }
+
+    public static function getCompanies() {
+        return DB::table('users')
+        ->selectRaw('users.id as id, name, email, 
+            CASE WHEN picture IS NULL THEN "'.url('/images/default.jpeg').'" ELSE CONCAT("'.url('/').'/uploads/", picture) END as picture,
+            description, address, phone, role, status')
+        ->join('company_details', 'users.id', '=', 'company_details.user_id')
+        ->where('role', 'company')
+        ->get();
     }
 }
