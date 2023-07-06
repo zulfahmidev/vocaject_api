@@ -11,8 +11,8 @@ class ProjectController extends Controller
 {
 
     public function index() {
-        $projects = Project::all();
-        // foreach (Project::all() as $project) $projects[] = $project->getDetail();
+        $projects = [];
+        foreach (Project::all() as $project) $projects[] = $project->getDetail();
         return response()->json([
             'message' => 'Berhasil memuat data.',
             'data' => $projects,
