@@ -44,9 +44,10 @@ class AuthenticationController extends Controller
                 'address' => trim($request->address),
                 'phone' => trim($request->phone),
             ]);
+            $user->sendEmailVerificationNotification();
             return response()->json([
                 'status' => true,
-                'message' => 'Registrasi berhasil, silahkan login.',
+                'message' => 'Registrasi berhasil, Silakan periksa email Anda untuk melakukan verifikasi email.',
                 'data' => $user->getDetail(),
             ], 200);
 
@@ -89,6 +90,7 @@ class AuthenticationController extends Controller
                 'phone' => trim($request->phone),
                 'college_id' => trim($request->college_id),
             ]);
+            $user->sendEmailVerificationNotification();
             return response()->json([
                 'message' => 'Registrasi berhasil, silahkan login.',
                 'data' => $user->getDetail(),
@@ -133,6 +135,7 @@ class AuthenticationController extends Controller
                 'phone' => trim($request->phone),
                 'college_id' => trim($request->college_id),
             ]);
+            $user->sendEmailVerificationNotification();
             return response()->json([
                 'message' => 'Registrasi berhasil, silahkan login.',
                 'data' => $user->getDetail(),
@@ -165,6 +168,12 @@ class AuthenticationController extends Controller
                 ], 401);
             }
             $user = User::where('email', $request->email)->first();
+            if (!$user->hasVerifiedEmail()) {
+                return response()->json([
+                    'message' => 'Gagal login. Silakan verifikasi email Anda untuk melanjutkan.',
+                    'data' => null,
+                ], 403);
+            }
             return response()->json([
                 'message' => 'Anda telah berhasil masuk ke akun Anda.',
                 'data' => [
