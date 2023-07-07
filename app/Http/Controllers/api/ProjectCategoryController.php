@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use App\Models\ProjectCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -63,6 +64,13 @@ class ProjectCategoryController extends Controller
     public function destroy($id) {
         $category = ProjectCategory::find($id);
         if ($category) {
+            $projects = Project::where('category_id', $category->id)->get();
+            if ($projects->count() > 0) {
+                return response()->json([
+                    'message' => 'Kategori tidak dapat dihapus.',
+                    'data' => null,
+                ], 409);
+            }
             $category->delete();
             return response()->json([
                 'message' => 'Kategori berhasil dihapus.',
