@@ -59,6 +59,7 @@ Route::prefix('user')->group(function() {
 
     Route::get('/r/{role}', [UserController::class, 'index'])->name('user.index.role');
     Route::get('/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::get('/student/{college_id}', [UserController::class, 'getStudents'])->name('user.student');
     Route::post('/update', [UserController::class, 'updateProfile'])->name('user.update.profile')->middleware(['auth:sanctum']);
 
 });

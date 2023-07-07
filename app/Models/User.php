@@ -114,7 +114,7 @@ class User extends Authenticatable
             CASE WHEN picture IS NULL THEN "'.url('/images/default.jpeg').'" ELSE CONCAT("'.url('/').'/uploads/", picture) END as picture,
             description, address, phone, role, status')
         ->join('company_details', 'users.id', '=', 'company_details.user_id')
-        ->where('role', 'collage')
+        ->where('role', 'college')
         ->get();
     }
 
