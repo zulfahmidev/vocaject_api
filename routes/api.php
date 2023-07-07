@@ -6,7 +6,10 @@ use App\Http\Controllers\api\ProjectController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\UserSubmissionController;
 use App\Models\Project;
+use App\Models\User;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +34,15 @@ Route::prefix('auth')->group(function() {
     Route::post('login', [AuthenticationController::class, 'login'])->name('auth.login');
     Route::get('me', [AuthenticationController::class, 'me'])->name('auth.me')->middleware(['auth:sanctum']);
     Route::post('logout', [AuthenticationController::class, 'logout'])->name('auth.logout')->middleware(['auth:sanctum']);
+    Route::get('/email/verify/{id}', function ($id) {
+        $user = User::find($id);
+        if (!$user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified(); 
+            return response()->json([
+                'message' => 'Berhasil melakukan verifikasi email.'
+            ]);
+        }
+    })->name('auth.email.verify');
 });
 
 Route::prefix('user')->group(function() {

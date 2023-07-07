@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CustomVerifyEmail;
 use App\Models\CompanyDetail;
 use App\Models\LectureDetail;
 use App\Models\StudentDetail;
 use App\Models\User;
 use App\Models\UserSubmission;
+use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AuthenticationController extends Controller
@@ -135,7 +139,7 @@ class AuthenticationController extends Controller
                 'phone' => trim($request->phone),
                 'college_id' => trim($request->college_id),
             ]);
-            $user->sendEmailVerificationNotification();
+            $this->sendEmailVerification($user);
             return response()->json([
                 'message' => 'Registrasi berhasil, silahkan login.',
                 'data' => $user->getDetail(),
@@ -168,6 +172,8 @@ class AuthenticationController extends Controller
                 ], 401);
             }
             $user = User::where('email', $request->email)->first();
+
+            // Verifikasi Email Validate (Non Active For While)
             if (!$user->hasVerifiedEmail()) {
                 return response()->json([
                     'message' => 'Gagal login. Silakan verifikasi email Anda untuk melanjutkan.',
@@ -206,5 +212,9 @@ class AuthenticationController extends Controller
             'message' => 'Logout berhasil',
             'data' => null,
         ], 200);
+    }
+
+    public function sendEmailVerification(User $user) {
+        Mail::to($user)->send(new CustomVerifyEmail($user));
     }
 }

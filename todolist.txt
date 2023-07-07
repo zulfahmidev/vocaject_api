@@ -1,0 +1,11 @@
+- membuat validasi company pada pembuatan project. pastikan id yang dimasukan merupakan id company | Down
+- membuat email verification
+- membuat forgot password
+- change password
+- testing api submission
+- membuat update profile
+- tambahkan fitur add skills
+- membuat get students by college id (pastikan id yang dimasukan merupakan id college)
+- membuat proposal submission
+- membuat proposal confirmation
+- ubah response jadi bahasa indonesia
