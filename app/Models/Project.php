@@ -14,7 +14,7 @@ class Project extends Model
         'company_id', 'title', 'description', 'budget', 'address', 'phone', 'category_id'
     ];
 
-    public  function getDetail() {
+    public function getDetail() {
         $project = Project::find($this->id);
         $project->company = User::find($project->company_id)->getDetail();
         $project->category = ProjectCategory::find($project->category_id);

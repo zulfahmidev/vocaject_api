@@ -7,19 +7,25 @@ use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
 
     public function index(Request $request) {
-        $raw = Project::all();
+        $raw = DB::table('projects');
         if ($request->category) {
-            $category = ProjectCategory::where('slug', trim($request->category))->first();
-            $raw = Project::where('category_id', $category->id)->get();
+            $category = ProjectCategory::where('slug', trim($request->category))->pluck('id');
+            $raw = $raw->whereIn('category_id', $category);
+        }
+        if ($request->search) {
+            $raw = $raw->where('title', 'like', "%".strtolower(trim($request->search))."%");
         }
         $projects = [];
-        foreach ($raw as $project) $projects[] = $project->getDetail();
+        foreach ($raw->pluck('id') as $id) {
+            $projects[] = Project::find($id)->getDetail();
+        };
         return response()->json([
             'message' => 'Berhasil memuat data.',
             'data' => $projects,
