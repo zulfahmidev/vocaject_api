@@ -34,6 +34,7 @@ Route::prefix('auth')->group(function() {
     Route::post('login', [AuthenticationController::class, 'login'])->name('auth.login');
     Route::get('me', [AuthenticationController::class, 'me'])->name('auth.me')->middleware(['auth:sanctum']);
     Route::post('logout', [AuthenticationController::class, 'logout'])->name('auth.logout')->middleware(['auth:sanctum']);
+
     Route::get('/email/verify/{id}', function ($id) {
         $user = User::find($id);
         if (!$user->hasVerifiedEmail()) {
@@ -58,6 +59,7 @@ Route::prefix('user')->group(function() {
 
     Route::get('/r/{role}', [UserController::class, 'index'])->name('user.index.role');
     Route::get('/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::post('/update', [UserController::class, 'updateProfile'])->name('user.update.profile')->middleware(['auth:sanctum']);
 
 });
 

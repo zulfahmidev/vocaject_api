@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\CompanyDetail;
+use App\Models\LectureDetail;
+use App\Models\StudentDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -44,19 +48,137 @@ class UserController extends Controller
         ], 404);
     }
 
-    // public function updateStudent(Request $request) {
-    //     $val = Validator::make($request->all(), [
-    //         'name' => 'required',
-    //         'description' => 'required',
-    //         'address' => 'required',
-    //         'phone' => 'required|numeric',
-    //         'picture' => 'required|image',
-    //     ]);
-    //     if ($val->fails()) {
-    //         return response()->json([
-    //             'message' => 'Bidang tidak valid.',
-    //             'data' => $val->errors(),
-    //         ]);
-    //     }
-    // }
+    public function updateProfile(Request $request) {
+        if (Auth::user()->role == 'student') return $this->updateStudent($request, Auth::user()->id);
+        else if (Auth::user()->role == 'lecture') return $this->updateLecture($request, Auth::user()->id);
+        else if (in_array(Auth::user()->role, ['company', 'college'])) return $this->updateCompany($request, Auth::user()->id);
+    }
+
+    public function updateStudent(Request $request, $id) {
+        $val = Validator::make($request->all(), [
+            'name' => 'required|string',
+            'address' => 'required|string',
+            'phone' => 'required|numeric',
+            'picture' => 'nullable|image',
+        ]);
+        if ($val->fails()) {
+            return response()->json([
+                'message' => 'Bidang tidak valid.',
+                'data' => $val->errors(),
+            ], 403);
+        }
+        $user = User::find($id);
+        if ($user) {
+            $filename = $user->picture;
+            $file = $request->file('picture');
+            if ($file) {
+                if (file_exists('/uploads/'.$filename)) {
+                    unlink('/uploads/'.$filename);
+                }
+                $filename = time() . rand(1111,9999) . '.' . $file->getClientOriginalExtension();
+                $file->move("uploads/", $filename);
+            }
+            $user->name = trim(strtolower($request->name));
+            $user->picture = $filename;
+            $user->save();
+            $detail = StudentDetail::where('user_id', $user->id)->first();
+            $detail->address = trim($request->address);
+            $detail->phone = trim($request->phone);
+            $detail->save();
+            return response()->json([
+                'message' => 'Perubahan berhasil disimpan.',
+                'data' => $user->getDetail(),
+            ]);
+        }
+        return response()->json([
+            'message' => 'Pengguna tidak ditemukan.',
+            'data' => null
+        ], 404);
+    }
+
+    public function updateLecture(Request $request, $id) {
+        $val = Validator::make($request->all(), [
+            'name' => 'nullable|string',
+            'address' => 'nullable|string',
+            'phone' => 'nullable|numeric',
+            'picture' => 'nullable|image',
+        ]);
+        if ($val->fails()) {
+            return response()->json([
+                'message' => 'Bidang tidak valid.',
+                'data' => $val->errors(),
+            ], 403);
+        }
+        $user = User::find($id);
+        if ($user) {
+            $filename = $user->picture;
+            $file = $request->file('picture');
+            if ($file) {
+                if (file_exists('/uploads/'.$filename)) {
+                    unlink('/uploads/'.$filename);
+                }
+                $filename = time() . rand(1111,9999) . '.' . $file->getClientOriginalExtension();
+                $file->move("uploads/", $filename);
+            }
+            $user->name = trim(strtolower($request->name));
+            $user->picture = $filename;
+            $user->save();
+            $detail = LectureDetail::where('user_id', $user->id)->first();
+            $detail->address = trim($request->address);
+            $detail->phone = trim($request->phone);
+            $detail->save();
+            return response()->json([
+                'message' => 'Perubahan berhasil disimpan.',
+                'data' => $user->getDetail(),
+            ]);
+        }
+        return response()->json([
+            'message' => 'Pengguna tidak ditemukan.',
+            'data' => null
+        ], 404);
+    }
+
+    public function updateCompany(Request $request, $id) {
+        $val = Validator::make($request->all(), [
+            'name' => 'nullable|string',
+            'description' => 'nullable|string',
+            'address' => 'nullable|string',
+            'phone' => 'nullable|numeric',
+            'picture' => 'nullable|image',
+        ]);
+        if ($val->fails()) {
+            return response()->json([
+                'message' => 'Bidang tidak valid.',
+                'data' => $val->errors(),
+            ], 403);
+        }
+        $user = User::find($id);
+        if ($user) {
+            $filename = $user->picture;
+            $file = $request->file('picture');
+            if ($file) {
+                if (file_exists('/uploads/'.$filename)) {
+                    unlink('/uploads/'.$filename);
+                }
+                $filename = time() . rand(1111,9999) . '.' . $file->getClientOriginalExtension();
+                $file->move("uploads/", $filename);
+            }
+            $user->name = trim(strtolower($request->name));
+            $user->picture = $filename;
+            $user->save();
+            $detail = CompanyDetail::where('user_id', $user->id)->first();
+            $detail->description = trim($request->description);
+            $detail->address = trim($request->address);
+            $detail->phone = trim($request->phone);
+            $detail->save();
+            return response()->json([
+                'message' => 'Perubahan berhasil disimpan.',
+                'data' => $user->getDetail(),
+            ]);
+        }
+        return response()->json([
+            'message' => 'Pengguna tidak ditemukan.',
+            'data' => null
+        ], 404);
+    }
 }
