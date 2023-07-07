@@ -48,7 +48,7 @@ class AuthenticationController extends Controller
                 'address' => trim($request->address),
                 'phone' => trim($request->phone),
             ]);
-            $user->sendEmailVerificationNotification();
+            $this->sendEmailVerification($user);
             return response()->json([
                 'status' => true,
                 'message' => 'Registrasi berhasil, Silakan periksa email Anda untuk melakukan verifikasi email.',
@@ -94,7 +94,7 @@ class AuthenticationController extends Controller
                 'phone' => trim($request->phone),
                 'college_id' => trim($request->college_id),
             ]);
-            $user->sendEmailVerificationNotification();
+            $this->sendEmailVerification($user);
             return response()->json([
                 'message' => 'Registrasi berhasil, silahkan login.',
                 'data' => $user->getDetail(),
