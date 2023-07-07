@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\ProjectCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ProjectCategoryController extends Controller
 {
@@ -28,7 +29,8 @@ class ProjectCategoryController extends Controller
             ], 400);
         }
         $category = ProjectCategory::create([
-            'name' => strtolower($request->name)
+            'name' => strtolower(trim($request->name)),
+            'slug' => Str::slug($request->name),
         ]);
         return response()->json([
             'message' => 'Kategori berhasil dibuat.',
@@ -49,7 +51,8 @@ class ProjectCategoryController extends Controller
         $category = ProjectCategory::find($id);
         if ($category) {
             $category->update([
-                'name' => strtolower($request->name)
+                'name' => strtolower(trim($request->name)),
+                'slug' => Str::slug($request->name),
             ]);
             return response()->json([
                 'message' => 'Kategori berhasil diubah.',

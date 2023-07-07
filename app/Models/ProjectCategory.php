@@ -11,6 +11,6 @@ class ProjectCategory extends Model
 
     public $table = 'project_categories';
     public $fillable = [
-        'name'
+        'name', 'slug'
     ];
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\ProjectCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -11,9 +12,14 @@ use Illuminate\Support\Facades\Validator;
 class ProjectController extends Controller
 {
 
-    public function index() {
+    public function index(Request $request) {
+        $raw = Project::all();
+        if ($request->category) {
+            $category = ProjectCategory::where('slug', trim($request->category))->first();
+            $raw = Project::where('category_id', $category->id)->get();
+        }
         $projects = [];
-        foreach (Project::all() as $project) $projects[] = $project->getDetail();
+        foreach ($raw as $project) $projects[] = $project->getDetail();
         return response()->json([
             'message' => 'Berhasil memuat data.',
             'data' => $projects,
