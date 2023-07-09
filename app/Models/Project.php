@@ -26,6 +26,6 @@ class Project extends Model
 
     public function getStatus() {
         $proposal = Proposal::where('project_id', $this->id)->where('status', 'accepted')->first();
-        return ($proposal) ? 'opened' : 'closed';
+        return ($proposal) ? 'closed' : 'opened';
     }
 }
