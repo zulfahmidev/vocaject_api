@@ -22,6 +22,9 @@ class ProjectController extends Controller
         if ($request->search) {
             $raw = $raw->where('title', 'like', "%".strtolower(trim($request->search))."%");
         }
+        if ($request->company_id) {
+            $raw = $raw->where('company_id', '=', $request->company_id);
+        }
         $projects = [];
         foreach ($raw->pluck('id') as $id) {
             $projects[] = Project::find($id)->getDetail();
