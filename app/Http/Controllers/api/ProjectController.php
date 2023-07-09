@@ -27,7 +27,14 @@ class ProjectController extends Controller
         }
         $projects = [];
         foreach ($raw->pluck('id') as $id) {
-            $projects[] = Project::find($id)->getDetail();
+            $project = Project::find($id)->getDetail();
+            if ($request->status) {
+                if ($project->status == $request->status) {
+                    $projects[] = $project;       
+                }
+            }else {
+                $projects[] = $project;   
+            }
         };
         return response()->json([
             'message' => 'Berhasil memuat data.',
