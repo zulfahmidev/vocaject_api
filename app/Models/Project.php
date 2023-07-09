@@ -18,8 +18,14 @@ class Project extends Model
         $project = Project::find($this->id);
         $project->company = User::find($project->company_id)->getDetail();
         $project->category = ProjectCategory::find($project->category_id);
+        $project->status = $this->getStatus();
         unset($project->company_id);
         unset($project->category_id);
         return $project;
+    }
+
+    public function getStatus() {
+        $proposal = Proposal::where('project_id', $this->id)->where('status', 'accepted')->first();
+        return ($proposal) ? 'opened' : 'closed';
     }
 }

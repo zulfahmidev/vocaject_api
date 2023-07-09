@@ -58,7 +58,7 @@ class ProjectController extends Controller
         ]);
         return response()->json([
             'message' => 'Proyek berhasil dibuat.',
-            'data' => $project,
+            'data' => $project->getDetail(),
         ]);
     }
 
@@ -86,25 +86,33 @@ class ProjectController extends Controller
             ]);
             return response()->json([
                 'message' => 'Proyek berhasil diubah.',
-                'data' => $project,
+                'data' => $project->getDetail(),
             ]);
         }
         return response()->json([
             'message' => 'Proyek tidak ditemukan.',
+            'data' => null,
         ], 404);
     }
 
     public function destroy($id) {
         $project = Project::find($id);
         if ($project) {
+            if ($project->getDetail()->status == 'closed') {
+                return response()->json([
+                    'message' => 'Proyek tidak dihapus.',
+                    'data' => null,
+                ], 403);
+            }
             $project->delete();
             return response()->json([
                 'message' => 'Proyek berhasil dihapus.',
-                'data' => $project,
+                'data' => $project->Detail(),
             ]);
         }
         return response()->json([
             'message' => 'Proyek tidak ditemukan.',
+            'data' => null,
         ], 404);
     }
 }
