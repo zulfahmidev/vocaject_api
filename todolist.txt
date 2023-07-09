@@ -1,5 +1,5 @@
 - membuat validasi company pada pembuatan project. pastikan id yang dimasukan merupakan id company | Done
-- membuat email verification | down
+- membuat email verification | done
 - membuat forgot password
 - change password
 - testing api submission
