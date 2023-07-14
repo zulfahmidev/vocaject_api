@@ -17,6 +17,8 @@ class Project extends Model
     public function getDetail() {
         $project = Project::find($this->id);
         $project->company = User::find($this->company_id)->getDetail();
+        $project->expired_at = explode(' ', $project->expired_at)[0];
+        $project->deadline_at = explode(' ', $project->deadline_at)[0];
         $project->category = ProjectCategory::find($this->category_id);
         $project->status = $this->getStatus();
         unset($project->company_id);
