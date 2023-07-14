@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\ProjectCategory;
+use App\Models\Proposal;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -16,6 +17,15 @@ class ProjectController extends Controller
 
     public function index(Request $request) {
         $raw = DB::table('projects');
+        if ($request->student_id) {
+            $raw = Proposal::join('projects', 'projects.id', '=', 'proposals.project_id')
+            ->join('proposal_members', 'proposal_members.proposal_id', '=', 'proposals.id')
+            ->where('proposal_members.student_id', $request->student_id);
+        }elseif ($request->lecture_id) {
+            $raw = Proposal::join('projects', 'projects.id', '=', 'proposals.project_id')
+            ->join('proposal_members', 'proposal_members.proposal_id', '=', 'proposals.id')
+            ->where('proposals.lecture_id', $request->lecture_id);
+        }
         if ($request->category) {
             $category = ProjectCategory::where('slug', trim($request->category))->pluck('id');
             $raw = $raw->whereIn('category_id', $category);
@@ -27,7 +37,7 @@ class ProjectController extends Controller
             $raw = $raw->where('company_id', '=', $request->company_id);
         }
         $projects = [];
-        foreach ($raw->pluck('id') as $id) {
+        foreach ($raw->pluck('projects.id') as $id) {
             $project = Project::find($id)->getDetail();
             if ($request->status) {
                 if ($project->status == $request->status) {
