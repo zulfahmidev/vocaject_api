@@ -16,8 +16,8 @@ class Project extends Model
 
     public function getDetail() {
         $project = Project::find($this->id);
-        $project->company = User::find($project->company_id)->getDetail();
-        $project->category = ProjectCategory::find($project->category_id);
+        $project->company = User::find($this->company_id)->getDetail();
+        $project->category = ProjectCategory::find($this->category_id);
         $project->status = $this->getStatus();
         unset($project->company_id);
         unset($project->category_id);

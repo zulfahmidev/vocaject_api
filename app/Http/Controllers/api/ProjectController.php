@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\ProjectCategory;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -62,8 +63,8 @@ class ProjectController extends Controller
             'company_id' => $request->company_id, 
             'title' => trim(strtolower($request->title)), 
             'description' => $request->description,
-            'expired_at' => $request->expired_at,
-            'deadline_at' => $request->deadline_at,
+            'expired_at' => $this->timestampFormat($request->expired_at),
+            'deadline_at' => $this->timestampFormat($request->deadline_at),
             'budget' => (int) $request->budget, 
             'category_id' => $request->category_id,
         ]);
@@ -71,6 +72,11 @@ class ProjectController extends Controller
             'message' => 'Proyek berhasil dibuat.',
             'data' => $project->getDetail(),
         ]);
+    }
+
+    private function timestampFormat($date) {
+        $date = explode('-', $date);
+        return Carbon::create($date[2], $date[1], $date[0]);
     }
 
     public function update(Request $request, $id) {
@@ -93,8 +99,8 @@ class ProjectController extends Controller
             $project->update([
                 'company_id' => $request->company_id, 
                 'title' => trim(strtolower($request->title)), 
-                'expired_at' => $request->expired_at,
-                'deadline_at' => $request->deadline_at,
+                'expired_at' => $this->timestampFormat($request->expired_at),
+                'deadline_at' => $this->timestampFormat($request->deadline_at),
                 'description' => $request->description,
                 'budget' => (int) $request->budget, 
                 'category_id' => $request->category_id,
@@ -122,7 +128,7 @@ class ProjectController extends Controller
             $project->delete();
             return response()->json([
                 'message' => 'Proyek berhasil dihapus.',
-                'data' => $project->Detail(),
+                'data' => $project,
             ]);
         }
         return response()->json([
