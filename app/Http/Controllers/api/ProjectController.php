@@ -45,8 +45,10 @@ class ProjectController extends Controller
     public function store(Request $request) {
         $val = Validator::make($request->all(), [
             'company_id' => 'required|exists:users,id',
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|min:3',
+            'expired_at' => 'required|date_format:m-d-Y',
+            'deadline_at' => 'required|date_format:m-d-Y',
+            'description' => 'required|min:3',
             'budget' => 'required|numeric',
             'category_id' => 'required|exists:project_categories,id',
         ]);
@@ -60,6 +62,8 @@ class ProjectController extends Controller
             'company_id' => $request->company_id, 
             'title' => trim(strtolower($request->title)), 
             'description' => $request->description,
+            'expired_at' => $request->expired_at,
+            'deadline_at' => $request->deadline_at,
             'budget' => (int) $request->budget, 
             'category_id' => $request->category_id,
         ]);
@@ -71,8 +75,10 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id) {
         $val = Validator::make($request->all(), [
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|min:3',
+            'expired_at' => 'required|date_format:m-d-Y',
+            'deadline_at' => 'required|date_format:m-d-Y',
+            'description' => 'required|min:3',
             'budget' => 'required|numeric',
             'category_id' => 'required|exists:project_categories,id',
         ]);
@@ -87,6 +93,8 @@ class ProjectController extends Controller
             $project->update([
                 'company_id' => $request->company_id, 
                 'title' => trim(strtolower($request->title)), 
+                'expired_at' => $request->expired_at,
+                'deadline_at' => $request->deadline_at,
                 'description' => $request->description,
                 'budget' => (int) $request->budget, 
                 'category_id' => $request->category_id,

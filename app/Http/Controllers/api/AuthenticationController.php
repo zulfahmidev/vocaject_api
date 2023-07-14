@@ -22,13 +22,13 @@ class AuthenticationController extends Controller
     public function companyRegister(Request $request) {
         try {
             $val = Validator::make($request->all(), [
-                'name' => 'required',
+                'name' => 'required|min:3',
                 'role' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'password' => 'required',
-                'description' => 'required',
-                'address' => 'required',
-                'phone' => 'required|numeric',
+                'password' => 'required|min:8',
+                'description' => 'required|min:3',
+                'address' => 'required|min:3',
+                'phone' => 'required|numeric|min:3',
             ]);
             if ($val->fails()) {
                 return response()->json([
@@ -66,13 +66,13 @@ class AuthenticationController extends Controller
     public function lectureRegister(Request $request) {
         try {
             $val = Validator::make($request->all(), [
-                'name' => 'required',
+                'name' => 'required|min:3',
                 'role' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'password' => 'required',
-                'nidn' => 'required|numeric',
-                'address' => 'required',
-                'phone' => 'required|numeric',
+                'password' => 'required|min:8',
+                'nidn' => 'required|numeric|min:3',
+                'address' => 'required|min:3',
+                'phone' => 'required|numeric|min:3',
                 'college_id' => 'required|exists:users,id',
             ]);
             if ($val->fails()) {
@@ -114,10 +114,10 @@ class AuthenticationController extends Controller
                 'name' => 'required',
                 'role' => 'required',
                 'email' => 'required|email|unique:users,email',
-                'nim' => 'required|numeric',
-                'password' => 'required',
-                'address' => 'required',
-                'phone' => 'required|numeric',
+                'nim' => 'required|numeric|min:3',
+                'password' => 'required|min:8',
+                'address' => 'required|min:3',
+                'phone' => 'required|numeric|min:3',
                 'college_id' => 'required|exists:users,id',
             ]);
             if ($val->fails()) {

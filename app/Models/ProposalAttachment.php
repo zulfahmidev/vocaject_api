@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ProposalAttachment extends Model
 {
     use HasFactory;
+
+    public $fillable = [
+        'filepath', 'proposal_id'
+    ];
 }

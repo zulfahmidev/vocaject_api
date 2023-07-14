@@ -80,9 +80,9 @@ class UserController extends Controller
 
     public function updateStudent(Request $request, $id) {
         $val = Validator::make($request->all(), [
-            'name' => 'required|string',
-            'address' => 'required|string',
-            'phone' => 'required|numeric',
+            'name' => 'required|string|min:3',
+            'address' => 'required|string|min:3',
+            'phone' => 'required|numeric|min:3',
             'picture' => 'nullable|image',
         ]);
         if ($val->fails()) {
@@ -122,9 +122,9 @@ class UserController extends Controller
 
     public function updateLecture(Request $request, $id) {
         $val = Validator::make($request->all(), [
-            'name' => 'nullable|string',
-            'address' => 'nullable|string',
-            'phone' => 'nullable|numeric',
+            'name' => 'nullable|string|min:3',
+            'address' => 'nullable|string|min:3',
+            'phone' => 'nullable|numeric|min:3',
             'picture' => 'nullable|image',
         ]);
         if ($val->fails()) {
@@ -164,10 +164,10 @@ class UserController extends Controller
 
     public function updateCompany(Request $request, $id) {
         $val = Validator::make($request->all(), [
-            'name' => 'nullable|string',
-            'description' => 'nullable|string',
-            'address' => 'nullable|string',
-            'phone' => 'nullable|numeric',
+            'name' => 'nullable|string|min:3',
+            'description' => 'nullable|string|min:3',
+            'address' => 'nullable|string|min:3',
+            'phone' => 'nullable|numeric|min:3',
             'picture' => 'nullable|image',
         ]);
         if ($val->fails()) {

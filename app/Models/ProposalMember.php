@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ProposalMember extends Model
 {
     use HasFactory;
+
+    public $fillable = [
+        'proposal_id', 'student_id'
+    ];
 }

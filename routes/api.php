@@ -5,6 +5,7 @@ use App\Http\Controllers\api\ProjectCategoryController;
 use App\Http\Controllers\api\ProjectController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\UserSubmissionController;
+use App\Http\Controllers\ProposalController;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
@@ -76,5 +77,12 @@ Route::prefix('project')->group(function() {
         Route::post('/', [ProjectCategoryController::class, 'store'])->name('project.category.store');
         Route::post('/{id}/update', [ProjectCategoryController::class, 'update'])->name('project.category.update');
         Route::delete('/{id}', [ProjectCategoryController::class, 'destroy'])->name('project.category.delete');
+    });
+
+    Route::prefix('{project_id}/proposal')->group(function() {
+        Route::get('/', [ProposalController::class, 'index'])->name('project.proposal');
+        Route::get('/{proposal_id}', [ProposalController::class, 'show'])->name('project.proposal.show');
+        Route::post('/', [ProposalController::class, 'store'])->name('project.proposal.store');
+        Route::post('/', [ProposalController::class, 'store'])->name('project.proposal.store');
     });
 });

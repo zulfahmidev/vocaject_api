@@ -20,7 +20,7 @@ class ProjectCategoryController extends Controller
 
     public function store(Request $request) {
         $val = Validator::make($request->all(), [
-            'name' => 'required|unique:project_categories,name'
+            'name' => 'required|unique:project_categories,name|min:3'
         ]);
         if ($val->fails()) {
             return response()->json([
@@ -40,7 +40,7 @@ class ProjectCategoryController extends Controller
 
     public function update(Request $request, $id) {
         $val = Validator::make($request->all(), [
-            'name' => "required|unique:project_categories,name"
+            'name' => "required|unique:project_categories,name|min:3"
         ]);
         if ($val->fails()) {
             return response()->json([
