@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
+use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\Proposal;
 use App\Models\ProposalAttachment;

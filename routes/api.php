@@ -5,7 +5,8 @@ use App\Http\Controllers\api\ProjectCategoryController;
 use App\Http\Controllers\api\ProjectController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\UserSubmissionController;
-use App\Http\Controllers\ProposalController;
+use App\Http\Controllers\api\ProposalController;
+use App\Http\Controllers\api\TaskController;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
@@ -69,13 +70,13 @@ Route::prefix('project')->group(function() {
 
     Route::get('/', [ProjectController::class, 'index'])->name('project');
     Route::post('/', [ProjectController::class, 'store'])->name('project.store');
-    Route::post('/{id}/update', [ProjectController::class, 'update'])->name('project.update');
+    Route::post('/{id}', [ProjectController::class, 'update'])->name('project.update');
     Route::delete('/{id}', [ProjectController::class, 'destroy'])->name('project.delete');
 
     Route::prefix('category')->group(function() {
         Route::get('/', [ProjectCategoryController::class, 'index'])->name('project.category');
         Route::post('/', [ProjectCategoryController::class, 'store'])->name('project.category.store');
-        Route::post('/{id}/update', [ProjectCategoryController::class, 'update'])->name('project.category.update');
+        Route::post('/{id}', [ProjectCategoryController::class, 'update'])->name('project.category.update');
         Route::delete('/{id}', [ProjectCategoryController::class, 'destroy'])->name('project.category.delete');
     });
 
@@ -84,5 +85,13 @@ Route::prefix('project')->group(function() {
         Route::get('/{proposal_id}', [ProposalController::class, 'show'])->name('project.proposal.show');
         Route::post('/', [ProposalController::class, 'store'])->name('project.proposal.store');
         Route::post('/', [ProposalController::class, 'store'])->name('project.proposal.store');
+    });
+
+    Route::prefix('{project_id}/task')->group(function() {
+        Route::get('/', [TaskController::class, 'index'])->name('project.task');
+        Route::post('/', [TaskController::class, 'store'])->name('project.task.store');
+        Route::post('/{task_id}', [TaskController::class, 'update'])->name('project.task.update');
+        Route::delete('/{task_id}', [TaskController::class, 'destroy'])->name('project.task.delete');
+        Route::post('/{task_id}/switch', [TaskController::class, 'switch'])->name('project.task.switch');
     });
 });
