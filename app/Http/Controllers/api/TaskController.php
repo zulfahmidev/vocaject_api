@@ -20,11 +20,19 @@ class TaskController extends Controller
         }
         $tasks = Task::where('project_id', $project_id);
         if ($request->has('checked')) {
-            $tasks->where('checked', $request->checked);
+            $checked = null;
+            if ($request->checked == "true") {
+                $checked = true;
+            }else if ($request->checked == "false") {
+                $checked = false;
+            }
+            if (!is_null($checked)) $tasks = $tasks->where('checked', $checked);
         }
+        $raw = [];
+        foreach ($tasks->get() as $task) $raw[] = $task->getDetail();
         return response()->json([
             'message' => 'Berhasil memuat data.',
-            'data' => $tasks->get(),
+            'data' => $raw,
         ]);
     }
 

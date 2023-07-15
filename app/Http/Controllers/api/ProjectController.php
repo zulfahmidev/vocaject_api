@@ -87,7 +87,7 @@ class ProjectController extends Controller
 
     private function timestampFormat($date) {
         $date = explode('-', $date);
-        return Carbon::create($date[2], $date[1], $date[0]);
+        return Carbon::create($date[2], $date[0], $date[1]);
     }
 
     public function update(Request $request, $id) {

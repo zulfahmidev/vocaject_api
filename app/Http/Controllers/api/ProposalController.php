@@ -52,6 +52,7 @@ class ProposalController extends Controller
             'status' => 'panding',
         ]);
         foreach ($request->student_ids as $student_id) {
+            // dd($student_id);
             ProposalMember::create([
                 'proposal_id' => $proposal->id,
                 'student_id' => $student_id,
@@ -89,7 +90,7 @@ class ProposalController extends Controller
         }
         return response()->json([
             'message' => 'Berhasil memuat data.',
-            'data' => $proposal
+            'data' => $proposal->getDetail()
         ]);
     }
 

@@ -18,7 +18,10 @@ class Proposal extends Model
         $members = [];
         $attachments = [];
         foreach (ProposalMember::where('proposal_id', $this->id)->get() as $member) {
-            $members[] = User::find($member->id)->getDetail();
+            $member = User::find($member->student_id);
+            if ($member) {
+                $members[] = $member->getDetail();
+            }
         }
         $proposal->members = $members;
         foreach (ProposalAttachment::where('proposal_id', $this->id)->get() as $attachment) {

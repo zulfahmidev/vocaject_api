@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\AuthenticationController;
+use App\Http\Controllers\api\LogbookController;
 use App\Http\Controllers\api\ProjectCategoryController;
 use App\Http\Controllers\api\ProjectController;
 use App\Http\Controllers\api\UserController;
@@ -93,5 +94,10 @@ Route::prefix('project')->group(function() {
         Route::post('/{task_id}', [TaskController::class, 'update'])->name('project.task.update');
         Route::delete('/{task_id}', [TaskController::class, 'destroy'])->name('project.task.delete');
         Route::post('/{task_id}/switch', [TaskController::class, 'switch'])->name('project.task.switch');
+    });
+
+    Route::prefix('{project_id}/logbook/{student_id}')->group(function() {
+        Route::get('/', [LogbookController::class, 'index'])->name('project.logbook');
+        Route::post('/', [LogbookController::class, 'store'])->name('project.logbook.store');
     });
 });
