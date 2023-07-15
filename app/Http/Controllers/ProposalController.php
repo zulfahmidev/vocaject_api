@@ -27,7 +27,7 @@ class ProposalController extends Controller
             'note' => 'required',
             'lecture_id' => 'required',
             // 'project_id' => 'required',
-            'students' => 'required|array',
+            'student_ids' => 'required|array',
             'mandatory_attachment' => 'required|file',
             'additional1_attachment' => 'nullable|file',
             'additional2_attachment' => 'nullable|file',
@@ -51,7 +51,7 @@ class ProposalController extends Controller
             'project_id' => $project->id,
             'status' => 'panding',
         ]);
-        foreach ($request->students as $student_id) {
+        foreach ($request->student_ids as $student_id) {
             ProposalMember::create([
                 'proposal_id' => $proposal->id,
                 'student_id' => $student_id,
