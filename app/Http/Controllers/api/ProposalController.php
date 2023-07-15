@@ -13,13 +13,18 @@ use Illuminate\Support\Facades\Validator;
 class ProposalController extends Controller
 {
     public function index(Request $request, $project_id) {
-        $proposals = Proposal::where('project_id', $project_id);
+        $raw = Proposal::where('project_id', $project_id);
         if ($request->lecture_id) {
-            $proposals->where('lecture_id', $request->lecture_id);
+            $raw->where('lecture_id', $request->lecture_id);
+        }
+        // dd($raw->get());
+        $proposals = [];
+        foreach ($raw->get() as $proposal) {
+            $proposals[] = $proposal->getDetail();
         }
         return response()->json([
             'message' => 'Berhasil memuat data.',
-            'data' => $proposals->get()
+            'data' => $proposals
         ]);
     }
 
