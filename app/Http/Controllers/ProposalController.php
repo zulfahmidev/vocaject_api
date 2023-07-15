@@ -25,9 +25,8 @@ class ProposalController extends Controller
     public function store(Request $request, $project_id) {
         $val = Validator::make($request->all(), [
             'note' => 'required',
-            'lecture_id' => 'required',
-            // 'project_id' => 'required',
-            'student_ids' => 'required|array',
+            'lecture_id' => 'required|exists:users,id',
+            'student_ids' => 'required|array|exists:users,id',
             'mandatory_attachment' => 'required|file',
             'additional1_attachment' => 'nullable|file',
             'additional2_attachment' => 'nullable|file',
