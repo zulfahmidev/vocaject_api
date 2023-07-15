@@ -28,7 +28,7 @@ class Project extends Model
 
     public function getStatus() {
         $proposal = Proposal::where('project_id', $this->id)->where('status', 'accepted')->first();
-        return ($proposal || $this->expired_at > now()) ? 'closed' : 'opened';
+        return ($proposal || $this->expired_at < now()) ? 'closed' : 'opened';
     }
 
     public function getAccProposal() {
