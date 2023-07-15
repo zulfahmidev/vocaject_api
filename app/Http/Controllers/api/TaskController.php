@@ -50,7 +50,7 @@ class TaskController extends Controller
         if ($val->fails()) {
             return response()->json([
                 'message' => 'Bidang tidak valid.',
-                'data' => null,
+                'data' => $val->errors(),
             ], 400);
         }
         $task = Task::create([
@@ -79,7 +79,7 @@ class TaskController extends Controller
         if ($val->fails()) {
             return response()->json([
                 'message' => 'Bidang tidak valid.',
-                'data' => null,
+                'data' => $val->errors(),
             ], 400);
         }
         $task = Task::find($task_id);

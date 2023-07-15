@@ -36,7 +36,6 @@ class ProjectController extends Controller
         if ($request->company_id) {
             $raw = $raw->where('company_id', '=', $request->company_id);
         }
-        $raw = $raw->where('expired_at', '>', now());
         $projects = [];
         foreach ($raw->pluck('projects.id') as $id) {
             $project = Project::find($id)->getDetail();

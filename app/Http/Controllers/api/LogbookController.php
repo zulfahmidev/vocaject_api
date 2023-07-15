@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\Logbook;
 use App\Models\Project;
+use App\Models\ProposalMember;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -53,6 +54,15 @@ class LogbookController extends Controller
                 'data' => null,
             ], 404);
         }
+        $member = ProposalMember::where('student_id', $student->id)
+        ->where('proposal_id', $project->getAccProposal()?->id)
+        ->first();
+        if (!$member) {
+            return response()->json([
+                'message' => 'Mahasiswa tidak termasuk.',
+                'data' => null,
+            ], 404);
+        }
         $val = Validator::make($request->all(), [
             'submited_at' => 'required|date_format:m-d-Y',
             'description' => 'required|min:3'
@@ -60,7 +70,7 @@ class LogbookController extends Controller
         if ($val->fails()) {
             return response()->json([
                 'message' => 'Bidang tidak valid.',
-                'data' => null,
+                'data' => $val->errors(),
             ], 400);
         }
         $logbook = Logbook::create([

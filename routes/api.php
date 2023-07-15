@@ -85,7 +85,7 @@ Route::prefix('project')->group(function() {
         Route::get('/', [ProposalController::class, 'index'])->name('project.proposal');
         Route::get('/{proposal_id}', [ProposalController::class, 'show'])->name('project.proposal.show');
         Route::post('/', [ProposalController::class, 'store'])->name('project.proposal.store');
-        Route::post('/', [ProposalController::class, 'store'])->name('project.proposal.store');
+        Route::post('/{proposal_id}', [ProposalController::class, 'confirm'])->name('project.proposal.confirm');
     });
 
     Route::prefix('{project_id}/task')->group(function() {

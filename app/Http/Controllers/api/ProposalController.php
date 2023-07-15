@@ -137,18 +137,18 @@ class ProposalController extends Controller
         }
         foreach (Proposal::where('project_id', $project->id)->get() as $proposal) {
             if ($proposal->id == $proposal_id) {
-                $proposal::update([
+                $proposal->update([
                     'status' => 'accepted'
                 ]);
                 continue;
             }
-            $proposal::update([
+            $proposal->update([
                 'status' => 'rejected'
             ]);
         }
         return response()->json([
             'message' => 'Proposal berhasil diterima.',
-            'data' => $project
+            'data' => $project->getDetail()
         ]);
     }
 }
