@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Task extends Model
+class ProjectTask extends Model
 {
     use HasFactory;
 
@@ -14,7 +14,7 @@ class Task extends Model
     ];
 
     public function getDetail() {
-        $task = Task::find($this->id);
+        $task = ProjectTask::find($this->id);
         $task->project = Project::find($this->project_id)->getDetail();
         $task->checked = (bool)$task->checked;
         unset($task->project_id);

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Logbook;
+use App\Models\ProjectLogbook;
 use App\Models\Project;
 use App\Models\ProposalMember;
 use App\Models\User;
@@ -11,7 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class LogbookController extends Controller
+class ProjectLogbookController extends Controller
 {
     public function index($project_id, $student_id) {
         $project = Project::find($project_id);
@@ -28,7 +28,7 @@ class LogbookController extends Controller
                 'data' => null,
             ], 404);
         }
-        $raw = Logbook::where('project_id', $project->id)->where('student_id', $student->id)->get();
+        $raw = ProjectLogbook::where('project_id', $project->id)->where('student_id', $student->id)->get();
         $logbooks = [];
         foreach ($raw as $logbook) {
             $logbooks[] = $logbook->getDetail();
@@ -73,7 +73,7 @@ class LogbookController extends Controller
                 'data' => $val->errors(),
             ], 400);
         }
-        $logbook = Logbook::create([
+        $logbook = ProjectLogbook::create([
             'description' => trim($request->description),
             'submited_at' => $this->timestampFormat($request->submited_at),
             'project_id' => $project->id,

@@ -1,13 +1,15 @@
 <?php
 
+use App\Events\MyEvent;
 use App\Http\Controllers\api\AuthenticationController;
-use App\Http\Controllers\api\LogbookController;
+use App\Http\Controllers\api\ProjectLogbookController;
 use App\Http\Controllers\api\ProjectCategoryController;
 use App\Http\Controllers\api\ProjectController;
+use App\Http\Controllers\api\ProjectMessageController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\UserSubmissionController;
 use App\Http\Controllers\api\ProposalController;
-use App\Http\Controllers\api\TaskController;
+use App\Http\Controllers\api\ProjectTaskController;
 use App\Models\Project;
 use App\Models\User;
 use Illuminate\Auth\Events\Verified;
@@ -89,15 +91,23 @@ Route::prefix('project')->group(function() {
     });
 
     Route::prefix('{project_id}/task')->group(function() {
-        Route::get('/', [TaskController::class, 'index'])->name('project.task');
-        Route::post('/', [TaskController::class, 'store'])->name('project.task.store');
-        Route::post('/{task_id}', [TaskController::class, 'update'])->name('project.task.update');
-        Route::delete('/{task_id}', [TaskController::class, 'destroy'])->name('project.task.delete');
-        Route::post('/{task_id}/switch', [TaskController::class, 'switch'])->name('project.task.switch');
+        Route::get('/', [ProjectTaskController::class, 'index'])->name('project.task');
+        Route::post('/', [ProjectTaskController::class, 'store'])->name('project.task.store');
+        Route::post('/{task_id}', [ProjectTaskController::class, 'update'])->name('project.task.update');
+        Route::delete('/{task_id}', [ProjectTaskController::class, 'destroy'])->name('project.task.delete');
+        Route::post('/{task_id}/switch', [ProjectTaskController::class, 'switch'])->name('project.task.switch');
     });
 
     Route::prefix('{project_id}/logbook/{student_id}')->group(function() {
-        Route::get('/', [LogbookController::class, 'index'])->name('project.logbook');
-        Route::post('/', [LogbookController::class, 'store'])->name('project.logbook.store');
+        Route::get('/', [ProjectLogbookController::class, 'index'])->name('project.logbook');
+        Route::post('/', [ProjectLogbookController::class, 'store'])->name('project.logbook.store');
+    });
+
+    Route::prefix('{project_id}/message')->group(function() {
+        Route::get('/', [ProjectMessageController::class, 'index'])->name('project.message');
+        Route::post('/', [ProjectMessageController::class, 'store'])->name('project.store');
+        Route::delete('/{message_id}', [ProjectMessageController::class, 'destroy'])->name('project.delete');
+        Route::post('/read', [ProjectMessageController::class, 'read'])->name('project.read');
+        Route::get('/count-unread', [ProjectMessageController::class, 'getCountUnread'])->name('project.count_unread');
     });
 });

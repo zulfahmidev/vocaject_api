@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tasks', function (Blueprint $table) {
+        Schema::create('project_logbooks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id');
-            $table->string('title');
+            $table->foreignId('student_id');
+            $table->timestamp('submited_at');
             $table->text('description');
-            $table->boolean('checked')->default(false);
             $table->timestamps();
 
             $table->foreign('project_id')->references('id')->on('projects')->cascadeOnDelete();
+            $table->foreign('student_id')->references('id')->on('users')->cascadeOnDelete();
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('project_logbooks');
     }
 };

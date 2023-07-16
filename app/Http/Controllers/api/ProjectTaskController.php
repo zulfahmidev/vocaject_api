@@ -4,11 +4,11 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
-use App\Models\Task;
+use App\Models\ProjectTask;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class TaskController extends Controller
+class ProjectTaskController extends Controller
 {
     public function index(Request $request, $project_id) {
         $project = Project::find($project_id);
@@ -18,7 +18,7 @@ class TaskController extends Controller
                 'data' => null,
             ], 404);
         }
-        $tasks = Task::where('project_id', $project_id);
+        $tasks = ProjectTask::where('project_id', $project_id);
         if ($request->has('checked')) {
             $checked = null;
             if ($request->checked == "true") {
@@ -53,7 +53,7 @@ class TaskController extends Controller
                 'data' => $val->errors(),
             ], 400);
         }
-        $task = Task::create([
+        $task = ProjectTask::create([
             'title' => trim(strtolower($request->title)),
             'description' => '',
             'checked' => false,
@@ -82,7 +82,7 @@ class TaskController extends Controller
                 'data' => $val->errors(),
             ], 400);
         }
-        $task = Task::find($task_id);
+        $task = ProjectTask::find($task_id);
         if (!$task) {
             return response()->json([
                 'message' => 'Tugas tidak ditemukan.',
@@ -106,7 +106,7 @@ class TaskController extends Controller
                 'data' => null,
             ], 404);
         }
-        $task = Task::find($task_id);
+        $task = ProjectTask::find($task_id);
         if (!$task) {
             return response()->json([
                 'message' => 'Tugas tidak ditemukan.',
@@ -128,7 +128,7 @@ class TaskController extends Controller
                 'data' => null,
             ], 404);
         }
-        $task = Task::find($task_id);
+        $task = ProjectTask::find($task_id);
         if (!$task) {
             return response()->json([
                 'message' => 'Tugas tidak ditemukan.',
