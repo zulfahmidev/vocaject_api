@@ -103,7 +103,7 @@ Route::prefix('project')->group(function() {
         Route::post('/', [ProjectLogbookController::class, 'store'])->name('project.logbook.store');
     });
 
-    Route::prefix('{project_id}/message')->group(function() {
+    Route::prefix('{project_id}/message/{lecture_id}')->group(function() {
         Route::get('/', [ProjectMessageController::class, 'index'])->name('project.message');
         Route::post('/', [ProjectMessageController::class, 'store'])->name('project.store');
         Route::delete('/{message_id}', [ProjectMessageController::class, 'destroy'])->name('project.delete');

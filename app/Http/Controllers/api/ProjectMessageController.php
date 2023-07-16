@@ -7,12 +7,13 @@ use App\Events\NewMessage;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\ProjectMessage;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class ProjectMessageController extends Controller
 {
-    public function index($project_id) {
+    public function index($project_id, $lecture_id) {
         $project = Project::find($project_id);
         if (!$project) {
             return response()->json([
@@ -20,7 +21,14 @@ class ProjectMessageController extends Controller
                 'data' => null,
             ], 404);
         }
-        $raw = ProjectMessage::where('project_id', $project_id)->get();
+        $lecture = User::find($lecture_id);
+        if (!$lecture) {
+            return response()->json([
+                'message' => 'Dosen tidak ditemukan.',
+                'data' => null,
+            ], 404);
+        }
+        $raw = ProjectMessage::where('project_id', $project_id)->where('lecture_id', $lecture_id)->get();
         $messages = [];
         foreach ($raw as $message) {
             $messages[] = $message->getDetail();
@@ -31,11 +39,18 @@ class ProjectMessageController extends Controller
         ]);
     }
 
-    public function store(Request $request, $project_id) {
+    public function store(Request $request, $project_id, $lecture_id) {
         $project = Project::find($project_id);
         if (!$project) {
             return response()->json([
                 'message' => 'Proyek tidak ditemukan.',
+                'data' => null,
+            ], 404);
+        }
+        $lecture = User::find($lecture_id);
+        if (!$lecture) {
+            return response()->json([
+                'message' => 'Dosen tidak ditemukan.',
                 'data' => null,
             ], 404);
         }
@@ -53,8 +68,9 @@ class ProjectMessageController extends Controller
 
         $message = ProjectMessage::create([
             'project_id' => $project->id,
+            'lecture_id' => $lecture->id,
             'message' => $request->message,
-            'sender' => $request->sender
+            'sender' => $request->sender,
         ]);
 
         event(new NewMessage($message->getDetail()));
@@ -65,11 +81,18 @@ class ProjectMessageController extends Controller
         ]);
     }
 
-    public function destroy($project_id, $message_id) {
+    public function destroy($project_id, $lecture_id, $message_id) {
         $project = Project::find($project_id);
         if (!$project) {
             return response()->json([
                 'message' => 'Proyek tidak ditemukan.',
+                'data' => null,
+            ], 404);
+        }
+        $lecture = User::find($lecture_id);
+        if (!$lecture) {
+            return response()->json([
+                'message' => 'Dosen tidak ditemukan.',
                 'data' => null,
             ], 404);
         }
@@ -82,7 +105,7 @@ class ProjectMessageController extends Controller
         }
 
         event(new DeleteMessage($message));
-        
+
         $message->delete();
 
 
@@ -92,11 +115,18 @@ class ProjectMessageController extends Controller
         ]);
     }
 
-    public function read($project_id) {
+    public function read($project_id, $lecture_id) {
         $project = Project::find($project_id);
         if (!$project) {
             return response()->json([
                 'message' => 'Proyek tidak ditemukan.',
+                'data' => null,
+            ], 404);
+        }
+        $lecture = User::find($lecture_id);
+        if (!$lecture) {
+            return response()->json([
+                'message' => 'Dosen tidak ditemukan.',
                 'data' => null,
             ], 404);
         }
@@ -111,11 +141,18 @@ class ProjectMessageController extends Controller
         ]);
     }
 
-    public function getCountUnread($project_id) {
+    public function getCountUnread($project_id, $lecture_id) {
         $project = Project::find($project_id);
         if (!$project) {
             return response()->json([
                 'message' => 'Proyek tidak ditemukan.',
+                'data' => null,
+            ], 404);
+        }
+        $lecture = User::find($lecture_id);
+        if (!$lecture) {
+            return response()->json([
+                'message' => 'Dosen tidak ditemukan.',
                 'data' => null,
             ], 404);
         }
