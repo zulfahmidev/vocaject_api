@@ -86,6 +86,7 @@ Route::prefix('project')->group(function() {
     Route::prefix('{project_id}/proposal')->group(function() {
         Route::get('/', [ProposalController::class, 'index'])->name('project.proposal');
         Route::get('/{proposal_id}', [ProposalController::class, 'show'])->name('project.proposal.show');
+        Route::get('/by_lecture/{lecture_id}', [ProposalController::class, 'showByLecture'])->name('project.proposal.show_by_lecture');
         Route::post('/', [ProposalController::class, 'store'])->name('project.proposal.store');
         Route::post('/{proposal_id}', [ProposalController::class, 'confirm'])->name('project.proposal.confirm');
     });
@@ -103,7 +104,7 @@ Route::prefix('project')->group(function() {
         Route::post('/', [ProjectLogbookController::class, 'store'])->name('project.logbook.store');
     });
 
-    Route::prefix('{project_id}/message/{lecture_idhttps://www.canva.com/design/DAFlUnNSFVw/3kolVV9BTOkIazoMWYmFsg/edit?utm_content=DAFlUnNSFVw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton}')->group(function() {
+    Route::prefix('{project_id}/message/{lecture_id}')->group(function() {
         Route::get('/', [ProjectMessageController::class, 'index'])->name('project.message');
         Route::post('/', [ProjectMessageController::class, 'store'])->name('project.store');
         Route::delete('/{message_id}', [ProjectMessageController::class, 'destroy'])->name('project.delete');

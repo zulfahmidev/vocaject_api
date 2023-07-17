@@ -120,6 +120,29 @@ class ProposalController extends Controller
         ]);
     }
 
+
+    public function showByLecture($project_id, $lecture_id) {
+        $project = Project::find($project_id);
+        if (!$project) {
+            return response()->json([
+                'message' => 'Proyek tidak ditemukan.',
+                'data' => null
+            ], 404);
+        }
+        $proposal = Proposal::where('lecture_id', $lecture_id)->first();
+        // dd($proposal);
+        if (!$proposal) {
+            return response()->json([
+                'message' => 'Proposal tidak ditemukan.',
+                'data' => null
+            ], 404);
+        }
+        return response()->json([
+            'message' => 'Berhasil memuat data.',
+            'data' => $proposal->getDetail(),
+        ]);
+    }
+
     public function confirm($project_id, $proposal_id) {
         $project = Project::find($project_id);
         if (!$project) {
