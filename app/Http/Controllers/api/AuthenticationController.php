@@ -126,6 +126,15 @@ class AuthenticationController extends Controller
                     'data' => $val->errors()
                 ], 400);
             }
+            $college = User::find($request->college_id);
+            if ($college) {
+                if ($college->role != 'college') {
+                    return response()->json([
+                        'message' => 'Id yang anda inputkan bukan kampus.',
+                        'data' => $val->errors()
+                    ], 400);
+                }
+            }
             $user = User::create([
                 'name' => trim(strtolower($request->name)),
                 'password' => Hash::make($request->password),
