@@ -62,6 +62,20 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function show($project_id) {
+        $project = Project::find($project_id);
+        if (!$project) {
+            return response()->json([
+                'message' => 'Proyek tidak ditemukan.',
+                'data' => null,
+            ], 404);
+        }
+        return response()->json([
+            'message' => 'Berhasil memuat data.',
+            'data' => $project->getDetail(),
+        ]);
+    }
+
     public function store(Request $request) {
         $val = Validator::make($request->all(), [
             'company_id' => 'required|exists:users,id',
