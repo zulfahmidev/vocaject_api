@@ -21,10 +21,15 @@ class ProjectController extends Controller
             $raw = Proposal::join('projects', 'projects.id', '=', 'proposals.project_id')
             ->join('proposal_members', 'proposal_members.proposal_id', '=', 'proposals.id')
             ->where('proposal_members.student_id', $request->student_id);
+            if ($request->proposal_status) {
+                $raw = $raw->where('proposals.status', $request->proposal_status);
+            }
         }elseif ($request->lecture_id) {
             $raw = Proposal::join('projects', 'projects.id', '=', 'proposals.project_id')
-            ->join('proposal_members', 'proposal_members.proposal_id', '=', 'proposals.id')
             ->where('proposals.lecture_id', $request->lecture_id);
+            if ($request->proposal_status) {
+                $raw = $raw->where('proposals.status', $request->proposal_status);
+            }
         }
         if ($request->category) {
             $category = ProjectCategory::where('slug', trim($request->category))->pluck('id');
@@ -37,8 +42,12 @@ class ProjectController extends Controller
             $raw = $raw->where('company_id', '=', $request->company_id);
         }
         $projects = [];
-        foreach ($raw->pluck('projects.id') as $id) {
-            $project = Project::find($id)->getDetail();
+        $raw = ($request->has('student_id') || $request->has('lecture_id')) ? $raw->selectRaw('projects.id, proposals.status')->get() : $raw->selectRaw('projects.id')->get();
+        foreach ($raw as $v) {
+            $project = Project::find($v->id)->getDetail();
+            if ($request->has('student_id') || $request->has('lecture_id')) {
+                $project->proposal_status = $v->status;
+            }
             if ($request->status) {
                 if ($project->status == $request->status) {
                     $projects[] = $project;       

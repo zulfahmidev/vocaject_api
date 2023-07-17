@@ -59,7 +59,7 @@ class ProjectLogbookController extends Controller
         ->first();
         if (!$member) {
             return response()->json([
-                'message' => 'Mahasiswa tidak termasuk.',
+                'message' => 'Mahasiswa tidak termasuk dalam tim proyek.',
                 'data' => null,
             ], 404);
         }
