@@ -78,7 +78,7 @@ Route::prefix('project')->group(function() {
     Route::get('/{id}', [ProjectController::class, 'show'])->name('project.show');
 
     Route::prefix('category')->group(function() {
-        Route::get('/', [ProjectCategoryController::class, 'index'])->name('project.category');
+        Route::get('/all', [ProjectCategoryController::class, 'index'])->name('project.category');
         Route::post('/', [ProjectCategoryController::class, 'store'])->name('project.category.store');
         Route::post('/{id}', [ProjectCategoryController::class, 'update'])->name('project.category.update');
         Route::delete('/{id}', [ProjectCategoryController::class, 'destroy'])->name('project.category.delete');
