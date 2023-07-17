@@ -17,7 +17,7 @@ class ProposalController extends Controller
         if ($request->lecture_id) {
             $raw->where('lecture_id', $request->lecture_id);
         }
-        // dd($raw->get());
+        dd($raw->get());
         $proposals = [];
         foreach ($raw->get() as $proposal) {
             $proposals[] = $proposal->getDetail();
@@ -51,7 +51,7 @@ class ProposalController extends Controller
             ], 404);
         }
         $proposal = Proposal::where('lecture_id', $request->lecture_id)->where('project_id', $project_id)->first();
-        if ($project) {
+        if ($proposal) {
             return response()->json([
                 'message' => 'Anda sudah mengajukan proposal sebelumnya.',
                 'data' => null,
