@@ -77,6 +77,8 @@ Route::prefix('project')->group(function() {
     Route::delete('/{id}', [ProjectController::class, 'destroy'])->name('project.delete');
     Route::get('/{id}', [ProjectController::class, 'show'])->name('project.show');
 
+    Route::get('/{id}/proposal_accepted', [ProposalController::class, 'getProposalAccepted'])->name('project.proposal_accepted');
+
     Route::prefix('category')->group(function() {
         Route::get('/all', [ProjectCategoryController::class, 'index'])->name('project.category');
         Route::post('/', [ProjectCategoryController::class, 'store'])->name('project.category.store');

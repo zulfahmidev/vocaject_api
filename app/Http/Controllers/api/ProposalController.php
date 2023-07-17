@@ -50,6 +50,13 @@ class ProposalController extends Controller
                 'data' => null,
             ], 404);
         }
+        $proposal = Proposal::where('lecture_id', $request->lecture_id)->where('project_id', $project_id)->first();
+        if ($project) {
+            return response()->json([
+                'message' => 'Anda sudah mengajukan proposal sebelumnya.',
+                'data' => null,
+            ], 403);
+        }
         $proposal = Proposal::create([
             'note' => $request->note,
             'lecture_id' => $request->lecture_id,
@@ -140,6 +147,27 @@ class ProposalController extends Controller
         return response()->json([
             'message' => 'Berhasil memuat data.',
             'data' => $proposal->getDetail(),
+        ]);
+    }
+
+    public function getProposalAccepted($project_id) {
+        $project = Project::find($project_id);
+        if (!$project) {
+            return response()->json([
+                'message' => 'Proyek tidak ditemukan.',
+                'data' => null
+            ], 404);
+        }
+        $proposal = $project->getAccProposal();
+        if ($proposal) {
+            return response()->json([
+                'message' => 'Berhasil memuat data.',
+                'data' => $proposal->getDetail(),
+            ]);
+        }
+        return response()->json([
+            'message' => 'Belum ada proposal yang dikonfirmasi.',
+            'data' => null,
         ]);
     }
 
