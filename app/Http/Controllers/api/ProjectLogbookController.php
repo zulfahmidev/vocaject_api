@@ -67,6 +67,7 @@ class ProjectLogbookController extends Controller
             'submited_at' => 'required|date_format:m-d-Y',
             'description' => 'required|min:3'
         ]);
+
         if ($val->fails()) {
             return response()->json([
                 'message' => 'Bidang tidak valid.',
@@ -87,6 +88,6 @@ class ProjectLogbookController extends Controller
 
     private function timestampFormat($date) {
         $date = explode('-', $date);
-        return Carbon::create($date[2], $date[1], $date[0]);
+        return Carbon::create((int)$date[2], (int)$date[0], (int)$date[1]);
     }
 }
