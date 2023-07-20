@@ -81,6 +81,20 @@ class ProjectMessageController extends Controller
         ]);
     }
 
+    public function getContacts($project_id) {
+        $lecture_ids = ProjectMessage::where('project_id', $project_id)->pluck('lecture_ids');
+        $contacts = [];
+        foreach ($lecture_ids as $lecture_id) {
+            if (in_array($lecture_id, $contacts)) {
+                $contacts[] = User::find($lecture_id)->getDetail();
+            }
+        }
+        return response()->json([
+            'message' => 'Berhasil memuat data',
+            'data' => $contacts,
+        ]);
+    }
+
     public function destroy($project_id, $lecture_id, $message_id) {
         $project = Project::find($project_id);
         if (!$project) {
