@@ -17,7 +17,6 @@ class ProposalController extends Controller
         if ($request->lecture_id) {
             $raw->where('lecture_id', $request->lecture_id);
         }
-        dd($raw->get());
         $proposals = [];
         foreach ($raw->get() as $proposal) {
             $proposals[] = $proposal->getDetail();
