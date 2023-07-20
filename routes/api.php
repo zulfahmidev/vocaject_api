@@ -107,10 +107,11 @@ Route::prefix('project')->group(function() {
         Route::post('/', [ProjectLogbookController::class, 'store'])->name('project.logbook.store');
     });
 
+    Route::get('/message/get/contact', [ProjectMessageController::class, 'getContacts'])->name('project.contact');
+
     Route::prefix('{project_id}/message/{lecture_id}')->group(function() {
         Route::get('/', [ProjectMessageController::class, 'index'])->name('project.message');
         Route::post('/', [ProjectMessageController::class, 'store'])->name('project.store');
-        Route::get('/contact', [ProjectMessageController::class, 'getContacts'])->name('project.contact');
         Route::delete('/{message_id}', [ProjectMessageController::class, 'destroy'])->name('project.delete');
         Route::post('/read', [ProjectMessageController::class, 'read'])->name('project.read');
         Route::get('/count-unread', [ProjectMessageController::class, 'getCountUnread'])->name('project.count_unread');
