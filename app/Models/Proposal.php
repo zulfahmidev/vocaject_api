@@ -29,7 +29,7 @@ class Proposal extends Model
         }
         $proposal->members = $members;
         foreach (ProposalAttachment::where('proposal_id', $this->id)->get() as $attachment) {
-            $attachment->filepath = url('uploads/'.$attachment->filepath);
+            $attachment->filepath = secure_url('uploads/'.$attachment->filepath);
             $attachments[] = $attachment;
         }
         $proposal->attachments = $attachments;
