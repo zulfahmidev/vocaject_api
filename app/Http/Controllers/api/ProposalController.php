@@ -76,6 +76,8 @@ class ProposalController extends Controller
             $file->move($dir, $filename);
             ProposalAttachment::create([
                 'proposal_id' => $proposal->id,
+                'filename' => $file->getClientOriginalName(),
+                'mimetype' => $file->getMimeType(),
                 'filepath' => $filename,
             ]);
         }
@@ -86,6 +88,8 @@ class ProposalController extends Controller
             $file->move($dir, $filename);
             ProposalAttachment::create([
                 'proposal_id' => $proposal->id,
+                'filename' => $file->getClientOriginalName(),
+                'mimetype' => $file->getMimeType(),
                 'filepath' => $filename,
             ]);
         }
@@ -96,6 +100,8 @@ class ProposalController extends Controller
             $file->move($dir, $filename);
             ProposalAttachment::create([
                 'proposal_id' => $proposal->id,
+                'filename' => $file->getClientOriginalName(),
+                'mimetype' => $file->getMimeType(),
                 'filepath' => $filename,
             ]);
         }

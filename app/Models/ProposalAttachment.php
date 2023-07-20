@@ -10,6 +10,6 @@ class ProposalAttachment extends Model
     use HasFactory;
 
     public $fillable = [
-        'filepath', 'proposal_id'
+        'filepath', 'proposal_id', 'filename', 'mimetype'
     ];
 }
