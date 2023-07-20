@@ -77,7 +77,7 @@ class ProposalController extends Controller
             ProposalAttachment::create([
                 'proposal_id' => $proposal->id,
                 'filename' => $file->getClientOriginalName(),
-                'mimetype' => $file->getMimeType(),
+                'mimetype' => $file->getClientOriginalExtension(),
                 'filepath' => $filename,
             ]);
         }
@@ -89,19 +89,19 @@ class ProposalController extends Controller
             ProposalAttachment::create([
                 'proposal_id' => $proposal->id,
                 'filename' => $file->getClientOriginalName(),
-                'mimetype' => $file->getMimeType(),
+                'mimetype' => $file->getClientOriginalExtension(),
                 'filepath' => $filename,
             ]);
         }
-        if ($request->file('additional1_attachment')) {
-            $file = $request->file('additional1_attachment');
+        if ($request->file('additional2_attachment')) {
+            $file = $request->file('additional2_attachment');
             $dir = 'uploads/';
             $filename = time().rand(1111,9999).'.'.$file->getClientOriginalExtension();
             $file->move($dir, $filename);
             ProposalAttachment::create([
                 'proposal_id' => $proposal->id,
                 'filename' => $file->getClientOriginalName(),
-                'mimetype' => $file->getMimeType(),
+                'mimetype' => $file->getClientOriginalExtension(),
                 'filepath' => $filename,
             ]);
         }
