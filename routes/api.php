@@ -107,7 +107,7 @@ Route::prefix('project')->group(function() {
         Route::post('/', [ProjectLogbookController::class, 'store'])->name('project.logbook.store');
     });
 
-    Route::get('/message/get/contact', [ProjectMessageController::class, 'getContacts'])->name('project.contact');
+    Route::get('/{project_id}/message/get/contact', [ProjectMessageController::class, 'getContacts'])->name('project.contact');
 
     Route::prefix('{project_id}/message/{lecture_id}')->group(function() {
         Route::get('/', [ProjectMessageController::class, 'index'])->name('project.message');
