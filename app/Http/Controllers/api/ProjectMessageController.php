@@ -86,6 +86,7 @@ class ProjectMessageController extends Controller
         // dd($lecture_ids);
         $contacts = [];
         foreach ($lecture_ids as $lecture_id) {
+            dd($lecture_id);
             if (!in_array($lecture_id, $contacts)) {
                 $user = User::find($lecture_id);
                 if ($user) {
