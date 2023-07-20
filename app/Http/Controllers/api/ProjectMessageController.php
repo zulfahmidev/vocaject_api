@@ -89,7 +89,7 @@ class ProjectMessageController extends Controller
             if (!in_array($lecture_id, $contacts)) {
                 $user = User::find($lecture_id);
                 if ($user) {
-                    $contacts[] = User::find($lecture_id)->getDetail();
+                    $contacts[] = $user->getDetail();
                 }
             }
         }
