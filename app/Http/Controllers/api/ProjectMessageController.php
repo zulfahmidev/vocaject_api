@@ -73,7 +73,7 @@ class ProjectMessageController extends Controller
             'sender' => $request->sender,
         ]);
 
-        event(new NewMessage($message->getDetail()));
+        event(new NewMessage($message));
 
         return response()->json([
             'message' => 'Pesan berhasil terkirim.',

@@ -154,7 +154,7 @@ class ProjectController extends Controller
         if ($project) {
             if ($project->getDetail()->status == 'closed') {
                 return response()->json([
-                    'message' => 'Proyek tidak dihapus.',
+                    'message' => 'Proyek tidak dapat dihapus.',
                     'data' => null,
                 ], 403);
             }

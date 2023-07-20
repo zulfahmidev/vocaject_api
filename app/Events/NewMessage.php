@@ -2,7 +2,9 @@
 
 namespace App\Events;
 
+use App\Models\Project;
 use App\Models\ProjectMessage;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -20,8 +22,15 @@ class NewMessage implements ShouldBroadcast
 
     public function __construct($message)
     {
+
+        $message = ProjectMessage::find($message->id);
+        $message->project = Project::find($message->project_id)->getDetail();
+        $message->lecture = User::find($message->lecture_id)->getDetail();
+        unset($message->project_id);
+        unset($message->lecture_id);
+
         $this->message = 'Pesan berhasil terkirim.';
-        $this->data = $message;
+        $this->data = null;
     }
 
     /**
