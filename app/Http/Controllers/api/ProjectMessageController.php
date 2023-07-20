@@ -87,7 +87,10 @@ class ProjectMessageController extends Controller
         $contacts = [];
         foreach ($lecture_ids as $lecture_id) {
             if (!in_array($lecture_id, $contacts)) {
-                $contacts[] = User::find($lecture_id)?->getDetail();
+                $user = User::find($lecture_id);
+                if ($user) {
+                    $contacts[] = User::find($lecture_id)->getDetail();
+                }
             }
         }
         return response()->json([
