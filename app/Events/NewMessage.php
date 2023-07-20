@@ -23,14 +23,18 @@ class NewMessage implements ShouldBroadcast
     public function __construct($message)
     {
 
-        $message = ProjectMessage::find($message->id);
-        $message->project = Project::find($message->project_id)->getDetail();
-        $message->lecture = User::find($message->lecture_id)->getDetail();
-        unset($message->project_id);
-        unset($message->lecture_id);
-
         $this->message = 'Pesan berhasil terkirim.';
-        $this->data = $message;
+        $this->data = [
+            "id" => $message->id,
+            "sender" => $message->sender,
+            "message" => $message->message,
+            "read_at" => $message->read_at,
+            "created_at" => $message->created_at,
+            "updated_at" => $message->updated_at,
+            "updated_at" => $message->updated_at,
+            "project" => Project::find($message->project_id)->getDetail(),
+            "lecture" => User::find($message->lecture_id)->getDetail(),
+        ];
     }
 
     /**
