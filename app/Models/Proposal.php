@@ -32,7 +32,7 @@ class Proposal extends Model
             $attachment->filepath = url('uploads/'.$attachment->filepath);
             $attachments[] = $attachment;
         }
-        $proposal->attachments = $attachment;
+        $proposal->attachments = $attachments;
         return $proposal;
     }
 }
