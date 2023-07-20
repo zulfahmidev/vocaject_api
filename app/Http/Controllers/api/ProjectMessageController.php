@@ -85,7 +85,7 @@ class ProjectMessageController extends Controller
         $lecture_ids = ProjectMessage::where('project_id', $project_id)->pluck('lecture_id');
         $contacts = [];
         foreach ($lecture_ids as $lecture_id) {
-            if (in_array($lecture_id, $contacts)) {
+            if (!in_array($lecture_id, $contacts)) {
                 $contacts[] = User::find($lecture_id)->getDetail();
             }
         }
