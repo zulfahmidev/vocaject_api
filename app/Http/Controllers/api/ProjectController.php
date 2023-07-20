@@ -8,6 +8,7 @@ use App\Models\ProjectCategory;
 use App\Models\Proposal;
 use App\Models\User;
 use Carbon\Carbon;
+use Faker\Core\Number;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -30,6 +31,12 @@ class ProjectController extends Controller
             if ($request->proposal_status) {
                 $raw = $raw->where('proposals.status', $request->proposal_status);
             }
+        }
+        if (is_numeric($request->offset)) {
+            $raw = $raw->skip((int)$request->offset);
+        }
+        if (is_numeric($request->limit)) {
+            $raw = $raw->take((int)$request->limit);
         }
         if ($request->category) {
             $category = ProjectCategory::where('slug', trim($request->category))->pluck('id');
