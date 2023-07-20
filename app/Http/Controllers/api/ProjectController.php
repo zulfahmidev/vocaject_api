@@ -35,8 +35,8 @@ class ProjectController extends Controller
         if (is_numeric($request->offset)) {
             $raw = $raw->skip((int)$request->offset);
         }
-        if (is_numeric($request->limit)) {
-            $raw = $raw->take((int)$request->limit);
+        if (is_numeric($request->take)) {
+            $raw = $raw->take((int)$request->take);
         }
         if ($request->category) {
             $category = ProjectCategory::where('slug', trim($request->category))->pluck('id');
