@@ -30,7 +30,7 @@ class NewMessage implements ShouldBroadcast
         unset($message->lecture_id);
 
         $this->message = 'Pesan berhasil terkirim.';
-        $this->data = null;
+        $this->data = $message;
     }
 
     /**
