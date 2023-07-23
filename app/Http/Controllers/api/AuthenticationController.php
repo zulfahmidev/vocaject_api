@@ -181,7 +181,6 @@ class AuthenticationController extends Controller
                 ], 401);
             }
             $user = User::where('email', $request->email)->first();
-
             // Verifikasi Email Validate (Non Active For While)
             // if (!$user->hasVerifiedEmail()) {
             //     return response()->json([
@@ -189,6 +188,15 @@ class AuthenticationController extends Controller
             //         'data' => null,
             //     ], 403);
             // }
+
+            if ($request->platform == 'web') {
+                if (!in_array($user->role, ['company', 'college'])) {
+                    return response()->json([
+                        'message' => 'Gagal login. Anda tidak dapat login sebagai Dosen/Mahasiswa melalui website.',
+                        'data' => null,
+                    ], 403);
+                }
+            }
             return response()->json([
                 'message' => 'Anda telah berhasil masuk ke akun Anda.',
                 'data' => [
