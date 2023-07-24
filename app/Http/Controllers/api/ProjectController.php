@@ -32,12 +32,12 @@ class ProjectController extends Controller
                 $raw = $raw->where('proposals.status', $request->proposal_status);
             }
         }
-        if (is_numeric($request->offset)) {
-            $raw = $raw->skip((int)$request->offset);
-        }
-        if (is_numeric($request->take)) {
-            $raw = $raw->take((int)$request->take);
-        }
+        // if (is_numeric($request->offset)) {
+        //     $raw = $raw->skip((int)$request->offset);
+        // }
+        // if (is_numeric($request->take)) {
+        //     $raw = $raw->take((int)$request->take);
+        // }
         if ($request->category) {
             $category = ProjectCategory::where('slug', trim($request->category))->pluck('id');
             $raw = $raw->whereIn('category_id', $category);
@@ -63,6 +63,17 @@ class ProjectController extends Controller
                 $projects[] = $project;   
             }
         };
+        $skip = 0;
+        $take = null;
+        if (is_numeric($request->offset)) {
+            $skip = (int)$request->offset;
+        }
+        if (is_numeric($request->take)) {
+            $take = (int)$request->take;
+        }
+        if ($take) {
+            $projects = array_splice($projects, $skip, $take);
+        }
         return response()->json([
             'message' => 'Berhasil memuat data.',
             'data' => $projects,
