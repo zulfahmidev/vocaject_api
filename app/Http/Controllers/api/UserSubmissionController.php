@@ -88,6 +88,7 @@ class UserSubmissionController extends Controller
                 'message' => 'Status tidak valid.',
             ], 400);
         }
+        dd($status, $user);
         $user->update([
             'status' => $status,
         ]);
