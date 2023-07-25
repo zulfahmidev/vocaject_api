@@ -88,10 +88,9 @@ class UserSubmissionController extends Controller
                 'message' => 'Status tidak valid.',
             ], 400);
         }
-        $user->update([
-            'status' => $status,
-        ]);
-        dd($status, $user);
+        $user->status = $status;
+        $user->save();
+        // dd($status, $user);
         return response()->json([
             'message' => 'Perubahan berhasil disimpan.',
             'data' => $user->getDetail(),
