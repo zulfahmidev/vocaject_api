@@ -93,7 +93,7 @@ class UserSubmissionController extends Controller
         ]);
         return response()->json([
             'message' => 'Perubahan berhasil disimpan.',
-            'data' => $user,
+            'data' => $user->getDetail(),
         ], 200);
     }
 }
