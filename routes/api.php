@@ -57,8 +57,8 @@ Route::prefix('user')->group(function() {
 
         Route::get('student', [UserSubmissionController::class, 'getStudentSubmissions'])->name('user.submission.student');
         Route::get('lecture', [UserSubmissionController::class, 'getLectureSubmissions'])->name('user.submission.lecture');
-        Route::get('college', [UserSubmissionController::class, 'getCollegeSubmissions'])->name('user.submission.college');
-        Route::get('company', [UserSubmissionController::class, 'getCompanySubmissions'])->name('user.submission.company');
+
+        Route::post('set/{id}/status/{status}', [UserSubmissionController::class, 'setUserStatus'])->name('user.submission.set.status');
 
     });
 
