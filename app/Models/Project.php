@@ -33,10 +33,10 @@ class Project extends Model
             $status = 'closed';
         }
         if ($this->expired_at < now()) {
-            $status = 'close';
+            $status = 'closed';
         }
         $checkeds = ProjectTask::where('project_id', $this->id)->pluck('checked');
-        if (!in_array(false, $checkeds->toArray())) {
+        if (!in_array(false, $checkeds->toArray()) && !$checkeds->empty()) {
             $status = 'completed';
         }
         return $status;
