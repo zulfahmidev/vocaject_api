@@ -252,7 +252,7 @@ class AuthenticationController extends Controller
         $user = User::where('email', $request->email)->first();
 
         $time = time();
-        $code = $this->addZero(rand(10,99)) . ' '. substr($this->addZero($user->id), -2) . ' '. substr($time, -2);
+        $code = $this->addZero(rand(10,99)) . ' '. $this->addZero(substr($user->id, -2)) . ' '. substr($time, -2);
         PasswordReset::create([
             "email" => $user->email,
             "code_otp" => $code,
