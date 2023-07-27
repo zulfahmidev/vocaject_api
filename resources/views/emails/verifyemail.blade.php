@@ -7,6 +7,6 @@ Terimakasih sudah mendaftarkan diri di **Vocaject**, silahkan tekan tombol berik
 Verifikasi Email
 </x-mail::button>
 
-Thanks,<br>
+Terimakasih,<br>
 {{ config('app.name') }}
 </x-mail::message>

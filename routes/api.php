@@ -40,6 +40,10 @@ Route::prefix('auth')->group(function() {
     Route::get('me', [AuthenticationController::class, 'me'])->name('auth.me')->middleware(['auth:sanctum']);
     Route::post('logout', [AuthenticationController::class, 'logout'])->name('auth.logout')->middleware(['auth:sanctum']);
 
+    Route::post('forgot-password', [AuthenticationController::class, 'forgotPassword'])->name('auth.forgot_password');
+    Route::post('check-otp', [AuthenticationController::class, 'checkOTP'])->name('auth.check_otp');
+    Route::post('change-password', [AuthenticationController::class, 'changePassword'])->name('auth.change_password');
+
     Route::get('/email/verify/{id}', function ($id) {
         $user = User::find($id);
         if (!$user->hasVerifiedEmail()) {

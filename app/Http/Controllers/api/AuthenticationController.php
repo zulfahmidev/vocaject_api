@@ -4,8 +4,10 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Mail\CustomVerifyEmail;
+use App\Mail\ResetPasswordEmail;
 use App\Models\CompanyDetail;
 use App\Models\LectureDetail;
+use App\Models\PasswordReset;
 use App\Models\StudentDetail;
 use App\Models\User;
 use App\Models\UserSubmission;
@@ -233,5 +235,100 @@ class AuthenticationController extends Controller
 
     public function sendEmailVerification(User $user) {
         Mail::to($user)->send(new CustomVerifyEmail($user));
+    }
+
+    public function forgotPassword(Request $request) {
+        $val = Validator::make($request->all(), [
+            "email" => "required|email|exists:users,email"
+        ]);
+
+        if ($val->fails()) {
+            return response()->json([
+                "message" => "Bidang tidak valid.",
+                "data" => $val->errors(),
+            ], 400);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        $time = time();
+        $code = rand(10,99) . substr($this->addZero($user->id), -2) . substr($time, -2);
+        PasswordReset::create([
+            "email" => $user->email,
+            "code_otp" => $code,
+        ]);
+
+        Mail::to($user)->send(new ResetPasswordEmail($user, $code));
+
+        return response()->json([
+            "message" => "Kode OTP telah dikirimkan ke email anda.",
+            "data" => [
+                "user" => $user->getDetail(),
+                "code_otp" => $code
+            ],
+        ]);
+    }
+
+    private function addZero($number) {
+        if ($number < 10) {
+            return "0" + $number;
+        }
+        return $number;
+    }
+
+    public function checkOTP(Request $request) {
+        $val = Validator::make($request->all(), [
+            "code_otp" => "required|exists:password_resets,code_otp",
+            "email" => "required|exists:password_resets,email",
+        ]);
+
+        if ($val->fails()) {
+            return response()->json([
+                "message" => "Bidang tidak valid.",
+                "data" => $val->errors(),
+            ], 400);
+        }
+        $pr = PasswordReset::where('email', $request->email)->where('code_otp', $request->code_otp)->first();
+        if ($pr) {
+            return response()->json([
+                "message" => "Kode OTP valid.",
+                "data" => true,
+            ]);
+        }
+        return response()->json([
+            "message" => "Kode OTP tidak valid.",
+            "data" => null,
+        ], 400);
+    }
+
+    public function changePassword(Request $request) {
+        $val = Validator::make($request->all(), [
+            "code_otp" => "required|exists:password_resets,code_otp",
+            "email" => "required|exists:password_resets,email",
+            "password" => "required|string",
+            "confirm_password" => "required|string|same:password",
+        ]);
+
+        if ($val->fails()) {
+            return response()->json([
+                "message" => "Bidang tidak valid.",
+                "data" => $val->errors(),
+            ], 400);
+        }
+        $pr = PasswordReset::where('email', $request->email)->where('code_otp', $request->code_otp)->first();
+        if (!$pr) {
+            return response()->json([
+                "message" => "Kode OTP tidak valid.",
+                "data" => null,
+            ], 400);
+        }
+        $user = User::where('email', $request->email)->first();
+        $user->password = $request->password;
+        $user->save();
+        return response()->json([
+            "message" => "Password berhasil diubah.",
+            "data" => null,
+        ]);
+
     }
 }
