@@ -72,6 +72,30 @@ class UserController extends Controller
         ], 404);
     }
 
+    public function getLectures($college_id) {
+        $user = User::find($college_id);
+        if ($user) {
+            if ($user->role == 'college') {
+                $lectures = [];
+                $ids = User::join('lecture_details', 'lecture_details.user_id', '=', 'users.id')
+                ->where('college_id', $college_id)->pluck('users.id');
+                foreach ($ids as $id) $lectures[] = User::find($id)->getDetail();
+                return response()->json([
+                    "message" => "Berhasil memuat data.",
+                    "data" => $lectures
+                ]);
+            }
+            return response()->json([
+                "message" => "Kampus tidak ditemukan.",
+                "data" => null
+            ], 404);
+        }
+        return response()->json([
+            "message" => "Kampus tidak ditemukan.",
+            "data" => null
+        ], 404);
+    }
+
     public function updateProfile(Request $request) {
         if (Auth::user()->role == 'student') return $this->updateStudent($request, Auth::user()->id);
         else if (Auth::user()->role == 'lecture') return $this->updateLecture($request, Auth::user()->id);
