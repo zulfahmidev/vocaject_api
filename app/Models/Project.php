@@ -36,7 +36,7 @@ class Project extends Model
             $status = 'close';
         }
         $checkeds = ProjectTask::where('project_id', $this->id)->pluck('checked');
-        if (!in_array(false, $checkeds)) {
+        if (!in_array(false, $checkeds->toArray())) {
             $status = 'completed';
         }
         return $status;
