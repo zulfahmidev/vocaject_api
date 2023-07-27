@@ -31,7 +31,7 @@ class ResetPasswordEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Email address verification',
+            subject: 'Kode OTP atur ulang password',
         );
     }
 

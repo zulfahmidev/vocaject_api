@@ -305,7 +305,7 @@ class AuthenticationController extends Controller
         $val = Validator::make($request->all(), [
             "code_otp" => "required|exists:password_resets,code_otp",
             "email" => "required|exists:password_resets,email",
-            "password" => "required|string",
+            "password" => "required|string|min:8",
             "confirm_password" => "required|string|same:password",
         ]);
 
