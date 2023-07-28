@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Events\SubmitProposal;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\Proposal;
@@ -105,6 +106,9 @@ class ProposalController extends Controller
                 'filepath' => $filename,
             ]);
         }
+
+        event(new SubmitProposal($proposal));
+
         return response()->json([
             'message' => 'Berhasil memuat data.',
             'data' => $proposal->getDetail()
