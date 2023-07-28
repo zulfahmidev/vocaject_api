@@ -198,7 +198,7 @@ class UserController extends Controller
             'description' => 'nullable|string|min:3',
             'address' => 'nullable|string|min:3',
             'phone' => 'nullable|numeric|min:3',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:8192|dimensions:ratio=1/1',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg|dimensions:ratio=1/1',
         ]);
         if ($val->fails()) {
             return response()->json([
