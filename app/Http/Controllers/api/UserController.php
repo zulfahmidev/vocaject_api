@@ -48,16 +48,17 @@ class UserController extends Controller
         ], 404);
     }
 
-    public function getStudents($college_id) {
+    public function getStudents(Request $request, $college_id) {
         $user = User::find($college_id);
         if ($user) {
             if ($user->role == 'college') {
                 $students = [];
                 $ids = User::join('student_details', 'student_details.user_id', '=', 'users.id')
-                ->where('college_id', $college_id)
-                ->where('status', 'accepted')
-                ->pluck('users.id');
-                foreach ($ids as $id) $students[] = User::find($id)->getDetail();
+                ->where('college_id', $college_id);
+                if ($request->status == 'accepted') {
+                    $ids = $ids->where('status', 'accepted');
+                }
+                foreach ($ids->pluck('users.id') as $id) $students[] = User::find($id)->getDetail();
                 return response()->json([
                     "message" => "Berhasil memuat data.",
                     "data" => $students
@@ -74,16 +75,17 @@ class UserController extends Controller
         ], 404);
     }
 
-    public function getLectures($college_id) {
+    public function getLectures(Request $request, $college_id) {
         $user = User::find($college_id);
         if ($user) {
             if ($user->role == 'college') {
                 $lectures = [];
                 $ids = User::join('lecture_details', 'lecture_details.user_id', '=', 'users.id')
-                ->where('college_id', $college_id)
-                ->where('status', 'accepted')
-                ->pluck('users.id');
-                foreach ($ids as $id) $lectures[] = User::find($id)->getDetail();
+                ->where('college_id', $college_id);
+                if ($request->status == 'accepted') {
+                    $ids = $ids->where('status', 'accepted');
+                }
+                foreach ($ids->pluck('users.id') as $id) $lectures[] = User::find($id)->getDetail();
                 return response()->json([
                     "message" => "Berhasil memuat data.",
                     "data" => $lectures

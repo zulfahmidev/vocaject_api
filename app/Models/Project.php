@@ -35,8 +35,8 @@ class Project extends Model
         if ($this->expired_at < now()) {
             $status = 'closed';
         }
-        $checkeds = ProjectTask::where('project_id', $this->id)->pluck('checked');
-        if (!in_array(false, $checkeds->toArray()) && !$checkeds->isEmpty()) {
+        // $checkeds = ProjectTask::where('project_id', $this->id)->pluck('checked');
+        if ($this->deadline_at < now()) {
             $status = 'completed';
         }
         return $status;
