@@ -48,6 +48,9 @@ class ProjectController extends Controller
         if ($request->company_id) {
             $raw = $raw->where('company_id', '=', $request->company_id);
         }
+        if ($request->latest) {
+            $raw->latest('created_at');
+        }
         $projects = [];
         $raw = ($request->has('student_id') || $request->has('lecture_id')) ? $raw->selectRaw('projects.id, proposals.status')->get() : $raw->selectRaw('projects.id')->get();
         foreach ($raw as $v) {

@@ -54,7 +54,9 @@ class UserController extends Controller
             if ($user->role == 'college') {
                 $students = [];
                 $ids = User::join('student_details', 'student_details.user_id', '=', 'users.id')
-                ->where('college_id', $college_id)->pluck('users.id');
+                ->where('college_id', $college_id)
+                ->where('status', 'accepted')
+                ->pluck('users.id');
                 foreach ($ids as $id) $students[] = User::find($id)->getDetail();
                 return response()->json([
                     "message" => "Berhasil memuat data.",
@@ -78,7 +80,9 @@ class UserController extends Controller
             if ($user->role == 'college') {
                 $lectures = [];
                 $ids = User::join('lecture_details', 'lecture_details.user_id', '=', 'users.id')
-                ->where('college_id', $college_id)->pluck('users.id');
+                ->where('college_id', $college_id)
+                ->where('status', 'accepted')
+                ->pluck('users.id');
                 foreach ($ids as $id) $lectures[] = User::find($id)->getDetail();
                 return response()->json([
                     "message" => "Berhasil memuat data.",
