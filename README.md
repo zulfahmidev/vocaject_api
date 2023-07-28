@@ -22,7 +22,7 @@ Perintah untuk matikan runtime:
   ```
 - Kemudian matikan dengan perintah sebagai contoh seperti berikut:
   ```
-  kill 12345
+  sudo kill 12345
   ```
 
 # TEST
