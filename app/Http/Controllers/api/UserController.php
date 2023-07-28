@@ -113,7 +113,7 @@ class UserController extends Controller
             'name' => 'required|string|min:3',
             'address' => 'required|string|min:3',
             'phone' => 'required|numeric|min:3',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048|dimensions:ratio=1/2',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024|dimensions:ratio=1/2',
         ]);
         if ($val->fails()) {
             return response()->json([
@@ -155,7 +155,7 @@ class UserController extends Controller
             'name' => 'nullable|string|min:3',
             'address' => 'nullable|string|min:3',
             'phone' => 'nullable|numeric|min:3',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048|dimensions:ratio=1/2',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024|dimensions:ratio=1/2',
         ]);
         if ($val->fails()) {
             return response()->json([
@@ -198,7 +198,7 @@ class UserController extends Controller
             'description' => 'nullable|string|min:3',
             'address' => 'nullable|string|min:3',
             'phone' => 'nullable|numeric|min:3',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:2048|dimensions:ratio=1/1',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:1024|dimensions:ratio=1/1',
         ]);
         if ($val->fails()) {
             return response()->json([
