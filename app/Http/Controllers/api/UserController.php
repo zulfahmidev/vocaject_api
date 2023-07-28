@@ -113,7 +113,7 @@ class UserController extends Controller
             'name' => 'required|string|min:3',
             'address' => 'required|string|min:3',
             'phone' => 'required|numeric|min:3',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:8192|dimensions:ratio=1/1',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg|dimensions:ratio=1/1',
         ]);
         if ($val->fails()) {
             return response()->json([
@@ -155,13 +155,13 @@ class UserController extends Controller
             'name' => 'nullable|string|min:3',
             'address' => 'nullable|string|min:3',
             'phone' => 'nullable|numeric|min:3',
-            'picture' => 'nullable|image|mimes:jpeg,png,jpg|max:8192|dimensions:ratio=1/1',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg|dimensions:ratio=1/1',
         ]);
         if ($val->fails()) {
             return response()->json([
                 'message' => 'Bidang tidak valid.',
                 'data' => $val->errors(),
-            ], 403);
+            ], 400);
         }
         $user = User::find($id);
         if ($user) {
@@ -204,7 +204,7 @@ class UserController extends Controller
             return response()->json([
                 'message' => 'Bidang tidak valid.',
                 'data' => $val->errors(),
-            ], 403);
+            ], 400);
         }
         $user = User::find($id);
         if ($user) {
