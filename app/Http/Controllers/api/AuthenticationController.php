@@ -198,6 +198,13 @@ class AuthenticationController extends Controller
                         'data' => null,
                     ], 403);
                 }
+            }else if ($request->platform == 'mobile') {
+                if (!in_array($user->role, ['student', 'lecture'])) {
+                    return response()->json([
+                        'message' => 'Gagal login. Anda tidak dapat login sebagai Kampus/Perusahaan melalui mobile.',
+                        'data' => null,
+                    ], 403);
+                }
             }
             return response()->json([
                 'message' => 'Anda telah berhasil masuk ke akun Anda.',
