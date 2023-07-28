@@ -107,7 +107,7 @@ class ProposalController extends Controller
             ]);
         }
 
-        event(new SubmitProposal($proposal));
+        // event(new SubmitProposal($proposal));
 
         return response()->json([
             'message' => 'Berhasil memuat data.',
