@@ -222,7 +222,7 @@ class UserController extends Controller
             $user->save();
             $detail = CompanyDetail::where('user_id', $user->id)->first();
             $detail->description = trim($request->description);
-            $detail->address = trim($request->address);
+            $detail->address = strtolower(trim($request->address));
             $detail->phone = trim($request->phone);
             $detail->save();
             return response()->json([

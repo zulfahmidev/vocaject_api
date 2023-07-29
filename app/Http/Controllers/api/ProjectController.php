@@ -39,8 +39,8 @@ class ProjectController extends Controller
         //     $raw = $raw->take((int)$request->take);
         // }
         if ($request->category) {
-            $category = ProjectCategory::where('slug', trim($request->category))->pluck('id');
-            $raw = $raw->whereIn('category_id', $category);
+            $category = ProjectCategory::where('slug', trim($request->category))->first();
+            $raw = $raw->where('category_id', $category->id);
         }
         if ($request->title) {
             $raw = $raw->where('title', 'like', "%".strtolower(trim($request->title))."%");

@@ -1,0 +1,298 @@
+{
+  "colleges": [
+    {
+      "name": "Politeknik Negeri Lhokseumawe",
+      "email": "informasi@pnl.ac.id",
+      "password": "vocaject",
+      "address": "buketrata, kota lhokseumawe, aceh",
+      "phone": "081357523412",
+      "description": "Sejak pengetahuan saya terakhir pada September 2021, Politeknik Negeri Lhokseumawe adalah sebuah perguruan tinggi negeri di Indonesia yang berfokus pada pendidikan vokasi atau kejuruan. Perguruan tinggi ini terletak di kota Lhokseumawe, provinsi Aceh, Indonesia. Politeknik Negeri Lhokseumawe menyelenggarakan berbagai program pendidikan vokasi dalam berbagai bidang, seperti teknik, informatika, bisnis, pariwisata, dan lain-lain. Tujuannya adalah untuk memberikan pelatihan dan keterampilan kepada para mahasiswa agar siap untuk berkarier dalam industri atau sektor tertentu."
+    }
+  ],
+  "companies": [
+    {
+      "name": "Bangkit Academy",
+      "email": "informasi@bangkit.academy",
+      "password": "vocaject",
+      "address": "Bukit Damansara, Kuala Lumpur, Malaysia",
+      "phone": "081183772133",
+      "description": "Bangkit Academy adalah program pelatihan dan pengembangan keahlian dalam bidang teknologi yang diselenggarakan oleh Google, Tokopedia (sekarang berganti nama menjadi Tokopedia by Gojek), dan perusahaan teknologi ternama lainnya seperti Traveloka dan Gojek (sekarang bergabung menjadi GoTo). Program ini dirancang untuk memberikan pelatihan intensif kepada peserta dalam bidang kecerdasan buatan (AI), ilmu data, dan pengembangan aplikasi."
+    },
+    {
+      "name": "Vocaject Fondation",
+      "email": "informasi@vocaject.team",
+      "password": "vocaject",
+      "address": "Jl. medan-banda aceh, cunda, Kota lhokseumawe, Aceh",
+      "phone": "081278783123",
+      "description": "Vocaject adalah perusahaan revolusioner yang mengusung semangat inovasi dalam dunia teknologi. Visi kami adalah menciptakan produk dan solusi unggul yang mengubah cara orang berinteraksi dengan dunia digital. Kami percaya bahwa kreativitas dan keunggulan desain adalah kunci untuk menghadirkan produk yang luar biasa. Setiap produk Vocaject dirancang dengan penuh perhatian terhadap detail dan kehalusan, memberikan pengalaman yang mengagumkan bagi pengguna kami."
+    },
+    {
+      "name": "Tokopedia",
+      "email": "informasi@toko.pedia",
+      "password": "vocaject",
+      "address": "Jl. Prof.Dr. Satrio Kav 11, Prof. Dr. Satrio, Satrio, Jakarta Selatan.",
+      "phone": "081267248229",
+      "description": "Toko Pedia (sekarang dikenal sebagai Tokopedia by Gojek) adalah salah satu platform e-commerce terbesar di Indonesia. Pada Maret 2021, Tokopedia resmi mengumumkan merger dengan Gojek, sebuah platform layanan ride-hailing dan delivery terkemuka di Indonesia. Setelah merger tersebut, perusahaan hasil gabungan diberi nama GoTo."
+    },
+    {
+      "name": "MNC Animation",
+      "email": "informasi@mnc.id",
+      "password": "vocaject",
+      "address": "Jln Raya Perjuangan No 1 ( Komplek RCTI Kebon jeruk, RT.11/RW.10, RT.11/RW.10, Kb. Jeruk, Kec. Kb. Jeruk, Kota Jakarta Barat",
+      "phone": "082262781002",
+      "description": "MNC Animation adalah sebuah perusahaan produksi animasi yang berbasis di Indonesia. Perusahaan ini merupakan bagian dari MNC Group, sebuah konglomerat media dan hiburan terkemuka di Indonesia. MNC Animation fokus pada produksi konten animasi, termasuk serial animasi, film animasi, dan konten animasi lainnya."
+    },
+    {
+      "name": "Kopi Pas Resto",
+      "email": "informasi@kopi.pas",
+      "password": "vocaject",
+      "address": "Jl. medan-banda aceh, cunda, Kota lhokseumawe, Aceh",
+      "phone": "086377881232",
+      "description": "Kopi Pas adalah sebuah coffee shop yang menawarkan pengalaman kopi yang unik dan menyenangkan di kota Lhokseumawe. Dengan suasana yang hangat dan nyaman, toko kopi ini menjadi tempat ideal untuk bersantai sambil menikmati secangkir kopi pilihan"
+    }
+  ],
+  "lectures": [
+    {
+      "name": "Fachri Yanuar Rudi F",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "uteun cot, kota lhokseumawe, aceh",
+      "phone": "082351525361",
+      "nidn": "1306018801",
+      "college_id": 1
+    },
+    {
+      "name": "Husaini",
+      "email": "husaini@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "cunda, kota lhokseumawe, aceh",
+      "phone": "081350865421",
+      "nidn": "0031107303",
+      "college_id": 1
+    },
+    {
+      "name": "Muhammad Arhami",
+      "email": "muhammadarhamipnl@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "uteun bayi, kota lhokseumawe, aceh",
+      "phone": "081143568824",
+      "nidn": "0010077803",
+      "college_id": 1
+    },
+    {
+      "name": "Muhammad Nasir",
+      "email": "mnasirpnl@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "buket indah, kota lhokseumawe, aceh",
+      "phone": "082245167489",
+      "nidn": "0007077507",
+      "college_id": 1
+    },
+    {
+      "name": "Safriadi",
+      "email": "safriadipnl@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "peunteut, kota lhokseumawe, aceh",
+      "phone": "083277631149",
+      "nidn": "0023079005",
+      "college_id": 1
+    },
+    {
+      "name": "Aswandi",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "buketrata, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nidn": "0023097203",
+      "college_id": 1
+    }
+  ],
+  "students": [
+    {
+      "name": "Mutawakil Billah",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "bukit mutiara, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "2021903430025",
+      "college_id": 1
+    },
+    {
+      "name": "MUHAMMAD RIZA WAHYUDDIN",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "jln. darussalam, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "2021903430033",
+      "college_id": 1
+    },
+    {
+      "name": "MUHAMMAD RINALDY",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "uteun bayi, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "2021903430038",
+      "college_id": 1
+    },
+    {
+      "name": "Andika",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "buketrata, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "2021903430025",
+      "college_id": 1
+    },
+    {
+      "name": "Faiza Yuwafiqi",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "panggoi, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "2020903430014",
+      "college_id": 1
+    },
+    {
+      "name": "Nurani Harum Fardaniah",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "lhoksukon, aceh utara, aceh",
+      "phone": "081344819012",
+      "nim": "2020903430034",
+      "college_id": 1
+    },
+    {
+      "name": "Zulfahmi",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "kuta makmur, aceh utara, aceh",
+      "phone": "081344819012",
+      "nim": "2020903430056",
+      "college_id": 1
+    },
+    {
+      "name": "Saiful Kamil",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "lhoksukon, aceh utara, aceh",
+      "phone": "081344819012",
+      "nim": "2020903430045",
+      "college_id": 1
+    },
+    {
+      "name": "Rachel Ardana Putra Ginting",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "seumadam, tamiang, aceh",
+      "phone": "081344819012",
+      "nim": "2022573010111",
+      "college_id": 1
+    },
+    {
+      "name": "Retno Wulandari",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "buketrata, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "1990343306",
+      "college_id": 1
+    },
+    {
+      "name": "Tarmizi",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "kampung jawa lama, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "2020573010074",
+      "college_id": 1
+    },
+    {
+      "name": "Isnani",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "geudong,  aceh utara, aceh",
+      "phone": "081344819012",
+      "nim": "1957301025",
+      "college_id": 1
+    },
+    {
+      "name": "Awalul Zikri Annur",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "cunda, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "1957301028",
+      "college_id": 1
+    },
+    {
+      "name": "TEUKU ADNRIAN SAPUTRA",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "krueng geukuh, aceh utara, aceh",
+      "phone": "081344819012",
+      "nim": "2021583020024",
+      "college_id": 1
+    },
+    {
+      "name": "Reisya Nur Karima",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "buketrata, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "2021583020018",
+      "college_id": 1
+    },
+    {
+      "name": "Aditya Marwah",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "buketrata, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "2021583020009",
+      "college_id": 1
+    },
+    {
+      "name": "Mohd.Raja Firdaus",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "warkop bahagia, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "1990343028",
+      "college_id": 1
+    },
+    {
+      "name": "Mhd Rohid Edwardsyah",
+      "email": "fachriyanuar@gmail.com",
+      "role": "lecture",
+      "password": "vocaject",
+      "address": "buketrata, kota lhokseumawe, aceh",
+      "phone": "081344819012",
+      "nim": "2022583020011",
+      "college_id": 1
+    }
+  ]
+}

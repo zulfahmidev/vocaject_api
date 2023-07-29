@@ -25,4 +25,9 @@ Perintah untuk matikan runtime:
   sudo kill 12345
   ```
 
+Jangan lupa
+```
+composer dump-autoload
+```
+
 # TEST

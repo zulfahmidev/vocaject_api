@@ -49,7 +49,7 @@ class User extends Authenticatable
         if ($this->role == 'student') {
             $user = DB::table('users')
             ->selectRaw('users.id as id, name, email, 
-                CASE WHEN picture IS NULL THEN "'.secure_url('/images/default.jpeg').'" ELSE CONCAT("'.secure_url('/').'/uploads/", picture) END as picture,
+                CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
                 nim, address, phone, college_id, role, status, users.created_at, users.updated_at')
             ->join('student_details', 'users.id', '=', 'student_details.user_id')
             ->where('users.id', $this->id)
@@ -60,7 +60,7 @@ class User extends Authenticatable
         }else if($this->role == 'lecture') {
             $user = DB::table('users')
             ->selectRaw('users.id as id, name, email, 
-                CASE WHEN picture IS NULL THEN "'.secure_url('/images/default.jpeg').'" ELSE CONCAT("'.secure_url('/').'/uploads/", picture) END as picture,
+                CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
                 nidn, address, phone, college_id, role, status, users.created_at, users.updated_at')
             ->join('lecture_details', 'users.id', '=', 'lecture_details.user_id')
             ->where('users.id', $this->id)
@@ -71,7 +71,7 @@ class User extends Authenticatable
         }else if(in_array($this->role, ['college', 'company'])) {
             return DB::table('users')
             ->selectRaw('users.id as id, name, email, 
-                CASE WHEN picture IS NULL THEN "'.secure_url('/images/default.jpeg').'" ELSE CONCAT("'.secure_url('/').'/uploads/", picture) END as picture,
+                CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
                 description, address, phone, role, status, users.created_at, users.updated_at')
             ->join('company_details', 'users.id', '=', 'company_details.user_id')
             ->where('users.id', $this->id)
@@ -83,7 +83,7 @@ class User extends Authenticatable
     public static function getStudents() {
         $users = DB::table('users')
         ->selectRaw('users.id as id, name, email, 
-            CASE WHEN picture IS NULL THEN "'.secure_url('/images/default.jpeg').'" ELSE CONCAT("'.secure_url('/').'/uploads/", picture) END as picture,
+            CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
             nim, address, phone, college_id, role, status, users.created_at, users.updated_at')
         ->join('student_details', 'users.id', '=', 'student_details.user_id')
         ->get();
@@ -97,7 +97,7 @@ class User extends Authenticatable
     public static function getLectures() {
         $users = DB::table('users')
         ->selectRaw('users.id as id, name, email, 
-            CASE WHEN picture IS NULL THEN "'.secure_url('/images/default.jpeg').'" ELSE CONCAT("'.secure_url('/').'/uploads/", picture) END as picture,
+            CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
             nidn, address, phone, college_id, role, status, users.created_at, users.updated_at')
         ->join('lecture_details', 'users.id', '=', 'lecture_details.user_id')
         ->get();
@@ -111,7 +111,7 @@ class User extends Authenticatable
     public static function getColleges() {
         return DB::table('users')
         ->selectRaw('users.id as id, name, email, 
-            CASE WHEN picture IS NULL THEN "'.secure_url('/images/default.jpeg').'" ELSE CONCAT("'.secure_url('/').'/uploads/", picture) END as picture,
+            CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
             description, address, phone, role, status')
         ->join('company_details', 'users.id', '=', 'company_details.user_id')
         ->where('role', 'college')
@@ -121,7 +121,7 @@ class User extends Authenticatable
     public static function getCompanies() {
         return DB::table('users')
         ->selectRaw('users.id as id, name, email, 
-            CASE WHEN picture IS NULL THEN "'.secure_url('/images/default.jpeg').'" ELSE CONCAT("'.secure_url('/').'/uploads/", picture) END as picture,
+            CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
             description, address, phone, role, status')
         ->join('company_details', 'users.id', '=', 'company_details.user_id')
         ->where('role', 'company')

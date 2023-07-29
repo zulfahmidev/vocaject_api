@@ -47,7 +47,7 @@ class AuthenticationController extends Controller
             CompanyDetail::create([
                 'user_id' => $user->id,
                 'description' => trim($request->description),
-                'address' => trim($request->address),
+                'address' => strtolower(trim($request->address)),
                 'phone' => trim($request->phone),
             ]);
             $this->sendEmailVerification($user);
@@ -92,7 +92,7 @@ class AuthenticationController extends Controller
             LectureDetail::create([
                 'user_id' => $user->id,
                 'nidn' => trim($request->nidn),
-                'address' => trim($request->address),
+                'address' => strtolower(trim($request->address)),
                 'phone' => trim($request->phone),
                 'college_id' => trim($request->college_id),
             ]);
@@ -146,7 +146,7 @@ class AuthenticationController extends Controller
             StudentDetail::create([
                 'user_id' => $user->id,
                 'nim' => trim($request->nim),
-                'address' => trim($request->address),
+                'address' => strtolower(trim($request->address)),
                 'phone' => trim($request->phone),
                 'college_id' => trim($request->college_id),
             ]);
