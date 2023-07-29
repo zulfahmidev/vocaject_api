@@ -183,13 +183,13 @@ class AuthenticationController extends Controller
                 ], 401);
             }
             $user = User::where('email', $request->email)->first();
-            // Verifikasi Email Validate (Non Active For While)
-            // if (!$user->hasVerifiedEmail()) {
-            //     return response()->json([
-            //         'message' => 'Gagal login. Silakan verifikasi email Anda untuk melanjutkan.',
-            //         'data' => null,
-            //     ], 403);
-            // }
+            // Verifikasi Email Validate
+            if (!$user->hasVerifiedEmail()) {
+                return response()->json([
+                    'message' => 'Gagal login. Silakan verifikasi email Anda untuk melanjutkan.',
+                    'data' => null,
+                ], 403);
+            }
 
             if ($request->platform == 'web') {
                 if (!in_array($user->role, ['company', 'college'])) {
