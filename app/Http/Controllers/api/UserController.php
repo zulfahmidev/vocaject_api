@@ -235,4 +235,21 @@ class UserController extends Controller
             'data' => null
         ], 404);
     }
+
+    public function topUp(Request $request, $id) {
+        $val = Validator::make($request->all(), [
+            'amount' => 'required|numeric',
+        ]);
+        if ($val->fails()) {
+            return response()->json([
+                'message' => 'Bidang tidak valid.',
+                'data' => $val->errors(),
+            ], 400);
+        }
+        $user = User::find($id);
+        if ($user) {
+            $user->balance = (int) $user->balance + (int) $request->amount;
+            $user->save();
+        }
+    }
 }

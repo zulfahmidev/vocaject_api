@@ -91,6 +91,10 @@ Route::prefix('project')->group(function() {
         Route::delete('/{id}', [ProjectCategoryController::class, 'destroy'])->name('project.category.delete');
     });
 
+    Route::prefix('{project_id}/budget')->group(function() {
+        Route::post('/', [ProjectController::class, 'manageBudget']);
+    });
+
     Route::prefix('{project_id}/proposal')->group(function() {
         Route::get('/', [ProposalController::class, 'index'])->name('project.proposal');
         Route::get('/{proposal_id}', [ProposalController::class, 'show'])->name('project.proposal.show');
