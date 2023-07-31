@@ -14,6 +14,8 @@ class Project extends Model
         'company_id', 'title', 'expired_at', 'deadline_at', 'description', 'budget', 'address', 'phone', 'category_id'
     ];
 
+    public static $tax = 0.05; // 5%
+
     public function getDetail() {
         $project = Project::find($this->id);
         $project->company = User::find($this->company_id)->getDetail();
@@ -49,10 +51,12 @@ class Project extends Model
 
     public function transferBudget() {
         $company = User::find($this->company_id);
-        if (!($company->balance >= $this->budget)) {
-            return 403;
+        $total = (int)$this->budget + ((int)$this->budget * Project::$tax);
+        if (!($company->balance >= $total)) {
+            return false;
         }
-        $company->balance = $company->balance - $this->budget;
+        $company->balance = $company->balance - $total;
         $company->save();
+        return true;
     }
 }
