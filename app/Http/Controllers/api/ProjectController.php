@@ -193,12 +193,11 @@ class ProjectController extends Controller
         ], 404);
     }
 
-    public function managerBudget(Request $request) {
+    public function manageBudget(Request $request, $id) {
         $val = Validator::make($request->all(), [
             'student' => 'required|numeric',
             'lecture' => 'required|numeric',
             'college' => 'required|numeric',
-            'project_id' => 'required|exists:projects,id',
         ]);
         if ($val->fails()) {
             return response()->json([
@@ -206,7 +205,7 @@ class ProjectController extends Controller
                 'data' => $val->errors()
             ], 400);
         }
-        $project = Project::find($request->project_id);
+        $project = Project::find($id);
         if ($project) {
             if (!ProjectBudget::where('project_id', $project->id)->first()) {
                 return response()->json([
