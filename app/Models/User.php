@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'balance',
     ];
 
     /**
@@ -50,7 +51,7 @@ class User extends Authenticatable
             $user = DB::table('users')
             ->selectRaw('users.id as id, name, email, 
                 CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
-                nim, address, phone, college_id, role, status, users.created_at, users.updated_at')
+                nim, balance, address, phone, college_id, role, status, users.created_at, users.updated_at')
             ->join('student_details', 'users.id', '=', 'student_details.user_id')
             ->where('users.id', $this->id)
             ->first();
@@ -61,7 +62,7 @@ class User extends Authenticatable
             $user = DB::table('users')
             ->selectRaw('users.id as id, name, email, 
                 CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
-                nidn, address, phone, college_id, role, status, users.created_at, users.updated_at')
+                nidn, balance, address, phone, college_id, role, status, users.created_at, users.updated_at')
             ->join('lecture_details', 'users.id', '=', 'lecture_details.user_id')
             ->where('users.id', $this->id)
             ->first();
@@ -72,7 +73,7 @@ class User extends Authenticatable
             return DB::table('users')
             ->selectRaw('users.id as id, name, email, 
                 CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
-                description, address, phone, role, status, users.created_at, users.updated_at')
+                description, balance, address, phone, role, status, users.created_at, users.updated_at')
             ->join('company_details', 'users.id', '=', 'company_details.user_id')
             ->where('users.id', $this->id)
             ->first();
@@ -84,7 +85,7 @@ class User extends Authenticatable
         $users = DB::table('users')
         ->selectRaw('users.id as id, name, email, 
             CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
-            nim, address, phone, college_id, role, status, users.created_at, users.updated_at')
+            nim, balance, address, phone, college_id, role, status, users.created_at, users.updated_at')
         ->join('student_details', 'users.id', '=', 'student_details.user_id')
         ->get();
         foreach ($users as $user) {
@@ -98,7 +99,7 @@ class User extends Authenticatable
         $users = DB::table('users')
         ->selectRaw('users.id as id, name, email, 
             CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
-            nidn, address, phone, college_id, role, status, users.created_at, users.updated_at')
+            nidn, balance, address, phone, college_id, role, status, users.created_at, users.updated_at')
         ->join('lecture_details', 'users.id', '=', 'lecture_details.user_id')
         ->get();
         foreach ($users as $user) {
@@ -112,7 +113,7 @@ class User extends Authenticatable
         return DB::table('users')
         ->selectRaw('users.id as id, name, email, 
             CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
-            description, address, phone, role, status')
+            description, balance, address, phone, role, status')
         ->join('company_details', 'users.id', '=', 'company_details.user_id')
         ->where('role', 'college')
         ->get();
@@ -122,7 +123,7 @@ class User extends Authenticatable
         return DB::table('users')
         ->selectRaw('users.id as id, name, email, 
             CASE WHEN picture IS NULL THEN "'.getUrl('/images/default.jpeg').'" ELSE CONCAT("'.getUrl('/').'/uploads/", picture) END as picture,
-            description, address, phone, role, status')
+            description, balance, address, phone, role, status')
         ->join('company_details', 'users.id', '=', 'company_details.user_id')
         ->where('role', 'company')
         ->get();

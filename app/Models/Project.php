@@ -21,6 +21,7 @@ class Project extends Model
         $project->deadline_at = explode(' ', $project->deadline_at)[0];
         $project->category = ProjectCategory::find($this->category_id);
         $project->status = $this->getStatus();
+        $project->managed_budget = ProjectBudget::where('project_id', $this->id)->first();
         unset($project->company_id);
         unset($project->category_id);
         return $project;
@@ -44,5 +45,14 @@ class Project extends Model
 
     public function getAccProposal() {
         return Proposal::where('project_id', $this->id)->where('status', 'accepted')->first();
+    }
+
+    public function transferBudget() {
+        $company = User::find($this->company_id);
+        if (!($company->balance >= $this->budget)) {
+            return 403;
+        }
+        $company->balance = $company->balance - $this->budget;
+        $company->save();
     }
 }

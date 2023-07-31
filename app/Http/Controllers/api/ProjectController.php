@@ -4,8 +4,10 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\ProjectBudget;
 use App\Models\ProjectCategory;
 use App\Models\Proposal;
+use App\Models\ProposalMember;
 use App\Models\User;
 use Carbon\Carbon;
 use Faker\Core\Number;
@@ -188,6 +190,73 @@ class ProjectController extends Controller
         return response()->json([
             'message' => 'Proyek tidak ditemukan.',
             'data' => null,
+        ], 404);
+    }
+
+    public function managerBudget(Request $request) {
+        $val = Validator::make($request->all(), [
+            'student' => 'required|numeric',
+            'lecture' => 'required|numeric',
+            'college' => 'required|numeric',
+            'project_id' => 'required|exists:projects,id',
+        ]);
+        if ($val->fails()) {
+            return response()->json([
+                'message' => 'Bidang tidak valid.',
+                'data' => $val->errors()
+            ], 400);
+        }
+        $project = Project::find($request->project_id);
+        if ($project) {
+            if (!ProjectBudget::where('project_id', $project->id)->first()) {
+                return response()->json([
+                    'message' => 'Anda sudah mengelola anggaran.',
+                    'data' => null
+                ], 403);
+            }
+            $proposal = $project->getProposalAccepted();
+            $students = ProposalMember::where('proposal_id', $proposal->id)->get();
+            $cost_student = (int) $request->student * $students->count();
+            $cost_lecture = (int) $request->lecture;
+            $cost_college = (int) $request->college;
+            $total = $cost_college + $cost_lecture + $cost_student;
+            if ($total > $project->budget) {
+                $remaining = $total - $project->budget;
+                $lecture = User::find($project->lecture_id);
+                $lecture->balance = $lecture->balance + $cost_lecture;
+                $lecture->save();
+                // Notifikasi email
+
+                $college = User::find($lecture->getDetail()->college_id);
+                $college->balance = $college->balance + $cost_college;
+                $college->save();
+                // Notifikasi email
+
+                foreach ($students as $student) {
+                    $student->balance = $student->balance + $cost_student;
+                    $student->save();
+                    // Notifikasi email
+                }
+
+                ProjectBudget::create([
+                    'student' => $cost_student,
+                    'lecture' => $cost_lecture,
+                    'college' => $cost_college,
+                    'remaining' => $remaining,
+                ]);
+                return response()->json([
+                    'message' => 'Anggaran berhasil disalurkan.',
+                    'data' => null
+                ]);
+            }
+            return response()->json([
+                'message' => 'Anggaran tidak cukup untuk pembagian ini.',
+                'data' => null
+            ], 403);
+        }
+        return response()->json([
+            'message' => 'Proyek tidak ditemukan.',
+            'data' => null
         ], 404);
     }
 }

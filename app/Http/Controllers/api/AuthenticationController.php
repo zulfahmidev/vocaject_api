@@ -42,7 +42,8 @@ class AuthenticationController extends Controller
                 'name' => trim(strtolower($request->name)),
                 'password' => Hash::make($request->password),
                 'email' => trim(strtolower($request->email)),
-                'role' => trim(strtolower($request->role))
+                'role' => trim(strtolower($request->role)),
+                'belance' => 0,
             ]);
             CompanyDetail::create([
                 'user_id' => $user->id,
@@ -88,6 +89,7 @@ class AuthenticationController extends Controller
                 'password' => Hash::make($request->password),
                 'email' => trim(strtolower($request->email)),
                 'role' => trim(strtolower($request->role)),
+                'belance' => 0,
             ]);
             LectureDetail::create([
                 'user_id' => $user->id,
@@ -142,6 +144,7 @@ class AuthenticationController extends Controller
                 'password' => Hash::make($request->password),
                 'email' => trim(strtolower($request->email)),
                 'role' => trim(strtolower($request->role)),
+                'belance' => 0,
             ]);
             StudentDetail::create([
                 'user_id' => $user->id,
@@ -206,6 +209,22 @@ class AuthenticationController extends Controller
                     ], 403);
                 }
             }
+
+            if (in_array($user->status, ['rejected', 'panding'])) {
+                if (in_array($user->role, ['student', 'lecture'])) {
+                    return response()->json([
+                        'message' => 'Anda sedang proses validasi dari pihak kampus.',
+                        'data' => null,
+                    ], 403);
+                }
+                // else if(in_array($user->role, ['company', 'college'])) {
+                //     return response()->json([
+                //         'message' => 'Anda sedang proses validasi dari pihak admin.',
+                //         'data' => null,
+                //     ], 403);
+                // }
+            }
+
             return response()->json([
                 'message' => 'Anda telah berhasil masuk ke akun Anda.',
                 'data' => [

@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Proposal;
 use App\Models\ProposalAttachment;
 use App\Models\ProposalMember;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -200,6 +201,7 @@ class ProposalController extends Controller
                 $proposal->update([
                     'status' => 'accepted'
                 ]);
+                $project->transferBudget();
                 continue;
             }
             $proposal->update([
