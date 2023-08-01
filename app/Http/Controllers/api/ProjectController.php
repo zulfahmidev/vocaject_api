@@ -222,7 +222,7 @@ class ProjectController extends Controller
                 $cost_college = (int) $request->college;
                 $total = $cost_college + $cost_lecture + $cost_student;
                 if ($project->budget > $total) {
-                    $remaining = $total - $project->budget;
+                    $remaining = $project->budget - $total;
                     $lecture = User::find($proposal->lecture_id);
                     $lecture->balance = $lecture->balance + $cost_lecture;
                     $lecture->save();

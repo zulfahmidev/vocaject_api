@@ -236,7 +236,7 @@ class UserController extends Controller
         ], 404);
     }
 
-    public function topUp(Request $request, $id) {
+    public function topUp(Request $request) {
         $val = Validator::make($request->all(), [
             'amount' => 'required|numeric',
         ]);
@@ -246,10 +246,18 @@ class UserController extends Controller
                 'data' => $val->errors(),
             ], 400);
         }
-        $user = User::find($id);
+        $user = User::find(Auth::user()->id);
         if ($user) {
             $user->balance = (int) $user->balance + (int) $request->amount;
             $user->save();
+            return response()->json([
+                'message' => 'Anda berhasil melakukan top up.',
+                'data' => $user->getDetail(),
+            ]);
         }
+        return response()->json([
+            'message' => 'User tidak ditemukan.',
+            'data' => null,
+        ], 404);
     }
 }

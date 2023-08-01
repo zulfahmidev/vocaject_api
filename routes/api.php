@@ -66,6 +66,10 @@ Route::prefix('user')->group(function() {
 
     });
 
+    Route::prefix('balance')->group(function() {
+        Route::post('/', [UserController::class, 'topUp'])->middleware(['auth:sanctum']);
+    });
+
     Route::get('/r/{role}', [UserController::class, 'index'])->name('user.index.role');
     Route::get('/{id}', [UserController::class, 'show'])->name('user.show');
     Route::get('/student/{college_id}', [UserController::class, 'getStudents'])->name('user.student');
