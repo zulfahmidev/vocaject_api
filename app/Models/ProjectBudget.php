@@ -10,6 +10,6 @@ class ProjectBudget extends Model
     use HasFactory;
 
     public $fillable = [
-        'key', 'lecture', 'college', 'remaining'
+        'student', 'lecture', 'college', 'remaining', 'project_id'
     ];
 }

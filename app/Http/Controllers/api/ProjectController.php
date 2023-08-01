@@ -193,7 +193,7 @@ class ProjectController extends Controller
         ], 404);
     }
 
-    public function manageBudget(Request $request, $id) {
+    public function manageBudget(Request $request, $project_id) {
         $val = Validator::make($request->all(), [
             'student' => 'required|numeric',
             'lecture' => 'required|numeric',
@@ -205,53 +205,62 @@ class ProjectController extends Controller
                 'data' => $val->errors()
             ], 400);
         }
-        $project = Project::find($id);
+        $project = Project::find($project_id);
         if ($project) {
-            if (!ProjectBudget::where('project_id', $project->id)->first()) {
+            if (ProjectBudget::where('project_id', $project->id)->first()) {
                 return response()->json([
                     'message' => 'Anda sudah mengelola anggaran.',
                     'data' => null
                 ], 403);
             }
-            $proposal = $project->getProposalAccepted();
-            $students = ProposalMember::where('proposal_id', $proposal->id)->get();
-            $cost_student = (int) $request->student * $students->count();
-            $cost_lecture = (int) $request->lecture;
-            $cost_college = (int) $request->college;
-            $total = $cost_college + $cost_lecture + $cost_student;
-            if ($total > $project->budget) {
-                $remaining = $total - $project->budget;
-                $lecture = User::find($project->lecture_id);
-                $lecture->balance = $lecture->balance + $cost_lecture;
-                $lecture->save();
-                // Notifikasi email
+            $proposal = $project->getAccProposal();
+            if ($proposal) {
 
-                $college = User::find($lecture->getDetail()->college_id);
-                $college->balance = $college->balance + $cost_college;
-                $college->save();
-                // Notifikasi email
-
-                foreach ($students as $student) {
-                    $student->balance = $student->balance + $cost_student;
-                    $student->save();
+                $students = ProposalMember::where('proposal_id', $proposal->id)->get();
+                $cost_student = (int) $request->student * $students->count();
+                $cost_lecture = (int) $request->lecture;
+                $cost_college = (int) $request->college;
+                $total = $cost_college + $cost_lecture + $cost_student;
+                if ($total > $project->budget) {
+                    $remaining = $total - $project->budget;
+                    $lecture = User::find($proposal->lecture_id);
+                    $lecture->balance = $lecture->balance + $cost_lecture;
+                    $lecture->save();
                     // Notifikasi email
+    
+                    $college = User::find($lecture->getDetail()->college->id);
+                    $college->balance = $college->balance + $cost_college;
+                    $college->save();
+                    // Notifikasi email
+    
+                    foreach ($students as $member) {
+                        $student = User::find($member->student_id);
+                        $student->balance = $student->balance + $cost_student;
+                        $student->save();
+                        // Notifikasi email
+                    }
+    
+                    $pb = ProjectBudget::create([
+                        'project_id' => $project->id,
+                        'student' => $cost_student,
+                        'lecture' => $cost_lecture,
+                        'college' => $cost_college,
+                        'remaining' => $remaining,
+                    ]);
+                    return response()->json([
+                        'message' => 'Anggaran berhasil disalurkan.',
+                        'data' => $pb
+                    ]);
                 }
-
-                ProjectBudget::create([
-                    'student' => $cost_student,
-                    'lecture' => $cost_lecture,
-                    'college' => $cost_college,
-                    'remaining' => $remaining,
-                ]);
                 return response()->json([
-                    'message' => 'Anggaran berhasil disalurkan.',
+                    'message' => 'Anggaran tidak cukup untuk pembagian ini.',
                     'data' => null
-                ]);
+                ], 403);
             }
             return response()->json([
-                'message' => 'Anggaran tidak cukup untuk pembagian ini.',
+                'message' => 'Belum ada proposal yang diterima.',
                 'data' => null
-            ], 403);
+            ], 404);
         }
         return response()->json([
             'message' => 'Proyek tidak ditemukan.',

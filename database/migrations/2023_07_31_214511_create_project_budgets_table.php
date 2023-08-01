@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('project_budgets', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('project_id');
             $table->integer('student');
             $table->integer('lecture');
             $table->integer('college');
             $table->integer('remaining');
             $table->timestamps();
+
+            $table->foreign('project_id')->references('id')->on('projects');
         });
     }
 
