@@ -42,7 +42,9 @@ class ProjectController extends Controller
         // }
         if ($request->category) {
             $category = ProjectCategory::where('slug', trim($request->category))->first();
-            $raw = $raw->where('category_id', $category->id);
+            if ($category) {
+                $raw = $raw->where('category_id', $category->id);
+            }
         }
         if ($request->title) {
             $raw = $raw->where('title', 'like', "%".strtolower(trim($request->title))."%");
@@ -62,10 +64,10 @@ class ProjectController extends Controller
             }
             if ($request->status) {
                 if ($project->status == $request->status) {
-                    $projects[] = $project;       
+                    $projects[] = $project;
                 }
             }else {
-                $projects[] = $project;   
+                $projects[] = $project;
             }
         };
         $skip = 0;
@@ -116,12 +118,12 @@ class ProjectController extends Controller
             ], 400);
         }
         $project = Project::create([
-            'company_id' => $request->company_id, 
-            'title' => trim(strtolower($request->title)), 
+            'company_id' => $request->company_id,
+            'title' => trim(strtolower($request->title)),
             'description' => $request->description,
             'expired_at' => $this->timestampFormat($request->expired_at),
             'deadline_at' => $this->timestampFormat($request->deadline_at),
-            'budget' => (int) $request->budget, 
+            'budget' => (int) $request->budget,
             'category_id' => $request->category_id,
         ]);
         return response()->json([
@@ -153,12 +155,12 @@ class ProjectController extends Controller
         $project = Project::find($id);
         if ($project) {
             $project->update([
-                'company_id' => $request->company_id, 
-                'title' => trim(strtolower($request->title)), 
+                'company_id' => $request->company_id,
+                'title' => trim(strtolower($request->title)),
                 'expired_at' => $this->timestampFormat($request->expired_at),
                 'deadline_at' => $this->timestampFormat($request->deadline_at),
                 'description' => $request->description,
-                'budget' => (int) $request->budget, 
+                'budget' => (int) $request->budget,
                 'category_id' => $request->category_id,
             ]);
             return response()->json([
@@ -227,19 +229,19 @@ class ProjectController extends Controller
                     $lecture->balance = $lecture->balance + $cost_lecture;
                     $lecture->save();
                     // Notifikasi email
-    
+
                     $college = User::find($lecture->getDetail()->college->id);
                     $college->balance = $college->balance + $cost_college;
                     $college->save();
                     // Notifikasi email
-    
+
                     foreach ($students as $member) {
                         $student = User::find($member->student_id);
                         $student->balance = $student->balance + $cost_student;
                         $student->save();
                         // Notifikasi email
                     }
-    
+
                     $pb = ProjectBudget::create([
                         'project_id' => $project->id,
                         'student' => $cost_student,
