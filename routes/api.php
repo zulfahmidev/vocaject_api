@@ -2,6 +2,7 @@
 
 use App\Events\MyEvent;
 use App\Http\Controllers\api\AuthenticationController;
+use App\Http\Controllers\api\DocumentController;
 use App\Http\Controllers\api\ProjectLogbookController;
 use App\Http\Controllers\api\ProjectCategoryController;
 use App\Http\Controllers\api\ProjectController;
@@ -47,7 +48,7 @@ Route::prefix('auth')->group(function() {
     Route::get('/email/verify/{id}', function ($id) {
         $user = User::find($id);
         if (!$user->hasVerifiedEmail()) {
-            $user->markEmailAsVerified(); 
+            $user->markEmailAsVerified();
             return response()->json([
                 'message' => 'Berhasil melakukan verifikasi email.'
             ]);
@@ -125,8 +126,16 @@ Route::prefix('project')->group(function() {
     Route::prefix('{project_id}/message/{lecture_id}')->group(function() {
         Route::get('/', [ProjectMessageController::class, 'index'])->name('project.message');
         Route::post('/', [ProjectMessageController::class, 'store'])->name('project.store');
+        Route::post('/document', [ProjectMessageController::class, 'storeDocument'])->name('project.storeDocument');
         Route::delete('/{message_id}', [ProjectMessageController::class, 'destroy'])->name('project.delete');
         Route::post('/read', [ProjectMessageController::class, 'read'])->name('project.read');
         Route::get('/count-unread', [ProjectMessageController::class, 'getCountUnread'])->name('project.count_unread');
     });
+});
+
+Route::prefix('document')->middleware(['auth:sanctum'])->group(function(){
+
+    Route::get('view/{filename}', [DocumentController::class, 'view']);
+    Route::get('detail/{filename}', [DocumentController::class, 'detail']);
+    // Route::post('upload', [DocumentController::class, 'upload']);
 });

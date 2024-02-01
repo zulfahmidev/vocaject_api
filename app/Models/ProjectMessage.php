@@ -17,6 +17,7 @@ class ProjectMessage extends Model
         $message = ProjectMessage::find($this->id);
         $message->project = Project::find($this->project_id)->getDetail();
         $message->lecture = User::find($this->lecture_id)->getDetail();
+        $message->message = json_decode($this->message, true);
         unset($message->project_id);
         unset($message->lecture_id);
         return $message;

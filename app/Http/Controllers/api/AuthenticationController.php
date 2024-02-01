@@ -43,7 +43,7 @@ class AuthenticationController extends Controller
                 'password' => Hash::make($request->password),
                 'email' => trim(strtolower($request->email)),
                 'role' => trim(strtolower($request->role)),
-                'belance' => 0,
+                'balance' => 0,
             ]);
             CompanyDetail::create([
                 'user_id' => $user->id,
@@ -89,7 +89,7 @@ class AuthenticationController extends Controller
                 'password' => Hash::make($request->password),
                 'email' => trim(strtolower($request->email)),
                 'role' => trim(strtolower($request->role)),
-                'belance' => 0,
+                'balance' => 0,
             ]);
             LectureDetail::create([
                 'user_id' => $user->id,
@@ -144,7 +144,7 @@ class AuthenticationController extends Controller
                 'password' => Hash::make($request->password),
                 'email' => trim(strtolower($request->email)),
                 'role' => trim(strtolower($request->role)),
-                'belance' => 0,
+                'balance' => 0,
             ]);
             StudentDetail::create([
                 'user_id' => $user->id,
@@ -189,7 +189,7 @@ class AuthenticationController extends Controller
             // Verifikasi Email Validate
             if (!$user->hasVerifiedEmail()) {
                 return response()->json([
-                    'message' => 'Gagal login. Silakan verifikasi email Anda untuk melanjutkan.',
+                    'message' => 'Login gagal. Silakan verifikasi email Anda untuk melanjutkan.',
                     'data' => null,
                 ], 403);
             }
@@ -252,7 +252,7 @@ class AuthenticationController extends Controller
     public function logout() {
         $user = Auth::user();
         $user->tokens()->delete();
-    
+
         return response()->json([
             'message' => 'Logout berhasil',
             'data' => null,

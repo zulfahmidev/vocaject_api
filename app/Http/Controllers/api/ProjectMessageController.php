@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Events\DeleteMessage;
 use App\Events\NewMessage;
 use App\Http\Controllers\Controller;
+use App\Models\DocumentUserPermission;
 use App\Models\Project;
 use App\Models\ProjectMessage;
 use App\Models\User;
@@ -69,7 +70,10 @@ class ProjectMessageController extends Controller
         $message = ProjectMessage::create([
             'project_id' => $project->id,
             'lecture_id' => $lecture->id,
-            'message' => $request->message,
+            'message' => json_encode([
+                "type" => "text",
+                "text" => $request->message
+            ]),
             'sender' => $request->sender,
         ]);
 
@@ -79,6 +83,67 @@ class ProjectMessageController extends Controller
             'message' => 'Pesan berhasil terkirim.',
             'data' => $message->getDetail(),
         ]);
+    }
+
+
+    public function storeDocument(Request $request, $project_id, $lecture_id) {
+        $project = Project::find($project_id);
+        if (!$project) {
+            return response()->json([
+                'message' => 'Proyek tidak ditemukan.',
+                'data' => null,
+            ], 404);
+        }
+        $lecture = User::find($lecture_id);
+        if (!$lecture) {
+            return response()->json([
+                'message' => 'Dosen tidak ditemukan.',
+                'data' => null,
+            ], 404);
+        }
+        $val = Validator::make($request->all(), [
+            'sender' => 'required|string|in:lecture,company',
+            'file' => 'required|file'
+        ]);
+
+        if ($val->fails()) {
+            return response()->json([
+                'message' => 'Bidang tidak valid.',
+                'data' => $val->errors(),
+            ], 400);
+        }
+
+        $doc = DocumentController::upload($request->file('file'), 'private');
+        if ($doc) {
+
+            $message = ProjectMessage::create([
+                'project_id' => $project->id,
+                'lecture_id' => $lecture->id,
+                'message' => json_encode([
+                    "type" => "document",
+                    "document" => $doc->getData()
+                ]),
+                'sender' => $request->sender,
+            ]);
+
+            DocumentUserPermission::insert([
+                ["user_id" => $lecture->id, "document_id" => $doc->id],
+                ["user_id" => $project->company_id, "document_id" => $doc->id],
+            ]);
+
+            event(new NewMessage($message));
+
+            return response()->json([
+                'message' => 'Pesan berhasil terkirim.',
+                'data' => $message->getDetail(),
+            ]);
+        }
+
+        return response()->json([
+            "message" => "Terjadi kesalahan saat mengupload",
+            "data" => null
+        ], 500);
+
     }
 
     public function getContacts($project_id) {
