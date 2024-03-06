@@ -24,6 +24,13 @@ class Project extends Model
         $project->category = ProjectCategory::find($this->category_id);
         $project->status = $this->getStatus();
         $project->managed_budget = ProjectBudget::where('project_id', $this->id)->first();
+
+        $tasks = ProjectTask::where('project_id', $this->id)->count();
+        $checkedTasks = ProjectTask::where('project_id', $this->id)->where('checked', 1)->count();
+        $progress = ($tasks != 0 && $checkedTasks != 0) ? (100/$tasks)*$checkedTasks : 0;
+
+        $project->progress = $progress;
+
         unset($project->company_id);
         unset($project->category_id);
         return $project;
