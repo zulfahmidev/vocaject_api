@@ -31,6 +31,15 @@ class Project extends Model
 
         $project->progress = $progress;
 
+        $proposal = $this->getAccProposal();
+        if ($proposal) {
+            $project->members = ProposalMember::where('proposal_id', $proposal->id)
+            ->join('users', 'users.id', '=', 'proposal_members.student_id')
+            ->join('student_details', 'student_details.user_id', '=', 'proposal_members.student_id')
+            ->selectRaw('users.id, users.name, users.email, users.picture, student_details.phone')
+            ->get();
+        }
+
         unset($project->company_id);
         unset($project->category_id);
         return $project;

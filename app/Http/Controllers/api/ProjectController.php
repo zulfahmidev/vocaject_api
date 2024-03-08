@@ -24,6 +24,7 @@ class ProjectController extends Controller
             $raw = Proposal::join('projects', 'projects.id', '=', 'proposals.project_id')
             ->join('proposal_members', 'proposal_members.proposal_id', '=', 'proposals.id')
             ->where('proposal_members.student_id', $request->student_id);
+            // ->select(DB::raw('proposal_members'));
             if ($request->proposal_status) {
                 $raw = $raw->where('proposals.status', $request->proposal_status);
             }
@@ -56,9 +57,16 @@ class ProjectController extends Controller
             $raw->latest('created_at');
         }
         $projects = [];
-        $raw = ($request->has('student_id') || $request->has('lecture_id')) ? $raw->selectRaw('projects.id, proposals.status')->get() : $raw->selectRaw('projects.id')->get();
+        $raw = ($request->has('student_id') || $request->has('lecture_id')) ? $raw->selectRaw('projects.id, proposals.status, proposals.id as proposal_id')->get() : $raw->selectRaw('projects.id')->get();
         foreach ($raw as $v) {
             $project = Project::find($v->id)->getDetail();
+            if ($v->proposal_id) {
+                $project->members = ProposalMember::where('proposal_id', $v->proposal_id)
+                ->join('users', 'users.id', '=', 'proposal_members.student_id')
+                ->join('student_details', 'student_details.user_id', '=', 'proposal_members.student_id')
+                ->selectRaw('users.id, users.name, users.email, users.picture, student_details.phone')
+                ->get();
+            }
             if ($request->has('student_id') || $request->has('lecture_id')) {
                 $project->proposal_status = $v->status;
             }
