@@ -60,7 +60,7 @@ class ProjectController extends Controller
         $raw = ($request->has('student_id') || $request->has('lecture_id')) ? $raw->selectRaw('projects.id, proposals.status, proposals.id as proposal_id')->get() : $raw->selectRaw('projects.id')->get();
         foreach ($raw as $v) {
             $project = Project::find($v->id)->getDetail();
-            if ($v->proposal_id) {
+            if (isset($v->proposal_id)) {
                 $project->members = ProposalMember::where('proposal_id', $v->proposal_id)
                 ->join('users', 'users.id', '=', 'proposal_members.student_id')
                 ->join('student_details', 'student_details.user_id', '=', 'proposal_members.student_id')
