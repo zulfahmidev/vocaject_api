@@ -61,11 +61,10 @@ class ProjectController extends Controller
         foreach ($raw as $v) {
             $project = Project::find($v->id)->getDetail();
             if (isset($v->proposal_id)) {
-                $project->members = ProposalMember::where('proposal_id', $v->proposal_id)
-                ->join('users', 'users.id', '=', 'proposal_members.student_id')
-                ->join('student_details', 'student_details.user_id', '=', 'proposal_members.student_id')
-                ->selectRaw('users.id, users.name, users.email, users.picture, student_details.phone, student_details.nim')
-                ->get();
+                $members = ProposalMember::where('proposal_id', $v->proposal_id)->pluck('student_id');
+                $project->members = array_map(function($v) {
+                    return User::find($v)->getDetail();
+                }, $members->toArray());
             }
             if ($request->has('student_id') || $request->has('lecture_id')) {
                 $project->proposal_status = $v->status;

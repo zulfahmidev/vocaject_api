@@ -33,11 +33,10 @@ class Project extends Model
 
         $proposal = $this->getAccProposal();
         if ($proposal) {
-            $project->members = ProposalMember::where('proposal_id', $proposal->id)
-            ->join('users', 'users.id', '=', 'proposal_members.student_id')
-            ->join('student_details', 'student_details.user_id', '=', 'proposal_members.student_id')
-            ->selectRaw('users.id, users.name, users.email, users.picture, student_details.phone, student_details.nim')
-            ->get();
+            $members = ProposalMember::where('proposal_id', $proposal->id)->pluck('student_id');
+            $proposal->members = array_map(function($v) {
+                return User::find($v)->getDetail();
+            }, $members->toArray());
         }
 
         unset($project->company_id);
