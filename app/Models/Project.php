@@ -29,7 +29,7 @@ class Project extends Model
         $checkedTasks = ProjectTask::where('project_id', $this->id)->where('checked', 1)->count();
         $progress = ($tasks != 0 && $checkedTasks != 0) ? (100/$tasks)*$checkedTasks : 0;
 
-        $project->progress = $progress;
+        $project->progress = (int) $progress;
 
         $proposal = $this->getAccProposal();
         if ($proposal) {
