@@ -34,7 +34,7 @@ class Project extends Model
         $proposal = $this->getAccProposal();
         if ($proposal) {
             $members = ProposalMember::where('proposal_id', $proposal->id)->pluck('student_id');
-            $proposal->members = array_map(function($v) {
+            $project->members = array_map(function($v) {
                 return User::find($v)->getDetail();
             }, $members->toArray());
         }
