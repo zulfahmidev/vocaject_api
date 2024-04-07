@@ -70,7 +70,7 @@ class DocumentController extends Controller
         $storage = new StorageClient([
             'keyFile' => json_decode($credentials, true)
         ]);
-        $bucket = $storage->bucket('vocaject_filesystem');
+        $bucket = $storage->bucket(env('GOOGLE_CLOUD_STORAGE_BUCKET'));
         $res = $bucket->upload($file->getContent(), [
             'name' => 'uploads/'.$filename
         ]);

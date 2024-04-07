@@ -102,7 +102,7 @@ class ProjectMessageController extends Controller
             ], 404);
         }
         $val = Validator::make($request->all(), [
-            'sender' => 'required|string|in:lecture,company',
+            'sender' => 'required|string|in:lecture,company,college',
             'file' => 'required|file'
         ]);
 
