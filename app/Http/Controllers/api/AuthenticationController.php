@@ -194,21 +194,21 @@ class AuthenticationController extends Controller
             //     ], 403);
             // }
 
-            if ($request->platform == 'web') {
-                if (!in_array($user->role, ['company', 'college'])) {
-                    return response()->json([
-                        'message' => 'Gagal login. Anda tidak dapat login sebagai Dosen/Mahasiswa melalui website.',
-                        'data' => null,
-                    ], 403);
-                }
-            }else if ($request->platform == 'mobile') {
-                if (!in_array($user->role, ['student', 'lecture'])) {
-                    return response()->json([
-                        'message' => 'Gagal login. Anda tidak dapat login sebagai Kampus/Perusahaan melalui mobile.',
-                        'data' => null,
-                    ], 403);
-                }
-            }
+            // if ($request->platform == 'web') {
+            //     if (!in_array($user->role, ['company', 'college'])) {
+            //         return response()->json([
+            //             'message' => 'Gagal login. Anda tidak dapat login sebagai Dosen/Mahasiswa melalui website.',
+            //             'data' => null,
+            //         ], 403);
+            //     }
+            // }else if ($request->platform == 'mobile') {
+            //     if (!in_array($user->role, ['student', 'lecture'])) {
+            //         return response()->json([
+            //             'message' => 'Gagal login. Anda tidak dapat login sebagai Kampus/Perusahaan melalui mobile.',
+            //             'data' => null,
+            //         ], 403);
+            //     }
+            // }
 
             if (in_array($user->status, ['rejected', 'panding'])) {
                 if (in_array($user->role, ['student', 'lecture'])) {

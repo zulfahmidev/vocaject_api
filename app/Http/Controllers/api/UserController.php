@@ -58,6 +58,15 @@ class UserController extends Controller
                 if ($request->status == 'accepted') {
                     $ids = $ids->where('status', 'accepted');
                 }
+                if ($request->name) {
+                    $ids = $ids->where('name', 'LIKE', '%'.$request->name.'%');
+                }
+                if ($request->nim) {
+                    $ids = $ids->where('nim', 'LIKE', '%'.$request->nim.'%');
+                }
+                if ($request->limit) {
+                    $ids = $ids->take((int)$request->limit);
+                }
                 foreach ($ids->pluck('users.id') as $id) $students[] = User::find($id)->getDetail();
                 return response()->json([
                     "message" => "Berhasil memuat data.",

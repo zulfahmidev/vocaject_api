@@ -11,6 +11,7 @@ use App\Models\ProposalMember;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Ramsey\Uuid\Type\Integer;
 
 class ProposalController extends Controller
 {
@@ -30,20 +31,29 @@ class ProposalController extends Controller
     }
 
     public function store(Request $request, $project_id) {
-        $val = Validator::make($request->all(), [
+        $attachments = [];
+        foreach ($request->all() as $key => $v) {
+            if ($request->file($key) && strpos($key, 'chment')) {
+                $attachments[] = $request->file($key);
+            }
+        }
+        $val = Validator::make([
+            ...$request->only(['note', 'lecture_id', 'student_ids']),
+            'attachments' => $attachments
+        ], [
             'note' => 'required|min:3',
             'lecture_id' => 'required|exists:users,id',
             'student_ids' => 'required|array|exists:users,id',
-            'mandatory_attachment' => 'required|file',
-            'additional1_attachment' => 'nullable|file',
-            'additional2_attachment' => 'nullable|file',
+            'attachments' => 'required|array',
         ]);
+
         if ($val->fails()) {
             return response()->json([
                 'message' => 'Bidang tidak valid.',
                 'data' => $val->errors()
             ], 400);
         }
+
         $project = Project::find($project_id);
         if (!$project) {
             return response()->json([
@@ -51,6 +61,7 @@ class ProposalController extends Controller
                 'data' => null,
             ], 404);
         }
+
         $proposal = Proposal::where('lecture_id', $request->lecture_id)->where('project_id', $project_id)->first();
         if ($proposal) {
             return response()->json([
@@ -64,47 +75,56 @@ class ProposalController extends Controller
             'project_id' => $project->id,
             'status' => 'panding',
         ]);
+
         foreach ($request->student_ids as $student_id) {
-            // dd($student_id);
             ProposalMember::create([
                 'proposal_id' => $proposal->id,
                 'student_id' => $student_id,
             ]);
         }
-        if ($request->file('mandatory_attachment')) {
-            $file = $request->file('mandatory_attachment');
-            $dir = 'uploads/';
-            $filename = time().rand(1111,9999).'.'.$file->getClientOriginalExtension();
-            $file->move($dir, $filename);
+
+        // if ($request->file('mandatory_attachment')) {
+        //     $file = $request->file('mandatory_attachment');
+        //     $dir = 'uploads/';
+        //     $filename = time().rand(1111,9999).'.'.$file->getClientOriginalExtension();
+        //     $file->move($dir, $filename);
+        //     ProposalAttachment::create([
+        //         'proposal_id' => $proposal->id,
+        //         'filename' => $file->getClientOriginalName(),
+        //         'mimetype' => $file->getClientOriginalExtension(),
+        //         'filepath' => $filename,
+        //     ]);
+        // }
+        // if ($request->file('additional1_attachment')) {
+        //     $file = $request->file('additional1_attachment');
+        //     $dir = 'uploads/';
+        //     $filename = time().rand(1111,9999).'.'.$file->getClientOriginalExtension();
+        //     $file->move($dir, $filename);
+        //     ProposalAttachment::create([
+        //         'proposal_id' => $proposal->id,
+        //         'filename' => $file->getClientOriginalName(),
+        //         'mimetype' => $file->getClientOriginalExtension(),
+        //         'filepath' => $filename,
+        //     ]);
+        // }
+        // if ($request->file('additional2_attachment')) {
+        //     $file = $request->file('additional2_attachment');
+        //     $dir = 'uploads/';
+        //     $filename = time().rand(1111,9999).'.'.$file->getClientOriginalExtension();
+        //     $file->move($dir, $filename);
+        //     ProposalAttachment::create([
+        //         'proposal_id' => $proposal->id,
+        //         'filename' => $file->getClientOriginalName(),
+        //         'mimetype' => $file->getClientOriginalExtension(),
+        //         'filepath' => $filename,
+        //     ]);
+        // }
+
+        foreach ($attachments as $attachment) {
+            $doc = DocumentController::upload($attachment, 'private');
             ProposalAttachment::create([
                 'proposal_id' => $proposal->id,
-                'filename' => $file->getClientOriginalName(),
-                'mimetype' => $file->getClientOriginalExtension(),
-                'filepath' => $filename,
-            ]);
-        }
-        if ($request->file('additional1_attachment')) {
-            $file = $request->file('additional1_attachment');
-            $dir = 'uploads/';
-            $filename = time().rand(1111,9999).'.'.$file->getClientOriginalExtension();
-            $file->move($dir, $filename);
-            ProposalAttachment::create([
-                'proposal_id' => $proposal->id,
-                'filename' => $file->getClientOriginalName(),
-                'mimetype' => $file->getClientOriginalExtension(),
-                'filepath' => $filename,
-            ]);
-        }
-        if ($request->file('additional2_attachment')) {
-            $file = $request->file('additional2_attachment');
-            $dir = 'uploads/';
-            $filename = time().rand(1111,9999).'.'.$file->getClientOriginalExtension();
-            $file->move($dir, $filename);
-            ProposalAttachment::create([
-                'proposal_id' => $proposal->id,
-                'filename' => $file->getClientOriginalName(),
-                'mimetype' => $file->getClientOriginalExtension(),
-                'filepath' => $filename,
+                'document_id' => $doc->id,
             ]);
         }
 

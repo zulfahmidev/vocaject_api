@@ -134,7 +134,7 @@ Route::prefix('project')->group(function() {
     });
 });
 
-Route::prefix('document')->middleware(['auth:sanctum'])->group(function(){
+Route::prefix('document')->group(function(){
 
     Route::get('view/{filename}', [DocumentController::class, 'view']);
     Route::get('detail/{filename}', [DocumentController::class, 'detail']);
