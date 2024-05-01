@@ -18,8 +18,7 @@ class Document extends Model
     public function getData() {
         $data = $this->toArray();
         $url = '/api/document/view/'.$this->filename;
-        $uri = explode("://", request()->url());
-        $data['url'] = ($uri[0] == 'hhtps') ? secure_url($url) : url($url);
+        $data['url'] = (env('APP_ENV') == 'local') ? url($url) : secure_url($url);
         return Collection::make($data);
     }
 }
