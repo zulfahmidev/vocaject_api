@@ -130,6 +130,7 @@ class User extends Authenticatable
     }
 
     private static function getURL($url) {
+        dd(request()->secure());
         return (request()->secure()) ? secure_url($url) : url($url);
     }
 }
