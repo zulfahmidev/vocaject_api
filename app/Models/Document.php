@@ -17,7 +17,7 @@ class Document extends Model
 
     public function getData() {
         $data = $this->toArray();
-        $data['url'] = Request::secure() ? url('/api/document/view/'.$this->filename) : secure_url('/api/document/view/'.$this->filename);
+        $data['url'] = Request::secure() ? secure_url('/api/document/view/'.$this->filename) : url('/api/document/view/'.$this->filename);
         return Collection::make($data);
     }
 }
