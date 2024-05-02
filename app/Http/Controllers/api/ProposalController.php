@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Events\SubmitProposal;
 use App\Http\Controllers\Controller;
+use App\Models\DocumentUserPermission;
 use App\Models\Project;
 use App\Models\Proposal;
 use App\Models\ProposalAttachment;
@@ -83,45 +84,11 @@ class ProposalController extends Controller
             ]);
         }
 
-        // if ($request->file('mandatory_attachment')) {
-        //     $file = $request->file('mandatory_attachment');
-        //     $dir = 'uploads/';
-        //     $filename = time().rand(1111,9999).'.'.$file->getClientOriginalExtension();
-        //     $file->move($dir, $filename);
-        //     ProposalAttachment::create([
-        //         'proposal_id' => $proposal->id,
-        //         'filename' => $file->getClientOriginalName(),
-        //         'mimetype' => $file->getClientOriginalExtension(),
-        //         'filepath' => $filename,
-        //     ]);
-        // }
-        // if ($request->file('additional1_attachment')) {
-        //     $file = $request->file('additional1_attachment');
-        //     $dir = 'uploads/';
-        //     $filename = time().rand(1111,9999).'.'.$file->getClientOriginalExtension();
-        //     $file->move($dir, $filename);
-        //     ProposalAttachment::create([
-        //         'proposal_id' => $proposal->id,
-        //         'filename' => $file->getClientOriginalName(),
-        //         'mimetype' => $file->getClientOriginalExtension(),
-        //         'filepath' => $filename,
-        //     ]);
-        // }
-        // if ($request->file('additional2_attachment')) {
-        //     $file = $request->file('additional2_attachment');
-        //     $dir = 'uploads/';
-        //     $filename = time().rand(1111,9999).'.'.$file->getClientOriginalExtension();
-        //     $file->move($dir, $filename);
-        //     ProposalAttachment::create([
-        //         'proposal_id' => $proposal->id,
-        //         'filename' => $file->getClientOriginalName(),
-        //         'mimetype' => $file->getClientOriginalExtension(),
-        //         'filepath' => $filename,
-        //     ]);
-        // }
-
         foreach ($attachments as $attachment) {
-            $doc = DocumentController::upload($attachment, 'private');
+            $doc = DocumentController::upload($attachment, 'private', [
+                $request->lecture_id,
+                $project->company_id,
+            ]);
             ProposalAttachment::create([
                 'proposal_id' => $proposal->id,
                 'document_id' => $doc->id,

@@ -63,7 +63,7 @@ class DocumentController extends Controller
         ], 404);
     }
 
-    public static function upload(UploadedFile $file, string $visibility) {
+    public static function upload(UploadedFile $file, string $visibility, Array $user_ids = []) {
         $filename = explode(".", $file->hashName())[0];
 
         $credentials = file_get_contents(base_path('credentials.json'));
@@ -83,6 +83,13 @@ class DocumentController extends Controller
                 "extension" => $file->getClientOriginalExtension(),
                 "visibility" => $visibility
             ]);
+
+            foreach ($user_ids as $user_id) {
+                DocumentUserPermission::create([
+                    "user_id" => $user_id,
+                    "document_id" => $doc->id,
+                ]);
+            }
 
             return $doc;
         }
