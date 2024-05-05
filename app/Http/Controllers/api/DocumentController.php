@@ -19,7 +19,6 @@ class DocumentController extends Controller
         $doc = Document::where('filename', $filename)->first();
         if ($doc) {
             if (!$this->authorityCheck($doc)) {
-                return response()->json('aaa');
                 return response()->json([
                     "message" => "Akses ditolak",
                     "data" => null

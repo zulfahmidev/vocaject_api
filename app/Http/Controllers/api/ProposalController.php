@@ -185,12 +185,12 @@ class ProposalController extends Controller
         }
         foreach (Proposal::where('project_id', $project->id)->get() as $proposal) {
             if ($proposal->id == $proposal_id) {
-                if (!$project->transferBudget()) {
-                    return response()->json([
-                        'message' => 'Saldo anda tidak mencukupi untuk melakukan transaksi.',
-                        'data' => null
-                    ], 403);
-                }
+                // if (!$project->transferBudget()) {
+                //     return response()->json([
+                //         'message' => 'Saldo anda tidak mencukupi untuk melakukan transaksi.',
+                //         'data' => null
+                //     ], 403);
+                // }
                 $proposal->update([
                     'status' => 'accepted'
                 ]);
