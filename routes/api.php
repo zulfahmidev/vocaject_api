@@ -136,7 +136,7 @@ Route::prefix('project')->group(function() {
 
 Route::prefix('document')->group(function(){
 
-    Route::get('view/{filename}', [DocumentController::class, 'view']);
-    Route::get('detail/{filename}', [DocumentController::class, 'detail']);
+    Route::get('view/{filename}', [DocumentController::class, 'view'])->middleware(['auth:sanctum']);
+    Route::get('detail/{filename}', [DocumentController::class, 'detail'])->middleware(['auth:sanctum']);
     // Route::post('upload', [DocumentController::class, 'upload']);
 });
