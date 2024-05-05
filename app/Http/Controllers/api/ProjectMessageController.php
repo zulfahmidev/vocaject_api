@@ -146,7 +146,7 @@ class ProjectMessageController extends Controller
 
     }
 
-    public function getContacts($project_id) {
+    public function getCompanyContacts($project_id) {
         $raw = ProjectMessage::where('project_id', $project_id)->pluck('lecture_id')->toArray();
         $lecture_ids = array_unique($raw);
         $contacts = [];
@@ -154,6 +154,22 @@ class ProjectMessageController extends Controller
             $user = User::find($lecture_id);
             if ($user) {
                 $contacts[] = $user->getDetail();
+            }
+        }
+        return response()->json([
+            'message' => 'Berhasil memuat data',
+            'data' => $contacts,
+        ]);
+    }
+
+    public function getLectureContacts($lecture_id) {
+        $raw = ProjectMessage::where('lecture_id', $lecture_id)->pluck('project_id')->toArray();
+        $project_ids = array_unique($raw);
+        $contacts = [];
+        foreach ($project_ids as $project_id) {
+            $project = Project::find($project_id);
+            if ($project) {
+                $contacts[] = $project->getDetail()->company;
             }
         }
         return response()->json([

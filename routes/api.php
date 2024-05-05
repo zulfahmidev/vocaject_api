@@ -122,7 +122,8 @@ Route::prefix('project')->group(function() {
         Route::post('/', [ProjectLogbookController::class, 'store'])->name('project.logbook.store');
     });
 
-    Route::get('/{project_id}/message/get/contact', [ProjectMessageController::class, 'getContacts'])->name('project.contact');
+    Route::get('/message/get/company/contact/{project_id}', [ProjectMessageController::class, 'getCompanyContacts'])->name('project.contact.company');
+    Route::get('/message/get/lecture/contact/{lecture_id}', [ProjectMessageController::class, 'getLectureContacts'])->name('project.contact.lecture');
 
     Route::prefix('{project_id}/message/{lecture_id}')->group(function() {
         Route::get('/', [ProjectMessageController::class, 'index'])->name('project.message');
