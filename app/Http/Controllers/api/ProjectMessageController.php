@@ -165,16 +165,16 @@ class ProjectMessageController extends Controller
     public function getLectureContacts($lecture_id) {
         $raw = ProjectMessage::where('lecture_id', $lecture_id)->pluck('project_id')->toArray();
         $project_ids = array_unique($raw);
-        $contacts = [];
+        $projects = [];
         foreach ($project_ids as $project_id) {
             $project = Project::find($project_id);
             if ($project) {
-                $contacts[] = $project->getDetail()->company;
+                $projects[] = $project->getDetail();
             }
         }
         return response()->json([
             'message' => 'Berhasil memuat data',
-            'data' => $contacts,
+            'data' => $projects,
         ]);
     }
 
