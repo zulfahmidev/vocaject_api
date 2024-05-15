@@ -13,6 +13,20 @@ class ProjectMessage extends Model
         'message', 'sender', 'project_id', 'lecture_id'
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime',
+    ];
+
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->setTimezone('Asia/Jakarta')->format('Y-m-d H:i:s');
+    }
+
+    public function getUpdatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->setTimezone('Asia/Jakarta')->format('Y-m-d H:i:s');
+    }
+
     public function getDetail() {
         $message = ProjectMessage::find($this->id);
         $message->project = Project::find($this->project_id)->getDetail();

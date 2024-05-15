@@ -9,6 +9,7 @@ use App\Models\DocumentUserPermission;
 use App\Models\Project;
 use App\Models\ProjectMessage;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,6 +42,8 @@ class ProjectMessageController extends Controller
     }
 
     public function store(Request $request, $project_id, $lecture_id) {
+        // dd(Carbon::now());
+        // dd(date_default_timezone_get(), date('H:i:s'));
         $project = Project::find($project_id);
         if (!$project) {
             return response()->json([
