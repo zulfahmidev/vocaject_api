@@ -42,8 +42,6 @@ class ProjectMessageController extends Controller
     }
 
     public function store(Request $request, $project_id, $lecture_id) {
-        // dd(Carbon::now());
-        // dd(date_default_timezone_get(), date('H:i:s'));
         $project = Project::find($project_id);
         if (!$project) {
             return response()->json([

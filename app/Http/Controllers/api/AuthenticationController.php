@@ -11,6 +11,7 @@ use App\Models\PasswordReset;
 use App\Models\StudentDetail;
 use App\Models\User;
 use App\Models\UserSubmission;
+use Carbon\Carbon;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -225,10 +226,14 @@ class AuthenticationController extends Controller
                 // }
             }
 
+            $token = $user->createToken(time());
+            $token->accessToken->expires_at = Carbon::now()->addHours();
+            $token->accessToken->save();
+
             return response()->json([
                 'message' => 'Anda telah berhasil masuk ke akun Anda.',
                 'data' => [
-                    'access_token' => $user->createToken(time())->plainTextToken,
+                    'access_token' => $token->plainTextToken,
                     'user' => $user->getDetail(),
                 ]
             ], 200);

@@ -1,0 +1,1020 @@
+{
+    "users": [
+        {
+            "name": "Universitas Teknologi Surabaya",
+            "email": "info@utsurabaya.ac.id",
+            "description": "Universitas dengan fokus pada teknologi dan inovasi.",
+            "phone": "031-1234567",
+            "picture": "https://example.com/utsurabaya.jpg",
+            "address": "Jl. Raya ITS, Surabaya",
+            "role": "college"
+        },
+        {
+            "name": "Institut Pertanian Bogor",
+            "email": "info@ipb.ac.id",
+            "description": "Institut yang dikenal dengan penelitian dan pendidikan pertaniannya.",
+            "phone": "0251-1234567",
+            "picture": "https://example.com/ipb.jpg",
+            "address": "Jl. Raya Dramaga, Bogor",
+            "role": "college"
+        },
+        {
+            "name": "Universitas Gadjah Mada",
+            "email": "info@ugm.ac.id",
+            "description": "Salah satu universitas tertua dan terbesar di Indonesia.",
+            "phone": "0274-1234567",
+            "picture": "https://example.com/ugm.jpg",
+            "address": "Bulaksumur, Yogyakarta",
+            "role": "college"
+        },
+        {
+            "name": "Universitas Indonesia",
+            "email": "info@ui.ac.id",
+            "description": "Universitas negeri yang berlokasi di Depok, Jawa Barat.",
+            "phone": "021-1234567",
+            "picture": "https://example.com/ui.jpg",
+            "address": "Kampus UI, Depok",
+            "role": "college"
+        },
+        {
+            "name": "Universitas Padjadjaran",
+            "email": "info@unpad.ac.id",
+            "description": "Universitas negeri yang terkenal dengan jurusan kedokterannya.",
+            "phone": "022-1234567",
+            "picture": "https://example.com/unpad.jpg",
+            "address": "Jl. Dipati Ukur, Bandung",
+            "role": "college"
+        },
+        {
+            "name": "Institut Teknologi Bandung",
+            "email": "info@itb.ac.id",
+            "description": "Institut teknologi terkemuka di Indonesia.",
+            "phone": "022-1234567",
+            "picture": "https://example.com/itb.jpg",
+            "address": "Jl. Ganesha, Bandung",
+            "role": "college"
+        },
+        {
+            "name": "Universitas Airlangga",
+            "email": "info@unair.ac.id",
+            "description": "Universitas negeri di Surabaya dengan berbagai program studi unggulan.",
+            "phone": "031-1234567",
+            "picture": "https://example.com/unair.jpg",
+            "address": "Jl. Airlangga, Surabaya",
+            "role": "college"
+        },
+        {
+            "name": "Universitas Diponegoro",
+            "email": "info@undip.ac.id",
+            "description": "Universitas negeri di Semarang dengan berbagai program studi.",
+            "phone": "024-1234567",
+            "picture": "https://example.com/undip.jpg",
+            "address": "Jl. Prof. Soedarto, Semarang",
+            "role": "college"
+        },
+        {
+            "name": "Universitas Hasanuddin",
+            "email": "info@unhas.ac.id",
+            "description": "Universitas negeri di Makassar dengan fokus pada penelitian.",
+            "phone": "0411-1234567",
+            "picture": "https://example.com/unhas.jpg",
+            "address": "Jl. Perintis Kemerdekaan, Makassar",
+            "role": "college"
+        },
+        {
+            "name": "Universitas Brawijaya",
+            "email": "info@ub.ac.id",
+            "description": "Universitas negeri di Malang dengan berbagai program studi.",
+            "phone": "0341-1234567",
+            "picture": "https://example.com/ub.jpg",
+            "address": "Jl. Veteran, Malang",
+            "role": "college"
+        },
+
+
+        
+        {
+            "name": "Tech Innovators Inc.",
+            "email": "info@techinnovators.com",
+            "description": "Leading provider of innovative technology solutions.",
+            "phone": "+1-800-555-0101",
+            "picture": "https://example.com/images/techinnovators.jpg",
+            "address": "123 Innovation Drive, Silicon Valley, CA 94043",
+            "role": "company"
+        },
+        {
+            "name": "NextGen Software",
+            "email": "contact@nextgensoftware.com",
+            "description": "Developer of cutting-edge software applications.",
+            "phone": "+1-800-555-0102",
+            "picture": "https://example.com/images/nextgen.jpg",
+            "address": "456 Software Ave, Mountain View, CA 94040",
+            "role": "company"
+        },
+        {
+            "name": "Cloud Solutions Ltd.",
+            "email": "support@cloudsolutions.com",
+            "description": "Specialists in cloud computing and storage solutions.",
+            "phone": "+1-800-555-0103",
+            "picture": "https://example.com/images/cloudsolutions.jpg",
+            "address": "789 Cloud Street, San Francisco, CA 94105",
+            "role": "company"
+        },
+        {
+            "name": "AI Pioneers",
+            "email": "hello@aipioneers.com",
+            "description": "Pioneering artificial intelligence and machine learning technologies.",
+            "phone": "+1-800-555-0104",
+            "picture": "https://example.com/images/aipioneers.jpg",
+            "address": "101 AI Lane, Palo Alto, CA 94301",
+            "role": "company"
+        },
+        {
+            "name": "Cyber Defense Corp.",
+            "email": "security@cyberdefense.com",
+            "description": "Providing top-notch cybersecurity solutions and services.",
+            "phone": "+1-800-555-0105",
+            "picture": "https://example.com/images/cyberdefense.jpg",
+            "address": "202 Security Blvd, Cupertino, CA 95014",
+            "role": "company"
+        },
+        {
+            "name": "Data Analytics Co.",
+            "email": "info@dataanalytics.com",
+            "description": "Experts in data analysis and big data solutions.",
+            "phone": "+1-800-555-0106",
+            "picture": "https://example.com/images/dataanalytics.jpg",
+            "address": "303 Data Drive, San Jose, CA 95110",
+            "role": "company"
+        },
+        {
+            "name": "FutureTech Solutions",
+            "email": "contact@futuretech.com",
+            "description": "Providing futuristic technology solutions for businesses.",
+            "phone": "+1-800-555-0107",
+            "picture": "https://example.com/images/futuretech.jpg",
+            "address": "404 Future Lane, Redwood City, CA 94063",
+            "role": "company"
+        },
+        {
+            "name": "Innovatech Systems",
+            "email": "support@innovatech.com",
+            "description": "Leading the way in technological innovation and system integration.",
+            "phone": "+1-800-555-0108",
+            "picture": "https://example.com/images/innovatech.jpg",
+            "address": "505 Innovation Road, Santa Clara, CA 95050",
+            "role": "company"
+        },
+        {
+            "name": "Smart Solutions Group",
+            "email": "hello@smartsolutions.com",
+            "description": "Smart solutions for a smarter world.",
+            "phone": "+1-800-555-0109",
+            "picture": "https://example.com/images/smartsolutions.jpg",
+            "address": "606 Smart Blvd, Sunnyvale, CA 94085",
+            "role": "company"
+        },
+        {
+            "name": "TechWave Enterprises",
+            "email": "info@techwave.com",
+            "description": "Wave of the future in technology and IT services.",
+            "phone": "+1-800-555-0110",
+            "picture": "https://example.com/images/techwave.jpg",
+            "address": "707 Wave Road, Fremont, CA 94538",
+            "role": "company"
+        },
+
+
+
+        {
+            "name": "Ahmad Fauzi",
+            "email": "ahmad.fauzi@example.com",
+            "nidn": "4891000654",
+            "phone": "+6284671327519",
+            "picture": "https://example.com/pictures/ahmad.fauzi.jpg",
+            "address": "Jl. Contoh No.1, Kota Contoh, Indonesia",
+            "college_id": 4,
+            "role": "lecture"
+        },
+        {
+            "name": "Budi Utomo",
+            "email": "budi.utomo@example.com",
+            "nidn": "2202824752",
+            "phone": "+6288417515129",
+            "picture": "https://example.com/pictures/budi.utomo.jpg",
+            "address": "Jl. Contoh No.2, Kota Contoh, Indonesia",
+            "college_id": 10,
+            "role": "lecture"
+        },
+        {
+            "name": "Citra Irama",
+            "email": "citra.irama@example.com",
+            "nidn": "3311160532",
+            "phone": "+6285300639108",
+            "picture": "https://example.com/pictures/citra.irama.jpg",
+            "address": "Jl. Contoh No.3, Kota Contoh, Indonesia",
+            "college_id": 3,
+            "role": "lecture"
+        },
+        {
+            "name": "Dewi Ayu",
+            "email": "dewi.ayu@example.com",
+            "nidn": "8714403165",
+            "phone": "+6285417785460",
+            "picture": "https://example.com/pictures/dewi.ayu.jpg",
+            "address": "Jl. Contoh No.4, Kota Contoh, Indonesia",
+            "college_id": 1,
+            "role": "lecture"
+        },
+        {
+            "name": "Eka Putra",
+            "email": "eka.putra@example.com",
+            "nidn": "1466637376",
+            "phone": "+6284814323474",
+            "picture": "https://example.com/pictures/eka.putra.jpg",
+            "address": "Jl. Contoh No.5, Kota Contoh, Indonesia",
+            "college_id": 4,
+            "role": "lecture"
+        },
+        {
+            "name": "Farida Hasan",
+            "email": "farida.hasan@example.com",
+            "nidn": "1475898642",
+            "phone": "+6281379039204",
+            "picture": "https://example.com/pictures/farida.hasan.jpg",
+            "address": "Jl. Contoh No.6, Kota Contoh, Indonesia",
+            "college_id": 7,
+            "role": "lecture"
+        },
+        {
+            "name": "Gilang Permana",
+            "email": "gilang.permana@example.com",
+            "nidn": "1430898715",
+            "phone": "+6282920997861",
+            "picture": "https://example.com/pictures/gilang.permana.jpg",
+            "address": "Jl. Contoh No.7, Kota Contoh, Indonesia",
+            "college_id": 4,
+            "role": "lecture"
+        },
+        {
+            "name": "Hanafi Mahmud",
+            "email": "hanafi.mahmud@example.com",
+            "nidn": "5244987165",
+            "phone": "+6287153131008",
+            "picture": "https://example.com/pictures/hanafi.mahmud.jpg",
+            "address": "Jl. Contoh No.8, Kota Contoh, Indonesia",
+            "college_id": 9,
+            "role": "lecture"
+        },
+        {
+            "name": "Intan Purnama",
+            "email": "intan.purnama@example.com",
+            "nidn": "5742098832",
+            "phone": "+6283815593321",
+            "picture": "https://example.com/pictures/intan.purnama.jpg",
+            "address": "Jl. Contoh No.9, Kota Contoh, Indonesia",
+            "college_id": 5,
+            "role": "lecture"
+        },
+        {
+            "name": "Joko Priyono",
+            "email": "joko.priyono@example.com",
+            "nidn": "2390961644",
+            "phone": "+6289452237055",
+            "picture": "https://example.com/pictures/joko.priyono.jpg",
+            "address": "Jl. Contoh No.10, Kota Contoh, Indonesia",
+            "college_id": 5,
+            "role": "lecture"
+        },
+        {
+            "name": "Kurniawan Adi",
+            "email": "kurniawan.adi@example.com",
+            "nidn": "6217544301",
+            "phone": "+6283355501966",
+            "picture": "https://example.com/pictures/kurniawan.adi.jpg",
+            "address": "Jl. Contoh No.11, Kota Contoh, Indonesia",
+            "college_id": 6,
+            "role": "lecture"
+        },
+        {
+            "name": "Lestari Sari",
+            "email": "lestari.sari@example.com",
+            "nidn": "4841198266",
+            "phone": "+6289342068537",
+            "picture": "https://example.com/pictures/lestari.sari.jpg",
+            "address": "Jl. Contoh No.12, Kota Contoh, Indonesia",
+            "college_id": 5,
+            "role": "lecture"
+        },
+        {
+            "name": "Maya Sari",
+            "email": "maya.sari@example.com",
+            "nidn": "4235632197",
+            "phone": "+6281220326069",
+            "picture": "https://example.com/pictures/maya.sari.jpg",
+            "address": "Jl. Contoh No.13, Kota Contoh, Indonesia",
+            "college_id": 9,
+            "role": "lecture"
+        },
+        {
+            "name": "Nadia Rahma",
+            "email": "nadia.rahma@example.com",
+            "nidn": "9573307951",
+            "phone": "+6289343319090",
+            "picture": "https://example.com/pictures/nadia.rahma.jpg",
+            "address": "Jl. Contoh No.14, Kota Contoh, Indonesia",
+            "college_id": 6,
+            "role": "lecture"
+        },
+        {
+            "name": "Oka Wijaya",
+            "email": "oka.wijaya@example.com",
+            "nidn": "4181420156",
+            "phone": "+6286511156785",
+            "picture": "https://example.com/pictures/oka.wijaya.jpg",
+            "address": "Jl. Contoh No.15, Kota Contoh, Indonesia",
+            "college_id": 4,
+            "role": "lecture"
+        },
+        {
+            "name": "Putu Andika",
+            "email": "putu.andika@example.com",
+            "nidn": "8469987723",
+            "phone": "+6287518240321",
+            "picture": "https://example.com/pictures/putu.andika.jpg",
+            "address": "Jl. Contoh No.16, Kota Contoh, Indonesia",
+            "college_id": 1,
+            "role": "lecture"
+        },
+        {
+            "name": "Qori Utami",
+            "email": "qori.utami@example.com",
+            "nidn": "9696809273",
+            "phone": "+6288415079537",
+            "picture": "https://example.com/pictures/qori.utami.jpg",
+            "address": "Jl. Contoh No.17, Kota Contoh, Indonesia",
+            "college_id": 1,
+            "role": "lecture"
+        },
+        {
+            "name": "Rini Wulandari",
+            "email": "rini.wulandari@example.com",
+            "nidn": "7316829877",
+            "phone": "+6286114013508",
+            "picture": "https://example.com/pictures/rini.wulandari.jpg",
+            "address": "Jl. Contoh No.18, Kota Contoh, Indonesia",
+            "college_id": 4,
+            "role": "lecture"
+        },
+        {
+            "name": "Sigit Pramono",
+            "email": "sigit.pramono@example.com",
+            "nidn": "1395336942",
+            "phone": "+6288814625480",
+            "picture": "https://example.com/pictures/sigit.pramono.jpg",
+            "address": "Jl. Contoh No.19, Kota Contoh, Indonesia",
+            "college_id": 1,
+            "role": "lecture"
+        },
+        {
+            "name": "Teguh Rahayu",
+            "email": "teguh.rahayu@example.com",
+            "nidn": "8581758984",
+            "phone": "+6289524916894",
+            "picture": "https://example.com/pictures/teguh.rahayu.jpg",
+            "address": "Jl. Contoh No.20, Kota Contoh, Indonesia",
+            "college_id": 4,
+            "role": "lecture"
+        },
+        {
+            "name": "Umar Said",
+            "email": "umar.said@example.com",
+            "nidn": "9488582404",
+            "phone": "+6283345719326",
+            "picture": "https://example.com/pictures/umar.said.jpg",
+            "address": "Jl. Contoh No.21, Kota Contoh, Indonesia",
+            "college_id": 5,
+            "role": "lecture"
+        },
+        {
+            "name": "Vina Larasati",
+            "email": "vina.larasati@example.com",
+            "nidn": "7672064328",
+            "phone": "+6289745900104",
+            "picture": "https://example.com/pictures/vina.larasati.jpg",
+            "address": "Jl. Contoh No.22, Kota Contoh, Indonesia",
+            "college_id": 1,
+            "role": "lecture"
+        },
+        {
+            "name": "Wahyu Saputra",
+            "email": "wahyu.saputra@example.com",
+            "nidn": "4389304068",
+            "phone": "+6287187467086",
+            "picture": "https://example.com/pictures/wahyu.saputra.jpg",
+            "address": "Jl. Contoh No.23, Kota Contoh, Indonesia",
+            "college_id": 8,
+            "role": "lecture"
+        },
+        {
+            "name": "Xenia Prasetyo",
+            "email": "xenia.prasetyo@example.com",
+            "nidn": "1815298605",
+            "phone": "+6281252283514",
+            "picture": "https://example.com/pictures/xenia.prasetyo.jpg",
+            "address": "Jl. Contoh No.24, Kota Contoh, Indonesia",
+            "college_id": 9,
+            "role": "lecture"
+        },
+        {
+            "name": "Yogi Hartanto",
+            "email": "yogi.hartanto@example.com",
+            "nidn": "2420336957",
+            "phone": "+6282818194083",
+            "picture": "https://example.com/pictures/yogi.hartanto.jpg",
+            "address": "Jl. Contoh No.25, Kota Contoh, Indonesia",
+            "college_id": 2,
+            "role": "lecture"
+        },
+        {
+            "name": "Zahra Azizah",
+            "email": "zahra.azizah@example.com",
+            "nidn": "4023180681",
+            "phone": "+6281803444416",
+            "picture": "https://example.com/pictures/zahra.azizah.jpg",
+            "address": "Jl. Contoh No.26, Kota Contoh, Indonesia",
+            "college_id": 10,
+            "role": "lecture"
+        },
+        {
+            "name": "Arya Nugraha",
+            "email": "arya.nugraha@example.com",
+            "nidn": "5003290678",
+            "phone": "+6284649381902",
+            "picture": "https://example.com/pictures/arya.nugraha.jpg",
+            "address": "Jl. Contoh No.27, Kota Contoh, Indonesia",
+            "college_id": 9,
+            "role": "lecture"
+        },
+        {
+            "name": "Bagus Hidayat",
+            "email": "bagus.hidayat@example.com",
+            "nidn": "1481029107",
+            "phone": "+6288314312368",
+            "picture": "https://example.com/pictures/bagus.hidayat.jpg",
+            "address": "Jl. Contoh No.28, Kota Contoh, Indonesia",
+            "college_id": 8,
+            "role": "lecture"
+        },
+        {
+            "name": "Cindy Agustina",
+            "email": "cindy.agustina@example.com",
+            "nidn": "6264204257",
+            "phone": "+6283310170005",
+            "picture": "https://example.com/pictures/cindy.agustina.jpg",
+            "address": "Jl. Contoh No.29, Kota Contoh, Indonesia",
+            "college_id": 9,
+            "role": "lecture"
+        },
+        {
+            "name": "Dian Paramitha",
+            "email": "dian.paramitha@example.com",
+            "nidn": "6514021226",
+            "phone": "+6284181949851",
+            "picture": "https://example.com/pictures/dian.paramitha.jpg",
+            "address": "Jl. Contoh No.30, Kota Contoh, Indonesia",
+            "college_id": 1,
+            "role": "lecture"
+        },
+
+
+
+        {
+            "name": "Budi Santoso",
+            "email": "budi.santoso@example.com",
+            "nim": "2101010001",
+            "phone": "081234567890",
+            "picture": "https://randomuser.me/api/portraits/men/1.jpg",
+            "address": "Jl. Mawar No.1, Jakarta",
+            "college_id": 3,
+            "role": "student"
+        },
+        {
+            "name": "Andi Setiawan",
+            "email": "andi.setiawan@example.com",
+            "nim": "2101010002",
+            "phone": "081234567891",
+            "picture": "https://randomuser.me/api/portraits/men/2.jpg",
+            "address": "Jl. Melati No.2, Bandung",
+            "college_id": 7,
+            "role": "student"
+        },
+        {
+            "name": "Citra Dewi",
+            "email": "citra.dewi@example.com",
+            "nim": "2101010003",
+            "phone": "081234567892",
+            "picture": "https://randomuser.me/api/portraits/women/1.jpg",
+            "address": "Jl. Kenanga No.3, Surabaya",
+            "college_id": 5,
+            "role": "student"
+        },
+        {
+            "name": "Dewi Lestari",
+            "email": "dewi.lestari@example.com",
+            "nim": "2101010004",
+            "phone": "081234567893",
+            "picture": "https://randomuser.me/api/portraits/women/2.jpg",
+            "address": "Jl. Anggrek No.4, Yogyakarta",
+            "college_id": 4,
+            "role": "student"
+        },
+        {
+            "name": "Eko Prasetyo",
+            "email": "eko.prasetyo@example.com",
+            "nim": "2101010005",
+            "phone": "081234567894",
+            "picture": "https://randomuser.me/api/portraits/men/3.jpg",
+            "address": "Jl. Dahlia No.5, Semarang",
+            "college_id": 6,
+            "role": "student"
+        },
+        {
+            "name": "Fajar Hidayat",
+            "email": "fajar.hidayat@example.com",
+            "nim": "2101010006",
+            "phone": "081234567895",
+            "picture": "https://randomuser.me/api/portraits/men/4.jpg",
+            "address": "Jl. Kamboja No.6, Medan",
+            "college_id": 9,
+            "role": "student"
+        },
+        {
+            "name": "Gita Puspitasari",
+            "email": "gita.puspitasari@example.com",
+            "nim": "2101010007",
+            "phone": "081234567896",
+            "picture": "https://randomuser.me/api/portraits/women/3.jpg",
+            "address": "Jl. Bougenville No.7, Palembang",
+            "college_id": 2,
+            "role": "student"
+        },
+        {
+            "name": "Hadi Saputra",
+            "email": "hadi.saputra@example.com",
+            "nim": "2101010008",
+            "phone": "081234567897",
+            "picture": "https://randomuser.me/api/portraits/men/5.jpg",
+            "address": "Jl. Mawar No.8, Malang",
+            "college_id": 8,
+            "role": "student"
+        },
+        {
+            "name": "Intan Permatasari",
+            "email": "intan.permatasari@example.com",
+            "nim": "2101010009",
+            "phone": "081234567898",
+            "picture": "https://randomuser.me/api/portraits/women/4.jpg",
+            "address": "Jl. Melati No.9, Makassar",
+            "college_id": 10,
+            "role": "student"
+        },
+        {
+            "name": "Joko Susilo",
+            "email": "joko.susilo@example.com",
+            "nim": "2101010010",
+            "phone": "081234567899",
+            "picture": "https://randomuser.me/api/portraits/men/6.jpg",
+            "address": "Jl. Kenanga No.10, Bekasi",
+            "college_id": 1,
+            "role": "student"
+        },
+        {
+            "name": "Kartika Sari",
+            "email": "kartika.sari@example.com",
+            "nim": "2101010011",
+            "phone": "081234567800",
+            "picture": "https://randomuser.me/api/portraits/women/5.jpg",
+            "address": "Jl. Anggrek No.11, Depok",
+            "college_id": 4,
+            "role": "student"
+        },
+        {
+            "name": "Lina Herlina",
+            "email": "lina.herlina@example.com",
+            "nim": "2101010012",
+            "phone": "081234567801",
+            "picture": "https://randomuser.me/api/portraits/women/6.jpg",
+            "address": "Jl. Dahlia No.12, Tangerang",
+            "college_id": 3,
+            "role": "student"
+        },
+        {
+            "name": "Mukti Widodo",
+            "email": "mukti.widodo@example.com",
+            "nim": "2101010013",
+            "phone": "081234567802",
+            "picture": "https://randomuser.me/api/portraits/men/7.jpg",
+            "address": "Jl. Kamboja No.13, Bogor",
+            "college_id": 7,
+            "role": "student"
+        },
+        {
+            "name": "Nina Putri",
+            "email": "nina.putri@example.com",
+            "nim": "2101010014",
+            "phone": "081234567803",
+            "picture": "https://randomuser.me/api/portraits/women/7.jpg",
+            "address": "Jl. Bougenville No.14, Denpasar",
+            "college_id": 2,
+            "role": "student"
+        },
+        {
+            "name": "Oki Pratama",
+            "email": "oki.pratama@example.com",
+            "nim": "2101010015",
+            "phone": "081234567804",
+            "picture": "https://randomuser.me/api/portraits/men/8.jpg",
+            "address": "Jl. Mawar No.15, Bandar Lampung",
+            "college_id": 6,
+            "role": "student"
+        },
+        {
+            "name": "Puspita Sari",
+            "email": "puspita.sari@example.com",
+            "nim": "2101010016",
+            "phone": "081234567805",
+            "picture": "https://randomuser.me/api/portraits/women/8.jpg",
+            "address": "Jl. Melati No.16, Balikpapan",
+            "college_id": 8,
+            "role": "student"
+        },
+        {
+            "name": "Rizky Hidayat",
+            "email": "rizky.hidayat@example.com",
+            "nim": "2101010017",
+            "phone": "081234567806",
+            "picture": "https://randomuser.me/api/portraits/men/9.jpg",
+            "address": "Jl. Kenanga No.17, Batam",
+            "college_id": 5,
+            "role": "student"
+        },
+        {
+            "name": "Siti Nurhaliza",
+            "email": "siti.nurhaliza@example.com",
+            "nim": "2101010018",
+            "phone": "081234567807",
+            "picture": "https://randomuser.me/api/portraits/women/9.jpg",
+            "address": "Jl. Anggrek No.18, Pekanbaru",
+            "college_id": 1,
+            "role": "student"
+        },
+        {
+            "name": "Taufik Hidayat",
+            "email": "taufik.hidayat@example.com",
+            "nim": "2101010019",
+            "phone": "081234567808",
+            "picture": "https://randomuser.me/api/portraits/men/10.jpg",
+            "address": "Jl. Dahlia No.19, Padang",
+            "college_id": 9,
+            "role": "student"
+        },
+        {
+            "name": "Umi Kalsum",
+            "email": "umi.kalsum@example.com",
+            "nim": "2101010020",
+            "phone": "081234567809",
+            "picture": "https://randomuser.me/api/portraits/women/10.jpg",
+            "address": "Jl. Kamboja No.20, Samarinda",
+            "college_id": 7,
+            "role": "student"
+        },
+        {
+            "name": "Vina Permata",
+            "email": "vina.permata@example.com",
+            "nim": "2101010021",
+            "phone": "081234567810",
+            "picture": "https://randomuser.me/api/portraits/women/11.jpg",
+            "address": "Jl. Bougenville No.21, Banjarmasin",
+            "college_id": 10,
+            "role": "student"
+        },
+        {
+            "name": "Wawan Setiawan",
+            "email": "wawan.setiawan@example.com",
+            "nim": "2101010022",
+            "phone": "081234567811",
+            "picture": "https://randomuser.me/api/portraits/men/11.jpg",
+            "address": "Jl. Mawar No.22, Manado",
+            "college_id": 3,
+            "role": "student"
+        },
+        {
+            "name": "Xena Putri",
+            "email": "xena.putri@example.com",
+            "nim": "2101010023",
+            "phone": "081234567812",
+            "picture": "https://randomuser.me/api/portraits/women/12.jpg",
+            "address": "Jl. Melati No.23, Jambi",
+            "college_id": 8,
+            "role": "student"
+        },
+        {
+            "name": "Yudi Santoso",
+            "email": "yudi.santoso@example.com",
+            "nim": "2101010024",
+            "phone": "081234567813",
+            "picture": "https://randomuser.me/api/portraits/men/12.jpg",
+            "address": "Jl. Kenanga No.24, Palu",
+            "college_id": 5,
+            "role": "student"
+        },
+        {
+            "name": "Zara Amalia",
+            "email": "zara.amalia@example.com",
+            "nim": "2101010025",
+            "phone": "081234567814",
+            "picture": "https://randomuser.me/api/portraits/women/13.jpg",
+            "address": "Jl. Anggrek No.25, Pontianak",
+            "college_id": 2,
+            "role": "student"
+        },
+        {
+            "name": "Arifin Subagyo",
+            "email": "arifin.subagyo@example.com",
+            "nim": "2101010026",
+            "phone": "081234567815",
+            "picture": "https://randomuser.me/api/portraits/men/13.jpg",
+            "address": "Jl. Dahlia No.26, Kediri",
+            "college_id": 9,
+            "role": "student"
+        },
+        {
+            "name": "Bella Sari",
+            "email": "bella.sari@example.com",
+            "nim": "2101010027",
+            "phone": "081234567816",
+            "picture": "https://randomuser.me/api/portraits/women/14.jpg",
+            "address": "Jl. Kamboja No.27, Tasikmalaya",
+            "college_id": 1,
+            "role": "student"
+        },
+        {
+            "name": "Cahyo Nugroho",
+            "email": "cahyo.nugroho@example.com",
+            "nim": "2101010028",
+            "phone": "081234567817",
+            "picture": "https://randomuser.me/api/portraits/men/14.jpg",
+            "address": "Jl. Bougenville No.28, Cirebon",
+            "college_id": 6,
+            "role": "student"
+        },
+        {
+            "name": "Dian Kartika",
+            "email": "dian.kartika@example.com",
+            "nim": "2101010029",
+            "phone": "081234567818",
+            "picture": "https://randomuser.me/api/portraits/women/15.jpg",
+            "address": "Jl. Mawar No.29, Purwokerto",
+            "college_id": 4,
+            "role": "student"
+        },
+        {
+            "name": "Eko Wibowo",
+            "email": "eko.wibowo@example.com",
+            "nim": "2101010030",
+            "phone": "081234567819",
+            "picture": "https://randomuser.me/api/portraits/men/15.jpg",
+            "address": "Jl. Melati No.30, Solo",
+            "college_id": 7,
+            "role": "student"
+        }
+    ],
+    "categories": [
+        {
+            "name": "desain grafis",
+            "slug": "desain-grafis"
+        },
+        {
+            "name": "situs web",
+            "slug": "situs-web"
+        },
+        {
+            "name": "aplikasi seluler",
+            "slug": "aplikasi-seluler"
+        },
+        {
+            "name": "video permainan",
+            "slug": "video permainan"
+        },
+        {
+            "name": "video editing",
+            "slug": "video-editing"
+        }
+    ],
+    "projects": [
+        {
+            "title": "Game Edukasi untuk Anak-anak",
+            "description": "Membutuhkan game edukasi yang interaktif untuk anak-anak.",
+            "budget": 2197871,
+            "category_id": 4,
+            "company_id": 8
+        },
+        {
+            "title": "Pengembangan Situs E-commerce",
+            "description": "Kami membutuhkan situs e-commerce lengkap dengan fitur pembayaran.",
+            "budget": 4921466,
+            "category_id": 2,
+            "company_id": 4
+        },
+        {
+            "title": "Desain Brosur Promosi",
+            "description": "Membuat brosur menarik untuk promosi produk kami.",
+            "budget": 8894527,
+            "category_id": 1,
+            "company_id": 10
+        },
+        {
+            "title": "Video Dokumenter Perusahaan",
+            "description": "Membutuhkan video dokumenter tentang sejarah perusahaan.",
+            "budget": 4835770,
+            "category_id": 5,
+            "company_id": 10
+        },
+        {
+            "title": "Video Dokumenter Perusahaan",
+            "description": "Membutuhkan video dokumenter tentang sejarah perusahaan.",
+            "budget": 3066578,
+            "category_id": 5,
+            "company_id": 7
+        },
+        {
+            "title": "Pengembangan Portal Berita",
+            "description": "Butuh situs berita dengan fitur manajemen konten yang mudah.",
+            "budget": 2142600,
+            "category_id": 2,
+            "company_id": 7
+        },
+        {
+            "title": "Aplikasi Pemesanan Makanan",
+            "description": "Aplikasi untuk memesan makanan secara online.",
+            "budget": 8594088,
+            "category_id": 3,
+            "company_id": 9
+        },
+        {
+            "title": "Desain Brosur Promosi",
+            "description": "Membuat brosur menarik untuk promosi produk kami.",
+            "budget": 1196439,
+            "category_id": 1,
+            "company_id": 10
+        },
+        {
+            "title": "Video Promosi Produk",
+            "description": "Membuat video promosi untuk produk baru kami.",
+            "budget": 1038703,
+            "category_id": 5,
+            "company_id": 8
+        },
+        {
+            "title": "Game Edukasi untuk Anak-anak",
+            "description": "Membutuhkan game edukasi yang interaktif untuk anak-anak.",
+            "budget": 1741766,
+            "category_id": 4,
+            "company_id": 1
+        },
+        {
+            "title": "Pengembangan Situs E-commerce",
+            "description": "Kami membutuhkan situs e-commerce lengkap dengan fitur pembayaran.",
+            "budget": 1872885,
+            "category_id": 2,
+            "company_id": 5
+        },
+        {
+            "title": "Game Puzzle",
+            "description": "Butuh game puzzle yang menantang dan menarik.",
+            "budget": 1316225,
+            "category_id": 4,
+            "company_id": 6
+        },
+        {
+            "title": "Desain Kemasan Produk",
+            "description": "Butuh desain kemasan yang menarik dan inovatif.",
+            "budget": 8859018,
+            "category_id": 1,
+            "company_id": 6
+        },
+        {
+            "title": "Pengembangan Situs E-commerce",
+            "description": "Kami membutuhkan situs e-commerce lengkap dengan fitur pembayaran.",
+            "budget": 1918734,
+            "category_id": 2,
+            "company_id": 7
+        },
+        {
+            "title": "Pengembangan Portal Berita",
+            "description": "Butuh situs berita dengan fitur manajemen konten yang mudah.",
+            "budget": 4926197,
+            "category_id": 2,
+            "company_id": 3
+        },
+        {
+            "title": "Video Dokumenter Perusahaan",
+            "description": "Membutuhkan video dokumenter tentang sejarah perusahaan.",
+            "budget": 4053281,
+            "category_id": 5,
+            "company_id": 10
+        },
+        {
+            "title": "Video Dokumenter Perusahaan",
+            "description": "Membutuhkan video dokumenter tentang sejarah perusahaan.",
+            "budget": 5952587,
+            "category_id": 5,
+            "company_id": 2
+        },
+        {
+            "title": "Desain Kemasan Produk",
+            "description": "Butuh desain kemasan yang menarik dan inovatif.",
+            "budget": 3176484,
+            "category_id": 1,
+            "company_id": 8
+        },
+        {
+            "title": "Video Animasi",
+            "description": "Butuh video animasi untuk kampanye pemasaran.",
+            "budget": 8851064,
+            "category_id": 5,
+            "company_id": 10
+        },
+        {
+            "title": "Video Dokumenter Perusahaan",
+            "description": "Membutuhkan video dokumenter tentang sejarah perusahaan.",
+            "budget": 5840702,
+            "category_id": 5,
+            "company_id": 7
+        },
+        {
+            "title": "Video Promosi Produk",
+            "description": "Membuat video promosi untuk produk baru kami.",
+            "budget": 9457479,
+            "category_id": 5,
+            "company_id": 4
+        },
+        {
+            "title": "Aplikasi Pemesanan Makanan",
+            "description": "Aplikasi untuk memesan makanan secara online.",
+            "budget": 8429937,
+            "category_id": 3,
+            "company_id": 9
+        },
+        {
+            "title": "Game Puzzle",
+            "description": "Butuh game puzzle yang menantang dan menarik.",
+            "budget": 1316225,
+            "category_id": 4,
+            "company_id": 1
+        },
+        {
+            "title": "Pengembangan Situs E-commerce",
+            "description": "Kami membutuhkan situs e-commerce lengkap dengan fitur pembayaran.",
+            "budget": 4758621,
+            "category_id": 2,
+            "company_id": 9
+        },
+        {
+            "title": "Aplikasi Mobile Banking",
+            "description": "Membutuhkan aplikasi mobile untuk layanan perbankan.",
+            "budget": 1201136,
+            "category_id": 3,
+            "company_id": 6
+        },
+        {
+            "title": "Game Edukasi untuk Anak-anak",
+            "description": "Membutuhkan game edukasi yang interaktif untuk anak-anak.",
+            "budget": 6843593,
+            "category_id": 4,
+            "company_id": 2
+        },
+        {
+            "title": "Pengembangan Portal Berita",
+            "description": "Butuh situs berita dengan fitur manajemen konten yang mudah.",
+            "budget": 8052009,
+            "category_id": 2,
+            "company_id": 9
+        },
+        {
+            "title": "Desain Kemasan Produk",
+            "description": "Butuh desain kemasan yang menarik dan inovatif.",
+            "budget": 2222174,
+            "category_id": 1,
+            "company_id": 5
+        },
+        {
+            "title": "Aplikasi Mobile Banking",
+            "description": "Membutuhkan aplikasi mobile untuk layanan perbankan.",
+            "budget": 4795977,
+            "category_id": 3,
+            "company_id": 6
+        }
+    ]
+}
